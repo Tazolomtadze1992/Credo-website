@@ -6,6 +6,8 @@ export default function BankCard3D({ children }) {
   const rootRef = useRef(null), canvasRef = useRef(null);
   const [ready, setReady] = useState(false);
   useEffect(() => {
+    const ribbonVersion = new URLSearchParams(window.location.search).get('cardRibbon') === 'original' ? 'original' : 'polished';
+    rootRef.current.dataset.cardRibbonVersion = ribbonVersion;
     let disposed = false, started = false, engine;
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting || started) return;
@@ -15,6 +17,7 @@ export default function BankCard3D({ children }) {
         engine = createBankCard({
           root: rootRef.current,
           canvas: canvasRef.current,
+          ribbonVersion,
           onReady: () => { if (!disposed) setReady(true); },
           onFallback: () => { if (!disposed) setReady(false); },
         });

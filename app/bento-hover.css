@@ -56,6 +56,12 @@
 }
 .product-card-surface .globe-playback { pointer-events: auto; }
 
+/* One color field lives between the existing borders and lead-card artwork. */
+.product-grid { position: relative; isolation: isolate; }
+.product-grid > :is(.product-loan, .product-split) { isolation: auto; }
+:is(.product-loan, .product-split) .product-card-surface { background: transparent; z-index: 2; }
+:is(.product-loan, .product-split) .product-heading { z-index: 3; }
+
 /* Keep every illustration's original dimensions and animation coordinates. */
 .product-card-content {
   position: absolute;
@@ -108,7 +114,8 @@
 
 @media (max-width:760px) {
   .product-grid > .product-loan { overflow: hidden; }
-  .product-loan .product-card-surface { position: static; clip-path: none; background: none; }
+  .product-loan .product-card-surface { position: static; clip-path: none; background: none; isolation: auto; }
   .product-loan .bento-background { inset: 1px; border-radius: calc(var(--radius-card) - 1px); }
-  .product-loan .product-card-content { position: relative; inset: auto; }
+  .product-loan .loan-shader-background { inset: 1px; border-radius: calc(var(--radius-card) - 1px); }
+  .product-loan .product-card-content { position: relative; inset: auto; z-index: 2; }
 }

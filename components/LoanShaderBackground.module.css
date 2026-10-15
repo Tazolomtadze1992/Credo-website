@@ -1,0 +1,35 @@
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  background: #fff;
+}
+
+.shader,
+.fallback,
+.whiteSpace {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.shader { opacity: 0; transition: opacity 350ms ease; }
+.background[data-renderer="live"] .shader { opacity: 1; }
+
+/* Same fallback and white opening as the approved V5 preview. */
+.fallback {
+  background:
+    linear-gradient(180deg, #fff 26%, oklch(1 0 0 / 0) 44%),
+    radial-gradient(ellipse at -4% 72%, #fc6250 6%, oklch(.692 .192 29.48 / 0) 54%),
+    radial-gradient(ellipse at 90% 37%, oklch(.81 .12 60) 0%, oklch(.81 .12 60 / 0) 48%),
+    radial-gradient(ellipse at 53% 110%, #fc6250 0%, oklch(.692 .192 29.48 / 0) 59%),
+    oklch(.72 .12 232.094);
+}
+
+.whiteSpace {
+  background: linear-gradient(180deg, #fff 0%, #fff 25%, oklch(1 0 0 / 0) 28%);
+}

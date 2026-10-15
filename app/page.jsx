@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { LogoArt, CardArt, MyCredoArt, BlueFieldArt } from '../components/DesignArt';
 import TransferGlobe from '../components/TransferGlobe';
 import NewsSection from '../components/NewsSection';
@@ -8,40 +8,12 @@ import BankCard3D from '../components/BankCard3D';
 import SavingsGoal from '../components/SavingsGoal';
 import ProductCard from '../components/ProductCard';
 import SplitPayment from '../components/SplitPayment';
+import SharedBentoBackground from '../components/SharedBentoBackground';
+import { ArtStage, CredoPhoneVideo } from '../components/LoanCardArtwork';
 
 const modes = ['სესხი', 'ანაბარი', 'ვალუტის კურსი'];
 const fmt = (value, digits = 2) => new Intl.NumberFormat('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(value);
 const exampleRates = { GEL: 1, USD: 2.7, EUR: 3.1 };
-
-function ArtStage({ width, height, children, className = '' }) {
-  const ref = useRef(null);
-  useEffect(() => {
-    const element = ref.current;
-    const resize = () => element.style.setProperty('--art-scale', element.clientWidth / width);
-    resize();
-    const observer = new ResizeObserver(resize);
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [width]);
-  return <div ref={ref} className={`art-stage ${className}`} style={{ aspectRatio: `${width} / ${height}` }} aria-hidden="true"><div className="art-canvas" style={{ width, height }}>{children}</div></div>;
-}
-
-function CredoPhoneVideo() {
-  const videoRef = useRef(null);
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) video.play().catch(() => {});
-      else video.pause();
-    }, { rootMargin: '120px 0px' });
-    observer.observe(video);
-    return () => { observer.disconnect(); video.pause(); };
-  }, []);
-  return <div className="loan-phone-video">
-    <video ref={videoRef} src="https://tazolomtadze.com/videos/credo/thumbnail.mp4" width="234" height="512" muted loop playsInline preload="none" tabIndex={-1} aria-hidden="true" />
-  </div>;
-}
 
 function Action({ children, onClick, white = false, className = '' }) {
   return <button type="button" onClick={onClick} className={`action ${white ? 'action-white' : ''} ${className}`}>{typeof children === 'string' ? children.toUpperCase() : children}</button>;
@@ -132,6 +104,7 @@ export default function Home() {
         <ProductCard kind="savings" title="დააგროვე მნიშვნელოვანი მიზნისთვის" onExplore={() => explore(1)}><SavingsGoal /></ProductCard>
         <ProductCard kind="card" title="ბარათი ყოველდღიური ფინანსებისთვის" onExplore={() => showDialog('ბარათი ყოველდღიური ფინანსებისთვის')}><BankCard3D><div className="bank-card-art"><ArtStage width={244} height={387}><CardArt /></ArtStage></div></BankCard3D></ProductCard>
         <ProductCard kind="transfer" title="გააგზავნე და მიიღე ფული საზღვარგარეთ" onExplore={() => explore(2)}><TransferGlobe /></ProductCard>
+        <SharedBentoBackground />
       </div></section>
       <section className="mycredo" id="mycredo" aria-labelledby="mycredo-title"><div className="blue-field"><ArtStage width={1440} height={844}><BlueFieldArt /></ArtStage></div><h2 id="mycredo-title">{'ყველა შენი საბანკო საქმე ერთ სივრცეში'.toUpperCase()}</h2><div className="mycredo-phone"><MyCredoArt /></div><Action white onClick={() => showDialog('გადმოწერე მობაილბანკი')}>{'გადმოწერე მობაილბანკი'.toUpperCase()}<img src="/assets/b0100.svg" alt="" /></Action></section>
       <Calculator mode={mode} setMode={setMode} onAction={showDialog} />

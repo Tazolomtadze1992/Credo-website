@@ -48,7 +48,7 @@ export default function ProductCard({ title, kind, onExplore, children }) {
     onExplore();
   }
 
-  return <article ref={rootRef} className={`product-card product-${kind}`} onClick={exploreFromCard}>
+  return <article ref={rootRef} id={kind === 'card' ? 'bank-card' : undefined} className={`product-card product-${kind}`} onClick={exploreFromCard}>
     <div className="bento-border" aria-hidden="true">
       <div className="bento-border-color"><div ref={glowRef} className="bento-border-gradient" /></div>
     </div>
@@ -62,7 +62,7 @@ export default function ProductCard({ title, kind, onExplore, children }) {
       </button>
     </div>
     <div className="product-card-surface">
-      <BentoBackground />
+      {kind !== 'loan' && kind !== 'split' && <BentoBackground />}
       <div className="product-card-content">{children}</div>
     </div>
   </article>;

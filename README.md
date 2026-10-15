@@ -11,17 +11,29 @@ npm run dev -- --port 3010
 
 Open http://localhost:3010. For a production check, run `npm run build`.
 
-## Saved loan-card shader previews
+## Saved shared-bento shader previews
 
-The shader exploration is isolated from the homepage. V2–V5 are saved independently and can be selected or compared in the preview:
+The homepage’s loan and და-ყა-ვი cards share one continuous shader, retaining clear heading space, the loan video and payment artwork. Colors circulate across the row and re-enter from the left in approximately 22 seconds. The current V2 treatment adds localized ocean blue and terracotta depth to the pale bank-card palette. The original V1 treatment is preserved independently.
 
-- Latest (V5): http://localhost:3010/previews/loan-shader?version=organic
+- V1 · Soft flow: http://localhost:3010/previews/shared-bento?version=soft
+- V2 · Rich flow (homepage): http://localhost:3010/previews/shared-bento?version=rich
+- Compare both: http://localhost:3010/previews/shared-bento?version=rich&compare=1
+
+The preview reuses the homepage’s exact loan video, artwork, product cards and responsive geometry. Comparison shows both pairs at full width. Selection and comparison are stored in the URL and support reload and browser history. Snapshots live in `lib/shared-bento-versions/`; see its README for the palette and preservation rules. The homepage defaults to the catalog’s latest version. Rendering pauses offscreen and when the document is hidden. On mobile, the same field follows the vertically stacked pair. The shared canvas clips to each card and follows its hover expansion, with a static fallback when WebGL is unavailable. It uses the already-installed Three.js renderer. Clipping and lifecycle live in `components/SharedBentoBackground.jsx`.
+
+## Bank-card background versions
+
+The separate bank-card wave also keeps its original and polished versions: [original V1](http://localhost:3010/?cardRibbon=original#bank-card), [polished V2](http://localhost:3010/?cardRibbon=polished#bank-card). These use the same Credo palette and card interaction; V2 refines the fold's curve, texture and feathered edges. See `lib/card-ribbon-versions/README.md` for saved-source details.
+
+## Earlier loan-only shader previews
+
+These independent studies are also preserved:
+
+- V5: http://localhost:3010/previews/loan-shader?version=organic
 - Compare V4 / V5: http://localhost:3010/previews/loan-shader?version=organic&compare=1&against=soft
 - Compare V3 / V5: http://localhost:3010/previews/loan-shader?version=organic&compare=1&against=flowing
 
-The picker supports any saved pair. White space, heading, card proportions and loan artwork stay consistent. See [version history](app/previews/loan-shader/versions/README.md) for all links. The shader uses `shaders` 4.0.4 and shows a static fallback if GPU rendering is unavailable.
-
-The loan artwork video is loaded from `https://tazolomtadze.com/videos/credo/thumbnail.mp4`; other illustration, font, globe and news assets are stored locally.
+The picker supports any saved pair. See [version history](app/previews/loan-shader/versions/README.md) for all links. These studies use `shaders` 4.0.4.
 
 ## Design source
 
@@ -60,7 +72,7 @@ The news section follows Stripe's homepage “What's happening” carousel and t
 
 Desktop reproduces the 1232 × 460 image composition: a full-size leading image, three progressively narrower clips, three 8px strips, 16px/8px gaps, 6px corners, and a one-second ease-out-exponential expansion. Images retain their scale as the clips change width. Hover redistributes the available width; clicking a compressed story selects it; previous/next loop in both directions. Captions crossfade in 120ms. There is no autoplay.
 
-Below 640px, it becomes Stripe's separate native swipe carousel: viewport-minus-32px cards, 336:350 media, snapping, adjacent-card scaling and image parallax. The 640–939px layout retains the reference's cropped 870px canvas. Reduced motion uses instant layout changes and removes mobile scaling/parallax. Keyboard navigation is immediate. Rendering stops when idle, offscreen or hidden; desktop images load near the section.
+Below 640px, it becomes Stripe's separate native swipe carousel: viewport-minus-32px cards, 16:9 media, snapping, adjacent-card scaling and image parallax. The 640–939px layout retains the reference's cropped 870px canvas. Reduced motion uses instant layout changes and removes mobile scaling/parallax. Keyboard navigation is immediate. Rendering stops when idle, offscreen or hidden; desktop images load near the section.
 
 - `components/NewsSection.jsx`: composition, navigation, mobile scrolling, preferences and article previews.
 - `data/home-news.mjs`: eight editable Georgian sample stories, images and collapsed-image focal offsets.
@@ -68,7 +80,7 @@ Below 640px, it becomes Stripe's separate native swipe carousel: viewport-minus-
 - `lib/create-news-carousel.mjs`: interaction-driven canvas renderer.
 - `app/news.css`: scoped source spacing, typography, colors and responsive treatment.
 
-The original high-resolution Stripe imagery is intentionally temporary for this structure pass. Desktop images are 1632 × 918; separate mobile images are 672 × 700, the largest originals supplied by the reference. The original source icons and Latin font are local, with the existing Georgian font as fallback. `public/assets/news/sources.json` records the asset URLs. No assets are hotlinked at runtime. Georgian copy is illustrative and does not represent actual Credo announcements. Read-more actions open local article previews without adding routes.
+The carousel uses eight real Credo news photographs and announcement graphics, downloaded from Credo’s public media room and the supplied BM.ge article. Original available resolutions and source URLs are recorded in `public/assets/news/credo/sources.json`. Images keep their original colors and are served as local WebP assets without upscaling or AI retouching. Mobile uses a wide frame with contained artwork so logos and signage remain readable. The original source icons and Latin font are local, with the existing Georgian font as fallback. `public/assets/news/credo/sources.json` records the current asset URLs; the earlier Stripe source manifest is retained as reference. No assets are hotlinked at runtime. Georgian copy summarizes the matching Credo announcements; article previews link to the original Credo stories. Read-more actions open local article previews without adding routes.
 
 In development, `/?newsMotion=reduce#news` previews the same reduced-motion branch used for the system preference. Final visual verification is recorded in `design-qa.md`.
 

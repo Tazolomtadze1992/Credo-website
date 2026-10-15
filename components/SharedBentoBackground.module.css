@@ -1,0 +1,28 @@
+.field {
+  position: absolute;
+  left: -12px;
+  top: -12px;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(oklch(.993 .002 30) 10%, oklch(.993 .002 30 / 0) 48%),
+    radial-gradient(ellipse at 16% 78%, oklch(.87 .06 29.48), oklch(.87 .06 29.48 / 0) 55%),
+    radial-gradient(ellipse at 68% 72%, oklch(.84 .055 232.094), oklch(.84 .055 232.094 / 0) 55%),
+    oklch(.955 .019 29.48);
+}
+.clipDefinitions { position: absolute; }
+.field[data-version="rich"] {
+  background:
+    linear-gradient(oklch(.993 .002 30) 10%, oklch(.993 .002 30 / 0) 48%),
+    radial-gradient(ellipse at 68% 100%, oklch(.505 .09 232.094 / .65), oklch(.505 .09 232.094 / 0) 48%),
+    radial-gradient(ellipse at 16% 100%, oklch(.7 .14 29.48 / .55), oklch(.7 .14 29.48 / 0) 48%),
+    radial-gradient(ellipse at 16% 78%, oklch(.87 .06 29.48), oklch(.87 .06 29.48 / 0) 55%),
+    radial-gradient(ellipse at 68% 72%, oklch(.84 .055 232.094), oklch(.84 .055 232.094 / 0) 55%),
+    oklch(.955 .019 29.48);
+}
+.window { transition: none; }
+.field[data-hover-transition="true"] .window {
+  transition: x 800ms cubic-bezier(.165,.84,.44,1), y 800ms cubic-bezier(.165,.84,.44,1), width 800ms cubic-bezier(.165,.84,.44,1), height 800ms cubic-bezier(.165,.84,.44,1);
+}
+.canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 250ms ease; }
+.field[data-renderer="live"] .canvas { opacity: 1; }

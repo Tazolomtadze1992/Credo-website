@@ -106,3 +106,6 @@ h1,h2,h3,.header nav,.action,.calculator-tabs button{text-transform:none}
 
 /* Keep uppercase navigation clear of the logo on compact desktops. */
 @media(min-width:1101px) and (max-width:1360px){.header nav{left:auto;right:0;transform:none}}
+
+/* Credo secondary action: same shape and type as the primary action. */
+.action-secondary{background:oklch(.958 .014 232.094);color:#1E6E91}

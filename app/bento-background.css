@@ -110,44 +110,26 @@
   opacity: .9;
 }
 
-/* Stripe's billing composition: oversized, overlapping ellipses, with an
-   illuminated warm middle and color gathered at the base. Credo hues only. */
+/* A quiet cool surface lets the payment panels and their coral accents lead. */
 .product-split .bento-background {
-  --split-base: oklch(0.692 0.192 29.48);
-  --split-coral: oklch(0.84 0.085 29.48);
-  --split-peach: oklch(0.93 0.038 60);
-}
-.product-split .bento-background-pool {
-  left: 50%;
-  right: auto;
-  translate: -50% 0;
-  filter: blur(12px);
-  opacity: .85;
+  --bento-base: #f2f7f9;
+  --split-halo: oklch(0.93 0.026 232.094);
 }
 .product-split .bento-background-blue {
-  width: 168%;
-  height: 64%;
-  bottom: -21%;
+  width: 106%;
+  height: 88%;
+  left: 50%;
+  right: auto;
+  bottom: -14%;
+  translate: -50% 0;
   background: radial-gradient(ellipse in oklab,
-    var(--split-base) 62.5%, oklch(0.692 0.192 29.48 / 0) 100%);
-  opacity: .92;
+    var(--split-halo) 6%, oklch(0.93 0.026 232.094 / 0) 70%);
+  opacity: .65;
 }
-.product-split .bento-background-coral {
-  width: 171%;
-  height: 61%;
-  bottom: 5%;
-  background: radial-gradient(ellipse in oklab,
-    oklch(0.84 0.085 29.48 / .8) 53.85%, oklch(0.84 0.085 29.48 / 0) 100%);
-}
-.product-split .bento-background-peach {
-  width: 175%;
-  height: 62%;
-  bottom: 20.5%;
-  background: radial-gradient(ellipse in oklab,
-    var(--split-peach) 41.35%, oklch(0.93 0.038 60 / 0) 100%);
-}
+.product-split .bento-background-coral,
+.product-split .bento-background-peach { display: none; }
 .product-split .bento-background-clear {
-  background: linear-gradient(var(--bento-base) 5%, oklch(0.993 0.002 30 / .98) 25%, oklch(0.993 0.002 30 / 0) 56%);
+  background: linear-gradient(var(--bento-base) 5%, #f2f7f9f0 24%, #f2f7f900 62%);
 }
 
 /* Static fine grain breaks up banding without adding moving noise. */

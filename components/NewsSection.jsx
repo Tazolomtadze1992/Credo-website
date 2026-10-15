@@ -94,7 +94,7 @@ export default function NewsSection() {
     <section className="home-news" id="news" ref={sectionRef} aria-labelledby="news-heading" data-news-active={active} data-reduced={reduced} data-instant={instant} onKeyDown={onKeyDown}>
       <div className="news-panel">
         <header className="news-header">
-          <div className="news-header-copy"><h2 id="news-heading">რა ხდება კრედოში</h2><p>გაეცანი ჩვენს სიახლეებს.</p></div>
+          <div className="news-header-copy"><h2 id="news-heading">რა ხდება კრედოში</h2></div>
           <div className="news-controls" role="group" aria-label="სიახლეების ნავიგაცია">
             <button type="button" aria-label="წინა სიახლე" aria-controls="news-desktop" onClick={event => navigate(-1, event.detail === 0)}><img src="/assets/news/arrow-left.svg" alt="" width="16" height="16" /></button>
             <button type="button" aria-label="შემდეგი სიახლე" aria-controls="news-desktop" onClick={event => navigate(1, event.detail === 0)}><img src="/assets/news/arrow-right.svg" alt="" width="16" height="16" /></button>
@@ -110,17 +110,17 @@ export default function NewsSection() {
             })}</div>
           </div>
           <div className="news-details">{HOME_NEWS.map((story, i) => <div className="news-detail" key={story.id} aria-hidden={i !== active} inert={i !== active} data-active={i === active}>
-            <div className="news-detail-copy"><h3>{story.title}</h3>{' '}<p>{story.description}</p></div>
-            <button className="news-read-more" type="button" tabIndex={i === active ? 0 : -1} ref={element => { captionLinks.current[i] = element; }} onClick={event => openArticle(event, story)} aria-label={`${story.cta}: ${story.title}`}>{story.cta}<img src="/assets/news/chevron.svg" width="5" height="8" alt="" /></button>
+            <div className="news-detail-copy"><p>{story.description}</p></div>
+            <button className="action action-secondary news-read-more" type="button" tabIndex={i === active ? 0 : -1} ref={element => { captionLinks.current[i] = element; }} onClick={event => openArticle(event, story)} aria-label={`${story.cta}: ${story.title}`}>{story.cta.toUpperCase()}<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
           </div>)}</div>
         </div>
 
         <div className="news-mobile">
           <ul className="news-mobile-scroller" ref={scrollerRef} aria-label="კრედოს სიახლეები">{HOME_NEWS.map((story, i) => <li className="news-mobile-item" key={story.id} style={{ '--news-progress': Math.min(1, i) }}>
             <article className="news-mobile-card">
-              <div className="news-mobile-media"><img className="news-mobile-image" src={story.mobileImage} alt="" width="672" height="700" loading="lazy" /></div>
-              <div className="news-mobile-copy"><h3>{story.title}</h3>{' '}<p>{story.description}</p></div>
-              <button type="button" className="news-read-more" onClick={event => openArticle(event, story)} aria-label={`${story.cta}: ${story.title}`}>{story.cta}<img src="/assets/news/chevron.svg" width="5" height="8" alt="" /></button>
+              <div className="news-mobile-media"><img className="news-mobile-image" src={story.mobileImage} alt="" width="1632" height="918" loading="lazy" /></div>
+              <div className="news-mobile-copy"><p>{story.description}</p></div>
+              <button type="button" className="action action-secondary news-read-more" onClick={event => openArticle(event, story)} aria-label={`${story.cta}: ${story.title}`}>{story.cta.toUpperCase()}<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" /></svg></button>
             </article>
           </li>)}</ul>
         </div>
@@ -129,9 +129,9 @@ export default function NewsSection() {
     </section>
 
     <dialog className="news-story-dialog" ref={dialogRef} aria-labelledby="news-story-title" onClick={event => { if (event.target === event.currentTarget) event.currentTarget.close(); }} onClose={() => { setArticle(null); returnFocus.current?.focus({ preventScroll: true }); }}>
-      <div className="news-story-toolbar"><span>კრედოს სიახლეები</span><button type="button" className="news-read-more" onClick={() => dialogRef.current.close()}>დახურვა</button></div>
+      <div className="news-story-toolbar"><span>კრედოს სიახლეები</span><button type="button" className="action action-secondary news-read-more" onClick={() => dialogRef.current.close()}>{'დახურვა'.toUpperCase()}</button></div>
       <img className="news-story-image" src={dialogStory.image} alt="" />
-      <div className="news-story-content"><h2 id="news-story-title">{dialogStory.title}</h2><p className="news-story-lead">{dialogStory.description}</p>{dialogStory.body.map(text => <p key={text}>{text}</p>)}</div>
+      <div className="news-story-content"><h2 id="news-story-title">{dialogStory.title}</h2><p className="news-story-lead">{dialogStory.description}</p>{dialogStory.body.map(text => <p key={text}>{text}</p>)}<a className="action action-secondary news-source-link" href={dialogStory.sourceUrl} target="_blank" rel="noopener noreferrer">{'სრული ამბავი კრედოს ვებსაიტზე'.toUpperCase()}</a></div>
     </dialog>
   </>;
 }
