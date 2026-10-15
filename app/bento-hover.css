@@ -1,0 +1,114 @@
+/* Measured from Stripe's live bento: fixed hit area, expanding clipped surface. */
+.product-grid > .product-card {
+  --bento-grow-x: 0px;
+  --bento-grow-y: 0px;
+  --bento-hover-ease: cubic-bezier(.165, .84, .44, 1);
+  --bento-hover-duration: 800ms;
+  overflow: visible;
+  background: transparent;
+  cursor: pointer;
+}
+
+.bento-border,
+.product-card-surface {
+  position: absolute;
+  inset: calc(-1 * var(--bento-grow-y)) calc(-1 * var(--bento-grow-x));
+  clip-path: inset(var(--bento-grow-y) var(--bento-grow-x) round var(--radius-card));
+  transition: clip-path var(--bento-hover-duration) var(--bento-hover-ease);
+}
+
+.bento-border {
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #0000000d;
+}
+
+.bento-border-color {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 80%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 250ms linear;
+}
+
+.bento-border-gradient {
+  position: absolute;
+  inset: 0;
+  opacity: .5;
+  background: radial-gradient(circle, var(--blue), var(--coral) 33%, #efefef 66%);
+  transform: translate3d(0, 0, 0);
+  transition: transform 1s cubic-bezier(.16, 1, .3, 1);
+}
+
+.product-loan .bento-border-color { width: 130%; height: auto; }
+.product-loan .bento-border-gradient { inset: 15%; }
+
+.product-card-surface {
+  inset: calc(1px - var(--bento-grow-y)) calc(1px - var(--bento-grow-x));
+  clip-path: inset(var(--bento-grow-y) var(--bento-grow-x) round calc(var(--radius-card) - 1px));
+  background: var(--bento-base);
+  isolation: isolate;
+  pointer-events: none;
+}
+.product-card-surface .globe-playback { pointer-events: auto; }
+
+/* Keep every illustration's original dimensions and animation coordinates. */
+.product-card-content {
+  position: absolute;
+  inset: calc(var(--bento-grow-y) - 1px) calc(var(--bento-grow-x) - 1px);
+}
+
+.product-heading { z-index: 2; pointer-events: none; }
+.product-heading h3 { transition: transform var(--bento-hover-duration) var(--bento-hover-ease); }
+.product-heading .expand {
+  position: relative;
+  pointer-events: auto;
+  background: transparent;
+  color: var(--blue);
+  transition: transform var(--bento-hover-duration) var(--bento-hover-ease);
+}
+
+.product-heading .expand::before,
+.product-heading .expand::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transition: opacity 600ms cubic-bezier(.16, 1, .3, 1);
+}
+.product-heading .expand::before { background: var(--blue); opacity: 0; }
+.product-heading .expand::after { background: var(--control-bg); opacity: 1; }
+.product-heading .expand svg { position: relative; z-index: 1; pointer-events: none; }
+.product-heading .expand path {
+  fill: currentColor;
+  transition: transform 600ms cubic-bezier(.16, 1, .3, 1);
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .product-card:hover .expand { color: #fff; }
+  .product-card:hover .expand::before { opacity: 1; }
+  .product-card:hover .expand::after { opacity: 0; }
+  .product-card:hover .expand path:first-child { transform: translate(1px, -1px); }
+  .product-card:hover .expand path:nth-child(2) { transform: translate(-1px, 1px); }
+}
+
+@media (min-width:940px) and (hover:hover) and (pointer:fine) {
+  .product-card:hover .bento-border-color { opacity: 1; }
+  .product-card:hover .bento-border { clip-path: inset(0 round var(--radius-card)); }
+  .product-card:hover .product-card-surface { clip-path: inset(0 round calc(var(--radius-card) - 1px)); }
+  .product-card:hover .product-heading h3 { transform: translate(calc(-1 * var(--bento-grow-x)), calc(-1 * var(--bento-grow-y))); }
+  .product-card:hover .expand { transform: translate(var(--bento-grow-x), calc(-1 * var(--bento-grow-y))); }
+  .product-card:hover .expand path:first-child { transform: translate(2px, -2px); }
+  .product-card:hover .expand path:nth-child(2) { transform: translate(-2px, 2px); }
+}
+
+@media (max-width:760px) {
+  .product-grid > .product-loan { overflow: hidden; }
+  .product-loan .product-card-surface { position: static; clip-path: none; background: none; }
+  .product-loan .bento-background { inset: 1px; border-radius: calc(var(--radius-card) - 1px); }
+  .product-loan .product-card-content { position: relative; inset: auto; }
+}

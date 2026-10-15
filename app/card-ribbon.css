@@ -1,0 +1,10 @@
+/* Static equivalent when the card renderer cannot run. */
+.product-grid > .product-card:nth-child(4) .bento-background-pool { animation: none; }
+
+.bank-card-3d-fallback::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/card/ribbon-fallback.svg') center / 100% 100% no-repeat;
+  pointer-events: none;
+}

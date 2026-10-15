@@ -1,0 +1,53 @@
+{
+  "source": "https://stripe.com/",
+  "assets": [
+    {
+      "id": "annual",
+      "desktop": "https://images.stripeassets.com/fzn2n1nzq965/Y7G5D3VhjwO68bdA184Co/b75ee8a57b8380f28e319a516f6e9754/annual-letter-desktop.png?w=2000&fm=webp&q=90",
+      "mobile": "https://images.stripeassets.com/fzn2n1nzq965/yqIFyZRGU5zDwdUsWtUyM/25b9f23c748c4d54079a09016fde59d8/annual-letter-mobile.png?w=800&fm=webp&q=90",
+      "use": "Temporary reference imagery for the Credo homepage prototype."
+    },
+    {
+      "id": "business",
+      "desktop": "https://images.stripeassets.com/fzn2n1nzq965/4A5cyeaWZkRbEslyjm1Elg/914e742c8459fe438d8746132cb634a3/the-happenings-bfcm.png?w=2000&fm=webp&q=90",
+      "mobile": "https://images.stripeassets.com/fzn2n1nzq965/6yE6G454SGCJnJgEYsS2MB/70b405a1dce904bc0c6f2698223fb966/the-happenings-bfcm-mobile.png?w=800&fm=webp&q=90",
+      "use": "Temporary reference imagery for the Credo homepage prototype."
+    },
+    {
+      "id": "sea",
+      "desktop": "https://images.stripeassets.com/fzn2n1nzq965/6AfkiqtqXocOFPkmOjqe8N/9a89d706bd8ad1500c5b189e05270487/the-happenings-tidemark.png?w=2000&fm=webp&q=90",
+      "mobile": "https://images.stripeassets.com/fzn2n1nzq965/33xcv8eCmXzMzWXicVQ4cF/83d91fa419ff8d1b9466739b4ecdcb1d/the-happenings-tidemark-mobile.png?w=800&fm=webp&q=90",
+      "use": "Temporary reference imagery for the Credo homepage prototype."
+    },
+    {
+      "id": "conversation",
+      "desktop": "https://images.stripeassets.com/fzn2n1nzq965/44P8uzAQSXCD3mOObNfmoP/c4226e9b4e40f328ce2ccf68324500ee/the-happenings-cheeky-pint.png?w=2000&fm=webp&q=90",
+      "mobile": "https://images.stripeassets.com/fzn2n1nzq965/t03tXrgvnHUPGwxYUgSxN/bd8da003434c9e9fb72c719b9edb429b/the-happenings-cheeky-pint-mobile.png?w=800&fm=webp&q=90",
+      "use": "Temporary reference imagery for the Credo homepage prototype."
+    },
+    {
+      "id": "mobile",
+      "desktop": "https://images.stripeassets.com/fzn2n1nzq965/1ZY0hhcESN4qWmha0ISm5R/14f4ce82b8b8644e56692427b1f56dfa/the-happenings-payment-processing.png?w=2000&fm=webp&q=90",
+      "mobile": "https://images.stripeassets.com/fzn2n1nzq965/Pd2JQ7FZ1pYMIMGDwvMdV/13e7e021ca23d042da8ac07be829f7ef/the-happenings-payment-processing-mobile.png?w=800&fm=webp&q=90",
+      "use": "Temporary reference imagery for the Credo homepage prototype."
+    },
+    {
+      "id": "payments",
+      "desktop": "https://images.stripeassets.com/fzn2n1nzq965/1pEVpyQu2XQ92txRRpfd1q/7d05e6e635bc9974dbff576828336ca7/the-happenings-crypto.png?w=2000&fm=webp&q=90",
+      "mobile": "https://images.stripeassets.com/fzn2n1nzq965/4LaZVLqDqGf9091wqUAmFp/fbe9fc307e1336b69bcd9be4ec5c4752/the-happenings-crypto-mobile.png?w=800&fm=webp&q=90",
+      "use": "Temporary reference imagery for the Credo homepage prototype."
+    },
+    {
+      "id": "technology",
+      "desktop": "https://images.stripeassets.com/fzn2n1nzq965/6mg4xss8cmX0Wx46RemzLm/266638f904dc8b908dc22f12c37ee27b/the-happenings-agentic.png?w=2000&fm=webp&q=90",
+      "mobile": "https://images.stripeassets.com/fzn2n1nzq965/1k7ckFceNFlxqF47hWJUlM/eaa4d8b3f8e4b76ba3dd7df7da88e099/the-happenings-agentic-mobile.png?w=800&fm=webp&q=90",
+      "use": "Temporary reference imagery for the Credo homepage prototype."
+    },
+    {
+      "id": "retail",
+      "desktop": "https://images.stripeassets.com/fzn2n1nzq965/42GJHxlnEVsoUsSVeVfvbL/884b4c63f5fd52cf127958ac4936de05/the-happenings-payment-retailers.png?w=2000&fm=webp&q=90",
+      "mobile": "https://images.stripeassets.com/fzn2n1nzq965/7EVLwfXmG3pl1vhBssMrFB/b6d8612b1f567922c1355d864c279678/the-happenings-payment-retailers-mobile.png?w=800&fm=webp&q=90",
+      "use": "Temporary reference imagery for the Credo homepage prototype."
+    }
+  ]
+}

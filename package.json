@@ -1,0 +1,17 @@
+{
+  "name": "credo-website-redesign",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "16.3.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "shaders": "4.0.4",
+    "three": "^0.178.0"
+  }
+}

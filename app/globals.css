@@ -1,0 +1,108 @@
+@import './design-art.css';
+@import './news.css';
+@import './savings.css';
+@import './bento-background.css';
+@import './split-payment.css';
+@font-face{font-family:Georgian;src:url('/assets/georgian.ttf') format('truetype');font-style:normal;font-weight:100 900;font-display:swap;unicode-range:U+10A0-10FF,U+1C90-1CBF,U+2D00-2D2F,U+20BE}
+:root{--font-ui:Georgian,'Helvetica Neue',Arial,sans-serif;--page:oklch(0.984 0.004 232.094);--ink:#333;--muted:#666;--blue:#1e6e91;--coral:#fc6250;--ease-out:cubic-bezier(.19,1,.22,1);--gutter:clamp(24px,5.5556vw,80px);--section-gap:120px;--heading-gap:48px;--radius-control:8px;--radius-field:12px;--radius-card:16px;--radius-pill:999px;--control-bg:#f4f8f9;--control-hover:#e2edf1}
+*{box-sizing:border-box;border-width:0;border-style:solid}html{scroll-behavior:smooth}body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font-ui);-webkit-font-smoothing:antialiased}h1,h2,h3,p{margin:0}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}button{color:inherit}button:disabled{cursor:default}button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,[role=tabpanel]:focus-visible{outline:3px solid var(--blue);outline-offset:5px}img{display:block}button{border:0}main{padding-bottom:var(--section-gap)}.section-container{width:calc(100% - var(--gutter)*2);max-width:1280px;margin-inline:auto}section[id]{scroll-margin-top:40px}.skip-link{position:fixed;top:10px;left:10px;z-index:10;background:white;padding:16px;transform:translateY(-150%)}.skip-link:focus{transform:none}
+.header{height:104px;display:flex;align-items:center;position:relative}.brand{position:relative;width:209.33px;height:37.9px;flex:none;margin-left:-10px}.header nav{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:24px;white-space:nowrap;font-size:14px;line-height:16px;text-transform:none}.header nav a{transition:color 150ms ease}.header nav a:hover{color:var(--coral)}
+.hero{height:682px;margin-top:47px;border-radius:16px;background:rgba(0,0,0,.03);position:relative;display:grid;grid-template-columns:1fr 584px;gap:32px;align-items:center;padding:40px}.hero h1{font-size:48px;line-height:1.1;font-weight:600;text-wrap:balance;text-transform:none}.hero-content{display:flex;flex-direction:column;gap:24px;align-items:flex-start}.hero-content p{font-size:18px;line-height:1.5;max-width:474px;color:var(--muted)}.action{min-height:56px;padding:18px 32px;display:inline-flex;align-items:center;justify-content:center;gap:16px;border-radius:var(--radius-pill);background:linear-gradient(110deg,#fc6250,#a96b70);color:white;font-size:16px;font-weight:500;line-height:20px;text-transform:none;transition:transform 150ms cubic-bezier(.25,.46,.45,.94),opacity 150ms ease}.action:active{transform:scale(.97)}.hero .action{width:230px}.action-white{background:white;color:#0c2c3a}.action img{flex:none}.hero-photo{position:relative;width:584px;height:440px;overflow:hidden;border-radius:37.33px}.hero-photo img{width:110.27%;height:100%;max-width:none;position:absolute;left:-5.29%;top:0;margin:0;object-fit:fill}.hero-controls{display:flex;gap:8px;position:absolute;right:48px;bottom:49px}.hero-controls button{width:44px;height:44px;background:rgba(0,0,0,.04);border-radius:var(--radius-control);display:grid;place-items:center}.hero-controls button img{opacity:.55}.hero-controls button+button img{rotate:180deg}
+.products{margin-top:var(--section-gap)}.products h2,.calculator h2,.mycredo h2{font-size:32px;line-height:1.2;font-weight:600;text-wrap:balance;text-transform:none}.product-grid{margin-top:var(--heading-gap);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.product-card{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--radius-card);box-shadow:none}.product-loan{aspect-ratio:632/580;background:var(--bento-base)}.product-transfer{background:var(--bento-base);aspect-ratio:auto}.product-savings,.product-card.product-card{min-width:0}.product-savings,.product-card.product-card:nth-child(4){height:auto;aspect-ratio:632/422}.product-savings{background:var(--bento-base)}.product-card:nth-child(3){width:100%;max-width:none}.product-card:nth-child(4){width:100%;justify-self:end;background:var(--bento-base)}.product-heading{position:absolute;top:24px;left:24px;right:24px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;z-index:2}.product-heading h3{font-size:18px;line-height:1.2;font-weight:500;text-wrap:balance;text-transform:none;max-width:386px}.expand{background:var(--control-bg);border-radius:var(--radius-control);width:48px;height:48px;flex:none;display:grid;place-items:center;transition:transform 150ms var(--ease-out),background-color 150ms ease}.expand:active{transform:scale(.96)}.product-card-content>.art-stage{position:absolute;inset:0}.art-stage{position:relative;width:100%;overflow:visible;--art-scale:1;pointer-events:none}.art-canvas{position:absolute;top:0;left:0;transform:scale(var(--art-scale));transform-origin:top left}.bank-card-art{position:absolute;top:147px;left:50%;width:387px;transform:translateX(-50%)}
+.mycredo{height:844px;margin-top:var(--section-gap);position:relative;isolation:isolate;overflow:hidden;background:#14161d;display:flex;flex-direction:column;align-items:center;padding-block:80px;color:white}.blue-field{position:absolute;inset:0;z-index:-1;pointer-events:none}.blue-field .art-stage{min-width:1440px;position:absolute;left:50%;transform:translateX(-50%)}.mycredo h2{text-align:center;position:relative}.mycredo-phone{position:relative;width:244px;height:464px;margin-top:80px}.mycredo-phone>[class]{position:relative}.mycredo .action{margin-top:52px;min-width:318px}
+.calculator{margin-top:var(--section-gap)}.calculator h2{text-align:center}.calculator-tabs{position:relative;width:574px;max-width:100%;height:72px;margin:var(--heading-gap) auto 24px;background:#eef1f3;border-radius:var(--radius-pill);padding:12px;display:grid;grid-template-columns:repeat(3,1fr);box-shadow:none}.calculator-tabs button{z-index:1;position:relative;background:transparent;font-size:14px;line-height:16px;text-transform:none;border-radius:999px;padding:10px 8px;transition:color 150ms ease}.calculator-tabs button[aria-selected=true]{color:white}.tab-indicator{position:absolute;left:12px;top:12px;bottom:12px;width:calc((100% - 24px)/3);border:0 solid transparent;border-inline-width:8px;background:var(--blue);background-clip:padding-box;border-radius:999px;transition:transform 250ms cubic-bezier(.645,.045,.355,1)}.calculator-tabs[data-instant=true] .tab-indicator{transition:none}.calculator-box{min-height:523px;background:white;border-radius:var(--radius-card);box-shadow:0 0 0 1px #00000008,0 1px 2px #00000008,0 8px 24px -12px #00000014;display:flex;align-items:center;justify-content:center;padding:40px}.calculator-content{width:1056px;max-width:100%;display:grid;grid-template-columns:400px 1px 406px;gap:124px;align-items:center;animation:panel-in 220ms var(--ease-out)}.calculator-box[data-instant=true] .calculator-content{animation:none}.calculator-form{display:flex;flex-direction:column;gap:32px}.field{display:flex;flex-direction:column;gap:16px}.field-label{font-size:16px;line-height:20px;font-weight:500;color:#000}.product-select{align-self:flex-start;border:1px solid #e6e6e6;padding:8px 34px 8px 16px;height:44px;border-radius:var(--radius-field);font-size:14px;line-height:20px;appearance:none;background:white url('/assets/3f7bd.svg') no-repeat right 12px center;color:#4d4d4d;max-width:100%}.input-shell{height:64px;border:1px solid #00000014;border-radius:var(--radius-field);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:16px}.input-shell>span:first-child{min-width:0;flex:1}.input-caption{display:block;font-size:13px;line-height:1.3;color:var(--muted);margin-bottom:4px}.input-shell input{display:block;width:100%;border:0;padding:0;background:transparent;color:#000000e6;font-size:16px;line-height:20px;font-variant-numeric:tabular-nums;appearance:textfield}.input-shell input::-webkit-inner-spin-button,.input-shell input::-webkit-outer-spin-button{appearance:none;margin:0}.input-shell input:focus-visible{outline:none}.input-shell:focus-within{outline:2px solid var(--blue);outline-offset:2px}.input-unit{font-size:16px;color:#4d4d4d}.field-hint{font-size:13px;line-height:1.45;color:var(--muted);margin-top:4px}.calculator-divider{position:relative;height:419px;width:1px}.calculator-divider img{position:absolute;top:0;left:0;transform:rotate(90deg);transform-origin:top left}.calculator-result{min-height:360px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}.result-caption{font-size:14px;line-height:20px;color:var(--muted);margin-bottom:8px}.result-value{font-size:32px;line-height:32px;font-weight:700;color:#0e1724;font-variant-numeric:tabular-nums}.result-rule{height:1px;margin:16px 0;overflow:hidden}.result-details{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:0;font-size:14px}.result-details dt{line-height:20px;color:var(--muted);margin-bottom:12px}.result-details dd{margin:0;color:black;font-weight:500;line-height:16px;font-variant-numeric:tabular-nums}.example-note{font-size:13px;line-height:1.5;color:var(--muted);margin-top:16px}.calculator-result .action{width:100%}.currency-pair{display:flex;gap:12px;align-items:flex-end}.currency-pair label{display:flex;flex-direction:column;gap:16px;font-size:14px;flex:1}.currency-pair select{padding:10px 12px;height:44px;border:1px solid #e6e6e6;border-radius:var(--radius-field);background:white;color:#333}.swap-currencies{margin-top:0;min-width:44px;min-height:44px;border-radius:var(--radius-control);background:var(--control-bg);font-size:24px;color:var(--blue)}
+.detail-dialog{border:0;border-radius:20px;padding:48px;width:min(520px,calc(100% - 40px));color:var(--ink);box-shadow:0 24px 90px #0003}.detail-dialog::backdrop{background:#101b2c66}.detail-dialog h2{font-size:26px;line-height:1.3;margin-bottom:24px;padding-right:20px}.detail-dialog p{font-size:16px;line-height:1.7;color:var(--muted);margin-bottom:32px}.dialog-close{position:absolute;top:12px;right:12px;width:44px;height:44px;background:var(--control-bg);border-radius:var(--radius-control);font-size:26px}.detail-dialog[open]{animation:dialog-in 220ms var(--ease-out)}
+@keyframes panel-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}@keyframes dialog-in{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+@media(hover:hover) and (pointer:fine){.action:hover{opacity:.9}.expand:hover{background:var(--control-hover)}.product-card .bank-card-art{transition:transform 250ms var(--ease-out)}.product-card:hover .bank-card-art{transform:translateX(-50%) translateY(-4px)}}
+@media(max-width:1439px){.hero{grid-template-columns:1fr 48.67%;height:clamp(500px,47.36vw,682px)}.hero-photo{width:100%;height:auto;aspect-ratio:584/440}.hero h1{font-size:clamp(36px,3.333vw,48px)}.product-card:nth-child(3),.product-card:nth-child(4){width:100%}.product-savings,.product-card.product-card:nth-child(4){height:auto;aspect-ratio:632/422}.calculator-content{grid-template-columns:minmax(0,400px) 1px minmax(0,406px);gap:clamp(32px,8.61vw,124px)}.bank-card-art{width:62%;top:30.625%}}
+@media(max-width:1100px){.header nav{position:static;transform:none;margin-left:auto;gap:18px}.header nav a:nth-child(n+5){display:none}.hero{padding:32px;gap:24px}.hero-content p{font-size:16px}.product-heading{inset:20px 20px auto;gap:8px}.expand{width:44px;height:44px}.product-grid{gap:16px}.product-card:nth-child(3),.product-card:nth-child(4){width:100%}.products h2,.calculator h2,.mycredo h2{font-size:28px}.mycredo h2{padding-inline:24px}.calculator-box{padding:40px}.calculator-divider{height:100%;min-height:380px;overflow:hidden}.calculator-content{gap:40px}:root{--section-gap:96px;--heading-gap:40px}}
+@media(max-width:760px){:root{--gutter:24px;--section-gap:64px;--heading-gap:32px}.header{height:88px}.brand{margin-left:-10px;width:209.33px}.header nav{display:none}.hero{margin-top:24px;height:auto;display:flex;flex-direction:column;align-items:stretch;padding:28px 24px 76px;gap:36px}.hero h1{font-size:36px;line-height:1.15}.hero-content{gap:20px}.hero-content p{font-size:16px;max-width:100%}.hero .action{width:200px;min-height:52px}.hero-photo{border-radius:24px}.hero-controls{bottom:20px;right:24px}.products h2,.calculator h2,.mycredo h2{font-size:26px;line-height:1.3}.product-grid{display:flex;flex-direction:column;gap:16px}.product-card:nth-child(n){width:100%;height:auto}.product-loan{aspect-ratio:733/698;min-height:340px}.product-transfer{aspect-ratio:515/476;min-height:264px}.product-card.product-card:nth-child(3),.product-card.product-card:nth-child(4){aspect-ratio:632/422}.product-heading h3{max-width:80%}.product-card-content>.art-stage{top:auto;bottom:0}.product-loan .product-card-content>.art-stage{top:0;bottom:auto}.product-transfer .product-card-content>.art-stage{top:auto;bottom:0}.mycredo{height:auto;min-height:770px;padding:64px 24px}.mycredo-phone{margin-top:52px}.mycredo .action{margin-top:40px;min-width:0;max-width:100%;font-size:14px;padding-inline:24px}.calculator-tabs{margin-top:var(--heading-gap);margin-bottom:20px;height:64px;padding:8px}.tab-indicator{top:8px;bottom:8px;left:8px;width:calc((100% - 16px)/3);border-inline-width:2px}.calculator-tabs button{font-size:12px;line-height:16px;padding:8px 4px}.calculator-box{padding:28px 24px}.calculator-content{display:flex;flex-direction:column;gap:32px;width:100%;align-items:stretch}.calculator-form{gap:24px}.calculator-divider{height:1px;min-height:0;width:100%;background:#eee}.calculator-divider img{display:none}.calculator-result{min-height:340px;gap:28px}.result-value{font-size:32px}.result-details{gap:20px;font-size:13px}.detail-dialog{padding:40px 28px}.example-note{font-size:13px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.action,.expand,.header nav a,.tab-indicator{transition:none}.calculator-content,.detail-dialog[open]{animation:none}.product-card .bank-card-art{transition:none!important}.product-card:hover .bank-card-art{transform:translateX(-50%)}.calculator-tabs button{transition:color 120ms ease}}
+
+/* Uppercase UI copy is emitted as Mtavruli in JSX. CSS casing can
+   turn those characters back into Mkhedruli in some browser engines. */
+h1,h2,h3,.header nav,.action,.calculator-tabs button{text-transform:none}
+
+[data-node-id="89:10229"]{background-image:linear-gradient(110deg,#fc6250,#a96b70)!important}
+@media(max-width:760px){.product-card.product-card:nth-child(4){min-height:264px}.bank-card-art{top:42%}}
+
+/* International money: point-cloud globe and geodesic transfers. */
+.product-transfer{background:var(--bento-base)}
+.transfer-globe{position:absolute;inset:0;isolation:isolate;overflow:hidden;background:transparent;border-radius:inherit}
+.transfer-globe-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.transfer-globe-canvas[hidden]{display:none}
+.transfer-globe-labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.transfer-label{position:absolute;top:0;left:0;display:flex;align-items:center;gap:10px;padding:4px 12px 4px 4px;border-radius:4px;background:#fff;box-shadow:0 13.5px 27px -12.4px oklch(0 0 0 / 0.08),0 8.1px 16.2px -8.1px #0000000d;opacity:0;transform-origin:center;white-space:nowrap;backface-visibility:hidden}
+.transfer-flag{display:grid;place-items:center;width:24px;height:24px;border-radius:2px;overflow:hidden;background:#f4f5f8;flex:none}
+.transfer-flag img{width:24px;height:18px;object-fit:cover}
+.transfer-label-text{display:flex;align-items:baseline;gap:4px;font-family:Arial,sans-serif;font-size:12px;line-height:16px;color:#15252f;letter-spacing:0;font-variant-numeric:tabular-nums}
+.transfer-label-text [data-currency]{font-size:11px;color:#52606b}
+.globe-playback{position:absolute;bottom:12px;right:12px;width:32px;height:32px;display:grid;place-items:center;z-index:3;background:#ffffffb3;color:var(--blue);border-radius:50%;opacity:.55;transition:opacity 150ms ease}
+.globe-playback::before{content:'';position:absolute;inset:-6px}
+@media(hover:hover) and (pointer:fine){.product-transfer:hover .globe-playback{opacity:1}}
+.globe-playback:focus-visible{opacity:1}
+@media(prefers-reduced-motion:reduce){.globe-playback{transition:none}}
+
+/* Keep the scaled phone clear of its title on compact two-column layouts. */
+@media(min-width:761px) and (max-width:1100px){
+  .product-loan .product-card-content>.art-stage{width:86%;left:7%;top:24px}
+}
+
+/* The mobile loan composition reserves title space before the artwork. */
+@media(max-width:760px){
+  .product-loan{display:flex;flex-direction:column;gap:12px;padding:20px;aspect-ratio:auto;min-height:0}
+  .product-loan .product-heading{position:static}
+  .product-loan .product-card-content>.art-stage{position:relative;inset:auto;width:calc(100% + 20px);height:calc(520px * var(--art-scale));margin-inline:-10px}
+  .product-loan .product-card-content>.art-stage .art-canvas{top:calc(-113px * var(--art-scale))}
+}
+
+@media(max-width:760px){.product-select,.currency-pair select{font-size:16px}}
+
+
+/* Keep the video at the same scale and position as the original phone artwork. */
+.loan-phone-video{position:absolute;left:250px;top:124px;width:234px;height:512px;overflow:hidden;border-radius:19px;outline:7px solid #0a0a0a;background:#fff;box-shadow:0 1px 2px #0a0a0a1f,0 8px 18px -10px #0f172a38}
+.loan-phone-video video{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+
+/* A thin, reflective card; the bento itself stays fixed beneath the pointer. */
+.bank-card-3d{position:absolute;inset:0;pointer-events:none;--bank-card-center:.58}
+.bank-card-3d-canvas,.bank-card-3d-fallback{position:absolute;inset:0;width:100%;height:100%}
+.bank-card-3d-canvas{opacity:0;transition:opacity 160ms ease}
+.bank-card-3d[data-ready="true"] .bank-card-3d-canvas{opacity:1}
+.bank-card-3d[data-ready="true"] .bank-card-3d-fallback{visibility:hidden}
+@media(min-width:761px) and (max-width:1100px){.bank-card-3d{--bank-card-center:.63}}
+@media(max-width:760px){.bank-card-3d{--bank-card-center:.67}}
+
+/* Two equal lead products, then three portrait cards. */
+.product-grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.product-grid>.product-card{grid-column:span 2;min-width:0;width:100%;background:var(--bento-base)}
+.product-grid>.product-loan{grid-column:span 3;aspect-ratio:632/580}
+.product-grid>.product-split{grid-column:span 3;aspect-ratio:auto}
+.product-grid>.product-card:nth-child(n+3){height:auto;aspect-ratio:416/560;min-height:440px}
+.product-grid>.product-card:nth-child(4) .bank-card-3d{--bank-card-center:.6}
+.transfer-globe{--globe-frame-x:0;--globe-frame-y:0;--globe-frame-zoom:1.08}
+.bank-card-3d-fallback .bank-card-art{width:62%;top:60%;transform:translate(-50%,-50%)}
+.bank-card-3d-fallback .art-126{width:244px;height:387px}
+.bank-card-3d-fallback .art-127{inset:auto;left:173.1px;top:332.5px;width:49.3px;height:30.5px}
+
+@media(min-width:761px){
+  .product-loan .product-card-content>.art-stage{width:96%;max-width:640px;left:50%;top:0;bottom:auto;transform:translateX(-50%)}
+}
+
+@media(min-width:761px) and (max-width:1000px){
+  .product-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .product-grid>.product-card{grid-column:span 2}
+  .product-grid>.product-loan{aspect-ratio:632/580}
+  .product-loan .product-card-content>.art-stage{width:86%;top:24px}
+  .product-grid>.product-card:nth-child(n+3){aspect-ratio:416/560}
+  .product-grid>.product-card.product-transfer{grid-column:1/-1;aspect-ratio:auto;height:480px}
+}
+
+@media(max-width:760px){
+  .product-grid>.product-loan{aspect-ratio:auto}
+  .product-grid>.product-split,.product-grid>.product-card.product-savings{aspect-ratio:632/422;min-height:300px}
+  .product-grid>.product-card:nth-child(4),.product-grid>.product-card.product-transfer{aspect-ratio:416/560;min-height:440px}
+  .product-grid>.product-card:nth-child(4) .bank-card-3d{--bank-card-center:.6}
+}
+
+/* Keep uppercase navigation clear of the logo on compact desktops. */
+@media(min-width:1101px) and (max-width:1360px){.header nav{left:auto;right:0;transform:none}}

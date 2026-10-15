@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" preserveAspectRatio="none">
+  <!-- sRGB export of the in-gamut OKLCH palette in card-ribbon.mjs. -->
+  <defs>
+    <linearGradient id="coral" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#fefcfc" stop-opacity="0"/>
+      <stop offset=".45" stop-color="#f9c6be" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#f9c6be" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#a7d2e9" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#a7d2e9" stop-opacity=".5"/>
+      <stop offset="1" stop-color="#a7d2e9" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="peach" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#fdece9" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#fdece9" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#fdece9" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="9"/></filter>
+    <linearGradient id="clear" x1="0" y1="0" x2="0" y2="1"><stop offset=".15" stop-color="#fefcfc"/><stop offset=".38" stop-color="#fefcfc" stop-opacity="0"/></linearGradient>
+  </defs>
+  <path fill="#fefcfc" d="M0 0h400v600H0z"/>
+  <g filter="url(#soft)">
+    <path fill="url(#coral)" d="M-40 350C120 340 260 125 450 70V330C250 340 100 530-40 520Z"/>
+    <path fill="url(#blue)" d="M-40 465C120 460 290 245 450 230V385C260 390 100 600-40 600Z"/>
+    <path fill="url(#peach)" d="M-40 540C125 530 270 365 450 350V445C250 460 110 640-40 650Z"/>
+  </g>
+  <path d="M-20 475C140 460 270 280 430 255" fill="none" stroke="#fefcfc" stroke-width="3" opacity=".45"/>
+  <path fill="url(#clear)" d="M0 0h400v600H0z"/>
+</svg>

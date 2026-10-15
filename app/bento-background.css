@@ -1,0 +1,247 @@
+:root {
+  --bento-base: oklch(0.993 0.002 30);
+  --bento-coral: oklch(0.964 0.016 29.48);
+  --bento-blue: oklch(0.967 0.013 232.094);
+  --bento-peach: oklch(0.978 0.009 29.48);
+}
+
+/* Independent color fields sit behind the artwork and never receive input. */
+.bento-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+  background: var(--bento-base);
+}
+
+.bento-background-pool {
+  position: absolute;
+  display: block;
+  animation-timing-function: cubic-bezier(.45, 0, .55, 1);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.bento-background-blue {
+  width: 125%;
+  height: 130%;
+  left: -48%;
+  bottom: -36%;
+  background: radial-gradient(ellipse, var(--bento-blue) 4%, oklch(0.967 0.013 232.094 / 0) 70%);
+  opacity: var(--bento-blue-opacity, .8);
+  animation-name: bento-drift-blue;
+  animation-duration: var(--bento-blue-duration, 20s);
+  animation-delay: var(--bento-blue-delay, -5s);
+}
+
+.bento-background-coral {
+  width: 130%;
+  height: 145%;
+  right: -46%;
+  bottom: -43%;
+  background: radial-gradient(ellipse, var(--bento-coral) 8%, oklch(0.964 0.016 29.48 / 0) 72%);
+  opacity: var(--bento-coral-opacity, .8);
+  animation-name: bento-drift-coral;
+  animation-duration: var(--bento-coral-duration, 24s);
+  animation-delay: var(--bento-coral-delay, -9s);
+}
+
+.bento-background-peach {
+  width: 95%;
+  height: 90%;
+  left: 5%;
+  bottom: -45%;
+  background: radial-gradient(ellipse, var(--bento-peach) 8%, oklch(0.978 0.009 29.48 / 0) 72%);
+  opacity: var(--bento-peach-opacity, .65);
+  animation-name: bento-drift-peach;
+  animation-duration: var(--bento-peach-duration, 18s);
+  animation-delay: var(--bento-peach-delay, -3s);
+}
+
+/* Keep the heading area near white throughout every phase of the drift. */
+.bento-background-clear {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--bento-base) 5%, oklch(0.993 0.002 30 / .94) 24%, oklch(0.993 0.002 30 / 0) 68%);
+}
+
+.bento-background[data-active="false"] .bento-background-pool { animation-play-state: paused; }
+
+/* Broad feathered fields, with clear light around the artwork. Existing
+   transform-only drift, visibility pausing and artwork stay intact. */
+.product-loan .bento-background {
+  --loan-blue: oklch(0.8 0.065 232.094);
+  --loan-mist: oklch(0.87 0.042 232.094);
+  --loan-glow: oklch(0.96 0.012 232.094);
+}
+
+/* An asymmetric open curve of light; no clipped bands or solid-colored planes. */
+.product-loan .bento-background-pool {
+  filter: blur(18px);
+}
+.product-loan .bento-background-blue {
+  width: 160%;
+  height: 108%;
+  left: -42%;
+  bottom: -44%;
+  background: radial-gradient(ellipse in oklab,
+    var(--loan-blue) 10%, oklch(0.8 0.065 232.094 / 0) 72%);
+  opacity: 1;
+}
+.product-loan .bento-background-coral {
+  width: 148%;
+  height: 118%;
+  right: -48%;
+  bottom: -36%;
+  background: radial-gradient(ellipse in oklab,
+    var(--loan-mist) 12%, var(--loan-glow) 48%, oklch(0.96 0.012 232.094 / 0) 72%);
+  opacity: 1;
+}
+.product-loan .bento-background-peach {
+  width: 160%;
+  height: 52%;
+  left: -28%;
+  bottom: 18%;
+  rotate: -24deg;
+  background: radial-gradient(ellipse in oklab,
+    var(--bento-base) 32%, oklch(0.993 0.002 30 / 0) 72%);
+  opacity: .9;
+}
+
+/* Stripe's billing composition: oversized, overlapping ellipses, with an
+   illuminated warm middle and color gathered at the base. Credo hues only. */
+.product-split .bento-background {
+  --split-base: oklch(0.692 0.192 29.48);
+  --split-coral: oklch(0.84 0.085 29.48);
+  --split-peach: oklch(0.93 0.038 60);
+}
+.product-split .bento-background-pool {
+  left: 50%;
+  right: auto;
+  translate: -50% 0;
+  filter: blur(12px);
+  opacity: .85;
+}
+.product-split .bento-background-blue {
+  width: 168%;
+  height: 64%;
+  bottom: -21%;
+  background: radial-gradient(ellipse in oklab,
+    var(--split-base) 62.5%, oklch(0.692 0.192 29.48 / 0) 100%);
+  opacity: .92;
+}
+.product-split .bento-background-coral {
+  width: 171%;
+  height: 61%;
+  bottom: 5%;
+  background: radial-gradient(ellipse in oklab,
+    oklch(0.84 0.085 29.48 / .8) 53.85%, oklch(0.84 0.085 29.48 / 0) 100%);
+}
+.product-split .bento-background-peach {
+  width: 175%;
+  height: 62%;
+  bottom: 20.5%;
+  background: radial-gradient(ellipse in oklab,
+    var(--split-peach) 41.35%, oklch(0.93 0.038 60 / 0) 100%);
+}
+.product-split .bento-background-clear {
+  background: linear-gradient(var(--bento-base) 5%, oklch(0.993 0.002 30 / .98) 25%, oklch(0.993 0.002 30 / 0) 56%);
+}
+
+/* Static fine grain breaks up banding without adding moving noise. */
+:is(.product-loan, .product-split) .bento-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/bento/grain.svg') repeat;
+  opacity: .018;
+  mix-blend-mode: soft-light;
+}
+
+.product-transfer .bento-background {
+  --bento-blue-opacity: .85;
+  --bento-coral-opacity: .6;
+  --bento-peach-opacity: .65;
+  --bento-blue-delay: -8s;
+  --bento-coral-delay: -11s;
+}
+
+.product-savings .bento-background {
+  --savings-halo: oklch(0.954 0.021 29.48);
+  --savings-core: oklch(0.91 0.04 29.48);
+  --bento-blue-opacity: .85;
+  --bento-coral-opacity: .55;
+  --bento-peach-opacity: .35;
+  --bento-blue-duration: 23s;
+  --bento-coral-duration: 19s;
+  --bento-peach-duration: 22s;
+  --bento-blue-delay: -11s;
+  --bento-coral-delay: -4s;
+  --bento-peach-delay: -8s;
+}
+
+/* A localized warm halo leaves the savings summary on clear paper. */
+.product-savings .bento-background-blue {
+  width: 95%;
+  height: 71%;
+  left: 2.5%;
+  bottom: 18%;
+  background: radial-gradient(circle in oklab,
+    var(--savings-core) 0%, var(--savings-halo) 42%,
+    var(--bento-peach) 61%, oklch(0.978 0.009 29.48 / 0) 72%);
+}
+.product-savings .bento-background-coral {
+  width: 72%;
+  height: 55%;
+  right: 8%;
+  bottom: 29%;
+  background: radial-gradient(circle in oklab,
+    var(--savings-halo) 24%, oklch(0.954 0.021 29.48 / 0) 70%);
+}
+.product-savings .bento-background-clear {
+  background:
+    linear-gradient(to top, var(--bento-base) 26%, oklch(0.993 0.002 30 / 0) 43%),
+    linear-gradient(var(--bento-base) 5%, oklch(0.993 0.002 30 / .94) 24%, oklch(0.993 0.002 30 / 0) 68%);
+}
+
+@media (max-width: 760px) {
+  .product-savings .bento-background-blue {
+    width: 76%;
+    height: 100%;
+    left: -6%;
+    bottom: -5%;
+  }
+  .product-savings .bento-background-coral { right: 30%; bottom: 8%; }
+  .product-savings .bento-background-clear {
+    background:
+      linear-gradient(to left, var(--bento-base) 32%, oklch(0.993 0.002 30 / 0) 62%),
+      linear-gradient(var(--bento-base) 5%, oklch(0.993 0.002 30 / .94) 24%, oklch(0.993 0.002 30 / 0) 68%);
+  }
+}
+
+.product-card:nth-child(4) .bento-background {
+  --bento-blue-opacity: .85;
+  --bento-coral-opacity: .65;
+  --bento-peach-opacity: .6;
+  --bento-blue-duration: 21s;
+  --bento-blue-delay: -3s;
+  --bento-coral-delay: -14s;
+  --bento-peach-delay: -6s;
+}
+
+@keyframes bento-drift-blue {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(9%, -6%) scale(1.06); }
+}
+
+@keyframes bento-drift-coral {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-7%, 4%) scale(.98); }
+}
+
+@keyframes bento-drift-peach {
+  from { transform: translate(0, 0); }
+  to { transform: translate(8%, -9%); }
+}
