@@ -6,8 +6,8 @@ import 'dialkit/styles.css';
 
 // Authoring controls are loaded only at /?globeControls=1#transfer-globe.
 const config = {
-  zoom: [1.36, .65, 1.8, .01],
-  vertical: [7, -20, 25, .5],
+  zoom: [1.18, .65, 1.8, .01],
+  vertical: [-2, -20, 25, .5],
   reset: { type: 'action', label: 'Reset framing' },
 };
 
