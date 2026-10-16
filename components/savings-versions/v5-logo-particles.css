@@ -1,0 +1,24 @@
+.savings-goal-v5 {
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:oklch(.993 .002 232.094);
+}
+.savings-v5-halo,.savings-v5-canvas {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+.savings-v5-halo {
+  background:
+    radial-gradient(ellipse 48% 37% at 59% 60%, oklch(.82 .08 29.48 / .12), transparent 90%),
+    radial-gradient(ellipse 59% 45% at 47% 65%, oklch(.85 .035 232.094 / .2), transparent 90%);
+}
+.savings-v5-canvas { display:block; }
+.savings-v5-canvas[hidden] { display:none; }
+/* Reuse the immutable V3 panel and all its deposit transitions verbatim.
+   Only its original background is replaced in the V4 wrapper. */
+.savings-goal-v5>.savings-goal-v3 { background:transparent;z-index:1; }
+.savings-goal-v5>.savings-goal-v3::before { display:none; }

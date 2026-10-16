@@ -220,3 +220,244 @@ Validation:
 - Temporary viewport overrides reset. Final production build passed.
 
 final result: passed
+
+# Bank-card V3 flowing satin — 16 October 2026
+
+## Scope and evidence
+
+This pass changes only the background of `ბარათი ყოველდღიური ფინანსებისთვის`. The selected reference is the user's `/Users/tazo/Desktop/Screen Recording 2026-10-13 at 22.13.26.mov`, checked frame by frame in `../../work/card-ribbon/recording-2026-10-16.jpg`, and the live issuing bento at https://stripe.com/en-nl. The live reference was captured with the in-app browser as `../../work/card-ribbon-flow/stripe-live.png` and `../../work/card-ribbon-flow/stripe-narrow-final.png`.
+
+Implementation: http://localhost:3010/?cardRibbon=flow#bank-card. Browser-rendered evidence: `../../work/card-ribbon-flow/final-desktop-0.png`, `final-desktop-1.png`, `final-narrow.png`, and `final-phone.png`. The customer-facing screenshot is `../card-ribbon-flow/homepage-v3.png`.
+
+Full comparison input, opened and reviewed: `../card-ribbon-flow/stripe-credo-comparison.png`. This places source and implementation captures at their native 615×763 CSS/pixel viewport side by side (1230×763 combined, effective screenshot density 1). No stretching or density resampling. Both cards are idle; animated phases differ. Source and implementation have intentionally different existing card aspect ratios and artwork. This is a scoped background-treatment comparison, not a claim of pixel identity or a replacement of Credo's opaque card face with Stripe's transparent printed-card treatment. The card and field are large enough in the comparison for the focused background inspection; an additional enlarged region was unnecessary.
+
+Desktop captures are 1280×900 CSS/pixels, final default desktop 1280×720, phone 390×844, effective screenshot density 1. The existing compact row height, 16px grid gaps, white heading area, Credo branding and Georgian copy are retained.
+
+## Findings, fixes, and comparison history
+
+| Earlier finding | Fix and post-fix evidence |
+| --- | --- |
+| P2: V2 mainly bends in place, with too little visible travel | V3 has independent travelling bends and rolls, plus advected sheet fibers. The phase is `.42 × elapsed seconds`; the existing renderer cadence is retained. Desktop frame pair shows visible background change while the card remains at rest. The exposed left background region changed by a mean 2.53 RGB levels; 25.2% of sampled channels changed by more than 3 levels. |
+| P2: First V3 pass still had a straight, narrow white cut | Added a quadratic sheet curve and larger, slower bends; widened the crest, lowered its narrow highlight strength, and increased its soft shoulder. `final-desktop-0.png`, `final-narrow.png`, `final-phone.png` and the combined comparison show the repaired, feathered fold. |
+| P2: Pale blue lacked tonal depth around the fold | Added a localized deeper secondary-blue shade, used at a maximum 17% blend weight. The existing four colors are unchanged; the heading area remains clear. All five palette endpoints were numerically checked inside sRGB gamut. |
+
+## Required fidelity surfaces
+
+- Fonts/typography: browser-computed Georgian family, 18px / 500 / 21.6px line height; unchanged from the accepted homepage. Heading fits on desktop, narrow and phone layouts. Stripe's Latin type is an intentional product difference.
+- Spacing/layout: no grid, card, camera, physical-card or shadow geometry changes. No horizontal document overflow at 615px or 390px. The artwork fits in the full phone capture. Card camera, tilt, lighting, shadow and lifecycle source were compared to HEAD with only the expected version-selection changes permitted.
+- Colors/tokens: original paper `[.993,.002,30]`, coral `[.87,.06,29.48]`, blue `[.84,.055,232.094]`, peach `[.955,.019,29.48]` unchanged. New blue fold `[.71,.075,232.094]`. Field blends in OKLab, uses the same Credo hues, and keeps white above. No purple introduced.
+- Image quality: the requested background is a live procedural GPU shader. Fine fibers follow the field, with static dither rather than moving grain. Credo's real logo/card composition is untouched. The static fallback was rendered from V3's time-zero field math at 800×1200; no new artwork replaces existing assets.
+- Copy/content: no copy, labels, product actions, or surrounding section content changes.
+
+## Validation and limits
+
+- Production build passed using the isolated build-check directory, without interrupting the local preview.
+- Browser WebGL rendering was ready and playing on desktop, narrow and phone layouts. Browser warnings/errors: none.
+- Offscreen scroll check changed the background state to `paused`; returning to the card resumed playback. Temporary viewport override reset and the live V3 homepage left open.
+- V1/V2 files, savings, globe, shared top-pair shader component, news component and news CSS passed preservation hashes. Saved V1/V2 checksum entries remain unchanged; V3 has its own entry.
+- No new dependency, renderer, route, or React frame-by-frame state updates. Existing ambient 30fps / settling 60fps, visibility handling, and disposal behavior retained.
+- Static fallback appearance is generated and source-checked; an unavailable-WebGL browser was not forced. Physical-device frame rates and Safari were not tested. No reduced-motion work was added, following the user's standing instruction.
+
+Implementation checklist: travelling folds implemented; overly narrow crest repaired; brand gamut checked; browser comparisons reviewed; phone fit checked; old variants preserved; production build passed.
+
+final result: passed
+
+# Savings V2 destination goal — 16 October 2026
+
+## Scope and selected direction
+
+The user approved replacing the weak suitcase/ring composition with one convincing savings-goal panel, real destination photography, a slim progress indicator, a quiet secondary-blue field, and a single deposit animation. All other bento cards and news were to remain unchanged.
+
+Reference context: live Stripe billing bento captured during the preceding review in `../savings-review/stripe-reference.png`, and its side-by-side comparison with the original Credo card in `../savings-review/comparison.png`. Selected static composition, established and browser-captured before adding motion: `../savings-panel/static-direction.png`.
+
+Implementation: http://localhost:3010/?savings=photo#savings. Original preserved at http://localhost:3010/?savings=original#savings.
+
+## Evidence and comparison
+
+- Static target capture: 1280×720 CSS/pixels, containing a 416×560 card at x432/y80.
+- Live desktop capture: `../savings-panel/homepage-1440.png`, 1440×900 CSS/pixels, containing the 416×560 savings card at x80/y0.
+- Both exact card regions were cropped without resizing and opened together in `../savings-panel/static-live-comparison.png` (848×560 including a 16px gap). Effective screenshot density is 1 for both inputs. This is an idle-state comparison at ₾7,500 / 75%.
+- The card-region comparison makes typography, spacing, photograph crop, progress, radii and edges directly readable; a further enlarged region was unnecessary. Outer title ink and the existing expand action intentionally follow the accepted homepage rather than the study's standalone frame defaults.
+- Full bento context: `../savings-panel/homepage-rest-1280.png` and `homepage-1440.png`. Completed deposit state: `../savings-panel/homepage-hover-1280.png`.
+- Responsive evidence: `phone-390.png` (390×844), `width-320.png` (320×844), `width-615.png` (615×900), `width-820.png` (820×900). These are browser-rendered captures; all were inspected.
+- Final preview: `../savings-panel/final-homepage.png` (615×763, default in-app viewport). Focused final card: `../savings-panel/final-card.png` (567×490, unscaled crop).
+
+## Findings and required fidelity surfaces
+
+No actionable P0/P1/P2 mismatch remains against the selected static composition.
+
+| Surface | Evidence and conclusion |
+| --- | --- |
+| Typography | Outer heading remains Georgian 18px / 500. The goal name, balance, target and percent form one hierarchy within the panel. Main balance uses 36px tabular numerals, 32px in the compact panel; source/live crop comparison confirms aligned baselines and clean numeral clipping. |
+| Spacing/layout rhythm | Desktop retains the original grid and outer-card dimensions. At 1440px, the panel is 336×353.8px and starts about 146px below the top of the outer card. The photo/body panel closely matches the static target. V2 alone reserves 490px on mobile, or 450px below 360px, to keep all content clear of the heading and inside the card; V1 mobile dimensions remain unchanged. |
+| Colors/tokens | Quiet near-white secondary-hue paper and localized blue light replace the warm halo. The complete Before/After palette is in `components/savings-versions/README.md`. All new endpoints are in sRGB gamut. Main ink on white is 10.53:1, supporting ink 5.71:1. Text is on white, not on the photograph or halo. |
+| Image quality | Real photograph of Positano by Kevin McMahon, sourced from the verified free Unsplash page. Local 1440×960 WebP, no upscaling, AI generation, recoloring or retouching. Crop at 50% / 58% preserves architecture, coast and sea. Source/live visual comparison confirms the same photograph and crop. |
+| Copy/content | Goal name is `იტალიაში მოგზაურობა`; initial balance ₾7,500, target ₾10,000, progress 75%. The hover adds +₾500 and settles at ₾8,000 / 80%. No placeholder buttons or unrelated content added. The entire visual is a labeled illustrative image; nested display elements are hidden from assistive technology. |
+
+The initial implementation's mobile height was increased from 470px to 490px before the responsive capture pass to reserve adequate panel clearance. Final measured heading/bottom clearance was 39.8/44.6px at 320px, 34.1/38.9px at 390px, 66.5/28.1px at 615px and 28.3/27.1px at 820px. All panel bounds remained inside their outer card, with no horizontal document overflow. No image or target text was clipped.
+
+## Motion, functional checks and preservation
+
+- Fine-pointer hover: receipt arrives first; digit reels and progress then settle together. The final computed progress transform was `matrix(0.8, 0, 0, 1, 0, 0)`, both digit reels translated -36px, added-percent opacity 1, receipt opacity 1. Captured values are visibly ₾8,000 / 80%.
+- Leaving and rapid entry/exit reversals return to scaleX(.75), untransformed reels and receipt opacity 0. The photo and panel stay stationary; only the existing outer bento hover expansion remains. All new motion is interruptible CSS transform/opacity transitions.
+- The existing expand button still selects the deposit calculator. `#calculator-tab-1` was verified `aria-selected=true`, with browser screenshot evidence in `../savings-panel/deposit-calculator-action.png`.
+- Original URL was browser-checked: one original `.savings-goal`, no V2 visual, original background displayed. Source and CSS snapshots are byte-identical to the original component and stylesheet. Original background CSS is unchanged.
+- Bank-card component, renderer, V3 ribbon, shared top-pair component, globe, news and bank-card CSS passed preservation hashes. Shared global CSS only adds the V2 stylesheet import; ProductCard only adds the savings anchor. Original styles now load through the preserved V1 file, in the same import order.
+- Production build passed using the isolated build-check app. Browser warnings/errors: none. The temporary study server was stopped, temporary study/original tabs closed, viewport override reset, and the live V2 homepage left open.
+- No new dependency, route, shader or animation loop. No reduced-motion work added, following the user's standing request. Safari and physical-device frame rates were not tested; desktop viewport overrides do not emulate real touch hardware.
+
+Implementation checklist: real photograph sourced and credited; static composition compared to live; coordinated deposit transition tested; phone/tablet fit verified; calculator action verified; original version preserved; production build passed.
+
+final result: passed
+
+# Savings V3 composition balance — 16 October 2026
+
+User-requested scope: reduce the new photo panel's visual weight relative to the bank-card and globe in the same row. Other cards remain unchanged. V1/V2 and the source photograph are frozen and preserved.
+
+Implementation: homepage default, also http://localhost:3010/?savings=balanced#savings. Saved photo-header V2 remains http://localhost:3010/?savings=photo#savings.
+
+| Before | After |
+| --- | --- |
+| Full-width photo header, about 320×164px at the 1280px comparison viewport | 72×72px destination thumbnail (about 90% less photographic area), with static CSS saturation .8 / contrast .92 and a 10% pale blue veil. The source photo bytes are unchanged. |
+| Photo leads a tall panel | Compact white goal panel, at most 320px wide, 24px padding, goal label beside the thumbnail, clear balance/progress hierarchy and 12px supporting labels. |
+| Stronger blue wash and panel shadow | Lighter, less chromatic localized blue wash and reduced contact shadow, with the existing 5% neutral edge. |
+| Receipt attached to photo header | Receipt sits at the goal panel's upper-right edge, clear of the name and metrics. V2 deposit timings and easing are identical. |
+| V2 mobile height 490px / 450px | V3 uses 440px mobile height and a 60px thumbnail / 20px panel padding / 32px balance at compact container sizes. V2 keeps its original sizes. |
+
+Visual evidence under `../savings-balance/`: `before-row.png`, `after-row.png`, `hover-row.png`, `final-row.png`, `mobile-390.png`, `mobile-320.png` and `tablet-820.png`. The whole desktop row was assessed at 1280×720; mobile layouts at 320×740 and 390×844; tablet at 820×900. Photo thumbnail, name, balance, target and receipt fit. No horizontal document overflow was observed. The outer heading remains 18px / 500.
+
+Fine-pointer hover reaches receipt opacity 1, progress scaleX(.8), both digit reels translateY(-36px), and 80% opacity 1. Exit returns the receipt to opacity 0 and progress to .75. No autoplay, timer, frame loop, new renderer or reduced-motion changes were added. Browser warnings/errors: none.
+
+The production build passed in the isolated build-check directory. All V1/V2 checksums, the real photo checksum, and the preserved bank-card/renderer/ribbon/shared top-pair/globe/news hashes passed. V3 has separate snapshot entries. The default route and explicit `photo` route were browser-checked. The local server remains running and the normal in-app viewport is restored.
+
+# Savings V4 interactive particles — 16 October 2026
+
+User-approved scope: build V4 with interactive dots in Credo colors, preserve the current savings panel and deposit animation, keep V3 available, and leave every other card unchanged.
+
+Homepage default and explicit route: http://localhost:3010/?savings=particles#savings. Preserved V3: http://localhost:3010/?savings=balanced#savings. V1/V2 URLs remain unchanged.
+
+Reference: the current live Stripe agentic-commerce card was inspected at rest, center hover and exposed-edge hover before implementation. Evidence is in `../stripe-particle-study/01-idle.png`, `02-center-hover.png`, `03-edge-hover.png` and `study.json`. Its public shader/source showed a transparent Three.js cloud with radial noise, varied dot size/alpha and smoothed local pointer gathering. The implementation is independently written and uses the established Credo palette rather than Stripe's pink/purple colors.
+
+| Before | After |
+| --- | --- |
+| V3 static blue wash | V4's faint blue/coral halo and fine blue/coral/neutral GPU dots. Every background color endpoint is listed in `components/savings-versions/README.md`. |
+| No background pointer response | Local particle gathering with smoothed position/strength and gradual release; quiet ongoing noise drift. |
+| V3 selected by default | V4 selected by default; V3 remains a frozen URL-selectable snapshot. |
+
+Panel preservation: V4 composes the immutable V3 component and its original stylesheet. A browser comparison at 1280×900 found identical computed width, height, padding, margins, radii, shadows, colors, typography, transforms, transitions and opacity for the panel and every descendant. The panel is 320×264px in both versions. Image attribute values match; SSR versus client creation changes only attribute serialization order. All V3 JSX/CSS checksums passed, as did V1/V2 and the real photograph checksum.
+
+Visual checks: `../savings-particles/reference-comparison.png` places the Stripe and Credo captures together at the same 1280×900 viewport and resting state, without rescaling. Source cards are taller by design; existing Credo geometry is preserved. The Credo halo is intentionally quieter to sit beside the existing subtle globe. Heading space remains clear, the white panel covers the dots behind its content, and the bank card keeps its established visual weight. Final whole-row proof is `final-row.png`, cropped without resizing from `final-viewport.png`. Earlier captures are `desktop-idle.png` and `desktop-hover.png`.
+
+Interaction checks: fine-pointer hover reports strength 1.00 and activates the localized dot response. The preserved deposit sequence reaches receipt opacity 1, fill scaleX(.8), digit reels translateY(-36px), and 80% opacity 1. Exit restores pointer strength 0.00, receipt opacity 0 and fill .75. The existing savings action selects the deposit calculator (`aria-selected=true`); proof is `calculator-action.png`. After scrolling away, the renderer reported `offscreen` and its diagnostic clock remained frozen at 72.03 across separate observations, then resumed when brought back.
+
+Responsive checks: 320×740 and 390×844 viewport captures (`mobile-320.png`, `mobile-390.png`) show the unchanged compact panel fitting without horizontal document overflow. A development-only forced static fallback rendered the same dot composition with Canvas (`static-fallback.png`). Normal homepage navigation returned to WebGL and V4. The in-app viewport override was reset before handoff.
+
+Implementation: one GPU point draw, 5,600 seeded points (3,400 for an initial mount below 300px wide), DPR cap 1.75, 30fps idle / 60fps pointer targets. These are configured targets, not physical-device performance measurements. No React state updates per frame. Intersection/document visibility suspension and complete cleanup are included. Canvas fallback also handles context loss; forced fallback was tested, actual hardware context loss was not induced. No new dependencies or reduced-motion changes.
+
+The full isolated production build passed, browser warnings/errors were empty, renderer syntax and diff checks passed. Bank-card component, renderer and V3 ribbon; shared top-pair component; globe component; news component; and card CSS passed the existing preservation manifest. This pass changed only new V4 files, savings selection/imports and version/QA documentation. The local server remains running.
+
+# Savings V5 Credo emblem particles — 16 October 2026
+
+User-requested scope: make V4's particles substantially more present, give them clearer movement, and use the Credo logo shape instead of a circular distribution. V4 and earlier designs remain saved; the savings panel and other cards remain unchanged.
+
+Homepage default and explicit URL: http://localhost:3010/?savings=logo#savings. Previous V4: http://localhost:3010/?savings=particles#savings. V3 remains http://localhost:3010/?savings=balanced#savings.
+
+The particle shape is sampled from the exact Credo emblem already used by the homepage header (`public/assets/2d290.svg`). The copied SVG was verified byte-identical. A 512px role mask rasterizes its original paths unchanged, with channel labels for both arrows and the central disc. Runtime sampling weights the two arrows more heavily. The geometry source, mask and provenance manifest have their own snapshot checksums. No logo was hand-drawn or generated.
+
+| Before | After |
+| --- | --- |
+| Very faint circular field | Emblem-shaped field with 9,000 points (5,400 on an initial narrow mount), stronger arrow opacity, slightly larger dots and a higher share of the existing primary blue/coral endpoints |
+| Random blue/coral accents | Blue first arrow and coral second arrow; a quieter blue/neutral central disc. Original header/card logo colors remain unchanged. |
+| Slow, small drift | Faster coherent flow, independent drift and a breathing cycle; most points retain the silhouette while a loose subset wanders farther |
+| 30fps idle target | 60fps visible-render target, with the same offscreen and document-visibility suspension |
+| V4 homepage default | V5 homepage default; V4 and V1–V3 URLs and source checksums preserved |
+
+Framing limit: the oversized emblem is partly clipped by the outer card and its center is occluded by the existing opaque savings panel. It is a background treatment; the complete logo is not visible simultaneously. Heading space stays clear. The panel, source photo, all typography, progress bar, shadow, responsive layout and deposit transitions are composed from the same frozen V3 component/styles. No unrelated card or news changes were made.
+
+Visual evidence in `../savings-logo-particles/`: desktop idle, mobile 390, narrow hover, static fallback, V4 preserved, V4/V5 comparison and final viewport/row/normal-preview captures. `v4-v5-comparison.png` uses unscaled matching 368×496 card crops from 1280×900 captures. It shows the increase in visible particle density and color. The existing Stripe reference remains in `../stripe-particle-study/`.
+
+Browser checks: WebGL reports ready with shape `credo-emblem`; no warnings/errors were observed. A fresh 320px-wide load selected 5,400 particles and fitted the 236×240px compact panel without horizontal overflow. The 390px viewport also fitted. Fine-pointer tracking activated the logo gathering; settled hover reached fill scaleX(.8), receipt opacity 1 and 80% opacity 1, with smoothed particle strength .90 in the recorded sample. The frozen deposit sequence retains the same exit behavior. A forced development Canvas fallback rendered the emblem correctly. Switching to V4 removed V5 and restored the original 5,600-point circular cloud. The default route returned to V5.
+
+The full isolated production build, renderer syntax, diff checks, copied-SVG comparison and all saved-version checksum checks passed. The existing bank-card/renderer/ribbon/shared top-pair/globe/news preservation manifest passed. No new dependencies or reduced-motion changes. The 60fps setting is a configured target; physical-device performance and actual hardware context loss were not tested. Local server left running; normal in-app viewport restored for handoff.
+
+# V6 · Credo family particle emblem — 16 October 2026
+
+User-approved scope: replace the savings composition with „გახდი კრედოს ოჯახის წევრი“, show the complete particle emblem, give it gentle idle motion and local scatter/return on hover, preserve V1–V5 and leave other cards unchanged.
+
+Default and explicit route: http://localhost:3010/?savings=family#credo-family. Previous V5 remains http://localhost:3010/?savings=logo#savings. All earlier savings parameters remain supported. The existing outer `#savings` anchor is retained; the family version adds an internal `#credo-family` anchor.
+
+| Before | After |
+| --- | --- |
+| Foreground savings panel hides the emblem center | Full emblem fits the card with 40% of particles assigned to its shaded center |
+| Oversized cropped arrows | Complete silhouette bounded by 80% width and the available height below the heading |
+| Savings action | Official current-account information page; earlier savings versions still select the deposit calculator |
+| Pointer gathers | Small localized repulsion, eased release and gentle coherent idle flow |
+
+Desktop visual check at 1280×900: the outer card is 368.59×496.17px, with unchanged 18px medium heading and row geometry. The full emblem is below the heading and balances with the original bank-card artwork and globe. Evidence in `../credo-family/01-desktop-idle.png` and `02-desktop-hover.png` was captured at 12,000 points; the later `06-final-viewport.png` retains 7,200 points after resizing from mobile (counts are selected on initial mount). The final row proof crops the original 12,000-point desktop capture without rescaling.
+
+Interaction: hover reports `particlesPointer=active` and settled strength 1.00. Moving outside returns `idle` and 0.00. The new action was clicked and the in-app browser reached https://credobank.ge/products/current-account with the visible official current-account title and content. No form was submitted. The saved V5 route restored its old heading and full savings panel; its expand action selected `#calculator-tab-1` with `aria-selected=true`.
+
+Responsive: 390×844 and 320×740 captures show the entire emblem and clear heading with no horizontal document overflow. At a fresh 320px mount, WebGL selected 7,200 points. A forced static Canvas fallback also displayed the complete logo. Evidence: `03-mobile-390.png`, `04-mobile-320-static.png`, `05-mobile-320-live.png`. Actual hardware context loss and physical-device performance were not tested.
+
+Validation: the isolated full production build, renderer syntax, diff check, all V1–V5 snapshot hashes and the existing other-card/news preservation manifest passed. Local-preview browser logs had no warnings/errors; the two locale warnings recorded during the official destination visit came from credobank.ge. No new dependencies or reduced-motion changes. The server remains running.
+
+Handoff: the temporary viewport override was reset. After the original browser tab became unavailable, a fresh in-app tab opened the V6 route at the normal 615×763 size, with 12,000 points and WebGL playing. It was marked as the deliverable. `07-normal-preview.png` shows the complete emblem and clear single-line heading at that size.
+
+# V7 · Subtle family background wash — 16 October 2026
+
+Requested scope: give the approved family particle card a very light gradient for depth. V7 composes the frozen V6 component/renderer and adds only separately scoped CSS background treatment. It is the homepage default and available at `/?savings=family-soft#credo-family`; V6 remains at `/?savings=family#credo-family`.
+
+| Before | After |
+| --- | --- |
+| Uniform near-white paper and localized center halo | White heading area, pale secondary-blue paper toward the base, broad blue lower-left light and subtle coral lower-right warmth |
+| Halo in the central area | Gradient mask keeps the top 22% clear and smoothly reveals the wash by 60%; the particles are not masked |
+| V6 default | V7 default, with the exact V6 background still selectable |
+
+The complete color/property diff is listed in `components/savings-versions/README.md`. New OKLCH endpoints retain Credo hue angles 232.094 and 29.48. Linear-sRGB conversion confirms all are in gamut. No particle color, geometry, size, opacity, motion or pointer changes. No new blur, rendering loop, package, shadow or reduced-motion handling.
+
+Visual evidence in `../credo-family-v7/`: `02-desktop-row.png` at 1280×900, its unscaled `final-row.png` crop, and `03-mobile.png` at 390×844. The soft wash is present below the emblem with clear white heading space; original bank-card and globe treatments remain alongside it. There is no horizontal document overflow. The default URL renders V7; the explicit V6 URL renders no V7 wrapper and restores its original uniform paper/halo. WebGL continues playing with 12,000 points, and local browser warnings/errors are empty. The temporary viewport override was reset and the preview tab marked as the deliverable.
+
+Saved V1–V6 component/style/renderer/assets passed their snapshot checksums; the bank-card/shared top-pair/globe/news preservation manifest passed. The isolated production build passed after the final CSS adjustment. No tests were added for this reversible visual change.
+
+# V8 · Airy family particles — 16 October 2026
+
+Requested scope: spread the family emblem’s particles more loosely while retaining readability, the approved subtle background and all other cards. V8 is the default and available at `/?savings=family-airy#credo-family`; V7 stays at `/?savings=family-soft#credo-family`.
+
+The independent renderer keeps 65% of points close to the emblem, while a seeded 35% subset progressively spreads in random directions into a soft halo. Scatter gently breathes over about 14 seconds; loose points have broader drift and lower opacity. An 18px side fade prevents hard cutoffs. The local pointer influence is slightly wider and stronger, with the same smoothed return. Complete numerical differences are in `components/savings-versions/README.md`.
+
+The V7 gradient colors and mask were verified identical by source-value comparison. The actual emblem mask, 12,000 / 7,200 counts, point sizes, role mix, brand endpoints, core shading, title, action, card dimensions and renderer lifecycle remain. No new packages, React frame updates, blur or reduced-motion handling.
+
+Visual evidence in `../credo-family-v8/`: normal-width capture, desktop idle/hover at 1280×900, narrow live/static captures at 320×740 and an unscaled final row crop. At desktop the card remains 368.59×496.17px; at 320px it is 272×440px with no horizontal overflow. The emblem remains readable and the outer dust feathers into the unchanged wash. Browser hover reached `active` / 1.00 and exit returned `idle` / 0.00. Fresh mobile WebGL and forced Canvas fallback both rendered 7,200 particles without warnings/errors. Actual hardware context loss and physical-device frame rates were not tested.
+
+The isolated full production build, renderer syntax, diff check, V1–V7 snapshot hashes and other-card/news preservation manifest passed. The local server remains running. Temporary viewport testing was reset before handoff.
+
+# Closer transfer-globe framing — 16 October 2026
+
+Requested scope: bring the existing globe closer to match Stripe’s larger, cropped bento composition. Only the globe’s existing framing variables in `app/globals.css` change; renderer, route timing, labels, point colors, density, pause control and all other cards remain untouched.
+
+| Before | After |
+| --- | --- |
+| `--globe-frame-zoom:1.08` | `1.48`, approximately 37% larger |
+| X/Y framing offsets `0` / `0` | `.06` / `.03`, a slight right/down offset that emphasizes the right/bottom crop |
+
+The live Stripe page’s crypto card was measured at 396.66×670.36px in a 1280×900 viewport. After the in-app connection recovered, the live reference was inspected at `https://stripe.com/en-nl#bento-card-title-crypto` and captured in `../globe-close-framing/02-stripe-reference.png`. Its canvas is 443.76×722.36px and extends beyond the card. The visible hemisphere is substantially wider than its card, with its upper edge around the first quarter of the height; the enlarged Credo framing follows that crop within the existing shorter card. The temporary reference tab was closed. No alternate browser method was used.
+
+Geometry verification used the real Three.js camera, GLOBE constants and framing/view-offset path against a sampled sphere. At 369×496 the projected globe bounds are approximately x −81…494 / y 120…697, producing the intended close edge crop with title space above. At 272×440 the bounds are x −102…407 / y 107…618; at 567×763, x −124…759 / y 185…1072. The wide 758×480 tablet card crops the bottom while retaining the globe’s sides. These are projection checks, not rendered screenshots; land drift and route arcs can extend beyond the sampled sphere.
+
+Visual checks completed after recovery: `../globe-close-framing/01-desktop.png` shows the full lower row at 1280×900, and `03-mobile.png` shows the complete 272×440px card at 320×740. Headings stay clear, the globe naturally extends beyond the sides/bottom, and flags remain attached to their animated routes. The renderer reports WebGL ready with the original 17,877 points. Pause reported `paused` and resume returned to `playing`. There is no horizontal overflow or local browser warning/error. The temporary viewport override was reset and the local tab marked as the deliverable.
+
+`git diff --check` and the saved card/source preservation checks passed. No tests, animation changes, reduced-motion work or new dependencies were added for this CSS-only framing adjustment. The dev server remains running.
+
+# Transfer-globe grain, depth and DialKit — 16 October 2026
+
+The earlier enlargement exposed a point-sprite mismatch: the camera enlarged the sphere and routes, while particle sizes stayed fixed. The latest renderer multiplies particle size by camera zoom, uses the reference's `.12` desktop / `.14` compact base sizes and `.7–1` opacity variation, and keeps the established size variation. Compact rendering samples 30,000 sphere candidates (8,924 land points), versus 60,000 desktop candidates (17,877 land points). The formerly neutral point midpoint now uses Credo's soft blue. A screen-oriented white-to-brand-blue sphere shader and faint blue rim add depth. Outward particles use per-launch eligibility/variation rather than the same tiny subset on every cycle. Credo endpoints, flags and route timing remain.
+
+The live Stripe crypto card and its public shader source were inspected through the in-app browser. Reference evidence and the corrected desktop/mobile renders are in `../globe-particle-polish/`. That pass changed the close framing from `1.48` / X `.06` / Y `.03` to `1.36` / X `0` / Y `.07`. The user subsequently requested direct zoom controls; no further guessed default framing was applied.
+
+DialKit 2.0.0 and its Motion 14.3.0 React peer are pinned. `/?globeControls=1#transfer-globe` lazy loads a draggable, body-portalled panel with Zoom (`.65–1.8`, step `.01`), Vertical (`−20–25`, step `.5`, percentages of canvas height), Reset framing, built-in versions and copy. Edits update the current camera and point projection uniform; they do not resize the drawing buffer, rebuild scene resources or restart time. The React portal boundary stops panel clicks from invoking the product action. Values/versions are saved locally in this browser and apply only on the query-enabled authoring view; the ordinary homepage retains its code defaults.
+
+Interaction verification in the in-app browser: dragging Zoom changed the engine's reported zoom to `.97` while WebGL stayed ready and animation time advanced; numeric entry applied `1.08`. Keyboard Vertical changed the offset from `.070` to `.065`. Reset restored `1.36` / `.070`. Version 1 retained that baseline; Version 2 was saved at `1.08` / `.070`. Reload restored Version 2 and its camera framing. Selecting Version 1 restored `1.36`; selecting Version 2 restored `1.08`. No product dialog opened during these controls. This comparison is browser-local, not a new frozen source snapshot.
+
+Handoff proof: `../globe-dialkit/02-normal-preview.png` shows the real globe and panel at the normal 615×763 viewport. The selected editable Version 2 reads Zoom `1.07`, Vertical `8.0` in this final capture. The temporary viewport override was reset and the tab marked as the deliverable. Desktop controls also fit within 1280×900 without horizontal overflow; local console warnings/errors were empty. Point count is selected at mount, so the final narrow viewport retains its desktop 17,877 points after responsive testing.
+
+The isolated full production build, renderer syntax and diff checks passed. All V1–V8 savings snapshot checksums and the separate manifest covering other card components/renderers, shared shader, page composition, global styles and news passed. No reduced-motion behavior was changed. WebGL point/surface shaders compiled without warnings/errors in the earlier desktop and 320px visual checks. Canvas fallback follows camera framing but does not reproduce the new sphere shading; physical-device frame rates and hardware context loss remain untested.

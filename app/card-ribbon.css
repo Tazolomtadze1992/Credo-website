@@ -12,3 +12,7 @@
 .bank-card-3d[data-card-ribbon-version="polished"] .bank-card-3d-fallback::before {
   background-image: url('/assets/card/ribbon-polished-fallback.png');
 }
+
+.bank-card-3d[data-card-ribbon-version="flow"] .bank-card-3d-fallback::before {
+  background-image: url('/assets/card/ribbon-flow-fallback.png');
+}

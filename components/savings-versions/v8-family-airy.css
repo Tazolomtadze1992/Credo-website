@@ -1,0 +1,30 @@
+.product-savings:has(.credo-family-v8) .bento-background { display:none; }
+.credo-family-v8 {
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,
+    oklch(1 0 0) 0%,
+    oklch(.993 .002 232.094) 32%,
+    oklch(.976 .008 232.094) 100%);
+}
+.family-v8-halo,.family-v8-canvas {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+}
+.family-v8-halo {
+  background:
+    radial-gradient(ellipse 73% 63% at 5% 100%,
+      oklch(.94 .02 232.094 / .72), transparent 85%),
+    radial-gradient(ellipse 69% 59% at 100% 87%,
+      oklch(.953 .022 29.48 / .65), transparent 85%);
+  mask-image:linear-gradient(180deg,transparent 22%,oklch(0 0 0) 60%);
+}
+.family-v8-canvas { display:block; }
+.family-v8-canvas[hidden] { display:none; }
+@media (max-width:760px) {
+  .product-grid>.product-card.product-savings:has(.credo-family-v8) { aspect-ratio:auto;min-height:440px; }
+}

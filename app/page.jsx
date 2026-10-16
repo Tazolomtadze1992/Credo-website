@@ -101,7 +101,7 @@ export default function Home() {
       <section className="products section-container" id="products" aria-labelledby="products-title"><h2 id="products-title">{'იპოვე შენთვის საჭირო პროდუქტი'.toUpperCase()}</h2><div className="product-grid">
         <ProductCard kind="loan" title="მიიღე სესხი სახლიდან გაუსვლელად" onExplore={() => explore(0)}><ArtStage width={733} height={698}><CredoPhoneVideo /></ArtStage></ProductCard>
         <ProductCard kind="split" title="და-ყა-ვი შენს ტემპში" onExplore={() => showDialog('და-ყა-ვი შენს ტემპში')}><SplitPayment /></ProductCard>
-        <ProductCard kind="savings" title="დააგროვე მნიშვნელოვანი მიზნისთვის" onExplore={() => explore(1)}><SavingsGoal /></ProductCard>
+      <SavingsGoal onExploreSavings={() => explore(1)} onJoinFamily={() => window.location.assign('https://credobank.ge/products/current-account')} />
         <ProductCard kind="card" title="ბარათი ყოველდღიური ფინანსებისთვის" onExplore={() => showDialog('ბარათი ყოველდღიური ფინანსებისთვის')}><BankCard3D><div className="bank-card-art"><ArtStage width={244} height={387}><CardArt /></ArtStage></div></BankCard3D></ProductCard>
         <ProductCard kind="transfer" title="გააგზავნე და მიიღე ფული საზღვარგარეთ" onExplore={() => explore(2)}><TransferGlobe /></ProductCard>
         <SharedBentoBackground />

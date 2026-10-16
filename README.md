@@ -23,7 +23,11 @@ The preview reuses the homepage’s exact loan video, artwork, product cards and
 
 ## Bank-card background versions
 
-The separate bank-card wave also keeps its original and polished versions: [original V1](http://localhost:3010/?cardRibbon=original#bank-card), [polished V2](http://localhost:3010/?cardRibbon=polished#bank-card). These use the same Credo palette and card interaction; V2 refines the fold's curve, texture and feathered edges. See `lib/card-ribbon-versions/README.md` for saved-source details.
+The separate bank-card wave keeps three saved versions: [original V1](http://localhost:3010/?cardRibbon=original#bank-card), [polished V2](http://localhost:3010/?cardRibbon=polished#bank-card), and [flowing satin V3](http://localhost:3010/?cardRibbon=flow#bank-card), the homepage default. V3 adds travelling folds, softer satin crests, advected fibers, and a localized deeper shade of Credo blue; the heading space stays white. The card artwork, geometry, lighting, tilt and shadow remain unchanged. See `lib/card-ribbon-versions/README.md` for the palette, timing and preservation rules.
+
+## Family and savings-card versions
+
+The homepage now uses [V8 · Airy Credo family](http://localhost:3010/?savings=family-airy#credo-family): the full blue/coral particle emblem with a loose outer cloud, gentle breathing spread and localized pointer repulsion. V7’s very light blue/coral gradient and white heading space remain unchanged. [V7 · Compact particles with soft wash](http://localhost:3010/?savings=family-soft#credo-family) and [V6 · Original family background](http://localhost:3010/?savings=family#credo-family) stay saved. Its action opens Credo’s official current-account information page. The saved [V5 · Logo behind the savings panel](http://localhost:3010/?savings=logo#savings), [V4 · Circular dots](http://localhost:3010/?savings=particles#savings), [V3 · Balanced goal](http://localhost:3010/?savings=balanced#savings), [V2 · Photo header](http://localhost:3010/?savings=photo#savings) and [original V1 illustration](http://localhost:3010/?savings=original#savings) retain their savings heading, panel and deposit-calculator action. See `components/savings-versions/README.md` for source geometry, palette, motion and preservation rules. The bank-card, globe, shared top pair and news are unchanged by this pass.
 
 ## Earlier loan-only shader previews
 
@@ -47,9 +51,14 @@ All Figma images and vectors are local in `public/assets`. Their device, logo, a
 
 The animation follows the [Stripe homepage money-movement globe](https://stripe.com/) and the supplied recording: a rotating particle globe, occasional outward particle drift, gradient great-circle routes, glowing endpoints, and travelling amount labels. Country flags replace the wallet logos, with Georgia included among the routes. The globe uses coral and blue shades from Credo’s primary and secondary brand colors.
 
-Three.js draws approximately 18,000 land particles in one GPU draw call. Route and particle motion run outside React. The scene stops when offscreen, when the document is hidden, or when paused. Reduced motion presents an established static scene; unavailable WebGL uses a static canvas fallback. Resolution is capped at 2× device pixel ratio.
+The default framing uses `--globe-frame-zoom:1.36`, horizontal offset `0` and vertical offset `.07`. The camera projects particles, routes and labels together; point sprites also follow its zoom. The point texture has varied size/opacity, a Credo blue bridge between the brand endpoints, outward drift and a softly shaded blue sphere/rim.
+
+Open [Globe DialKit](http://localhost:3010/?globeControls=1#transfer-globe) to tune the actual homepage card. **Zoom** ranges from `.65` to `1.8`; **Vertical** moves the framing from −20% to +25% of the canvas height. Drag the sliders, or press Enter on a focused slider to type a number. **Reset framing** restores `1.36` / `7`. The toolbar’s **+** saves a comparison version; versions and edits persist in this browser under `dialkit:credo-transfer-globe-framing`. **Copy parameters** exports the chosen settings for updating the code. These overrides apply only while `globeControls=1` is present; the normal homepage keeps its code defaults. The draggable panel is separate from the clipped card and does not trigger the product action. DialKit is lazy loaded only for this authoring URL.
+
+Three.js draws approximately 18,000 desktop / 9,000 compact land particles in one GPU draw call. Route and particle motion run outside React. DialKit updates the existing camera without rebuilding the scene or resizing its canvas on each slider edit. The scene stops when offscreen, when the document is hidden, or when paused. Reduced motion presents an established static scene; unavailable WebGL uses a static canvas fallback. Resolution is capped at 2× device pixel ratio. The fallback follows camera zoom but does not reproduce the WebGL sphere shading.
 
 - `components/TransferGlobe.jsx`: React lifecycle, labels, accessible pause control, motion preference.
+- `components/GlobeDialKit.jsx`: query-enabled framing controls and browser-local saved versions.
 - `lib/create-transfer-globe.mjs`: geographic point sampling, Three.js scene, routes and lifecycle.
 - `lib/globe-motion.mjs`: city coordinates, timing, easing and route choreography.
 - `lib/globe-shaders.mjs`: particle appearance and outward drift.
@@ -86,7 +95,7 @@ In development, `/?newsMotion=reduce#news` previews the same reduced-motion bran
 
 ## Current interactions
 
-- Product actions navigate to the corresponding inline calculator.
+- Savings-version product actions navigate to the corresponding inline calculator. The new family card opens Credo’s official current-account information page.
 - Loan, deposit, and currency tabs update the calculator with a short transition.
 - Loan and deposit amounts and terms recalculate immediately.
 - Currency selectors and the swap button use illustrative exchange rates.

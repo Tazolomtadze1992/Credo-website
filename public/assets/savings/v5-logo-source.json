@@ -1,0 +1,13 @@
+{
+  "source": "../2d290.svg",
+  "snapshot": "credo-emblem-v5.svg",
+  "sourceSha256": "86c32f29915b97bca26ce4e65e6c0a27de0ef0f05e1a6889895b47224ee66cec",
+  "mask": "credo-emblem-mask-v5.png",
+  "maskSize": 512,
+  "roles": {
+    "red": "Original blue arrow path Vector_3",
+    "green": "Original grey arrow path Vector",
+    "blue": "Original central disc path Vector_2"
+  },
+  "method": "Original SVG paths rasterized unchanged with role-encoded fills for particle sampling. No geometry redrawn."
+}

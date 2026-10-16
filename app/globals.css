@@ -1,6 +1,7 @@
 @import './design-art.css';
 @import './news.css';
 @import './savings.css';
+@import './savings-panel.css';
 @import './bento-background.css';
 @import './split-payment.css';
 @font-face{font-family:Georgian;src:url('/assets/georgian.ttf') format('truetype');font-style:normal;font-weight:100 900;font-display:swap;unicode-range:U+10A0-10FF,U+1C90-1CBF,U+2D00-2D2F,U+20BE}
@@ -79,7 +80,7 @@ h1,h2,h3,.header nav,.action,.calculator-tabs button{text-transform:none}
 .product-grid>.product-split{grid-column:span 3;aspect-ratio:auto}
 .product-grid>.product-card:nth-child(n+3){height:auto;aspect-ratio:416/560;min-height:440px}
 .product-grid>.product-card:nth-child(4) .bank-card-3d{--bank-card-center:.6}
-.transfer-globe{--globe-frame-x:0;--globe-frame-y:0;--globe-frame-zoom:1.08}
+.transfer-globe{--globe-frame-x:0;--globe-frame-y:.07;--globe-frame-zoom:1.36}
 .bank-card-3d-fallback .bank-card-art{width:62%;top:60%;transform:translate(-50%,-50%)}
 .bank-card-3d-fallback .art-126{width:244px;height:387px}
 .bank-card-3d-fallback .art-127{inset:auto;left:173.1px;top:332.5px;width:49.3px;height:30.5px}

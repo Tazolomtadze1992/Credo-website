@@ -1,0 +1,14 @@
+{
+  "destinationPhoto": {
+    "file": "positano-kevin-mcmahon.webp",
+    "photographer": "Kevin McMahon",
+    "sourcePage": "https://unsplash.com/photos/city-near-body-of-water-during-daytime-yM1OJiSMTPo",
+    "sourceImage": "https://images.unsplash.com/photo-1586712446486-200db304d073?auto=format&fit=max&w=1800&q=90",
+    "license": "Unsplash License",
+    "licenseUrl": "https://unsplash.com/license",
+    "sourceResolution": [1800, 1200],
+    "localResolution": [1440, 960],
+    "retrievedOn": "2026-10-16",
+    "treatment": "Real photograph. Resized and encoded as WebP; no AI generation, retouching or recoloring. Display uses a centered crop at 58% vertical position."
+  }
+}
