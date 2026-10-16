@@ -68,6 +68,18 @@ In development, `/?globeMotion=reduce#products` previews the same static branch 
 
 Local source assets: the geographic mask comes from Stripe's public `map-dots.0f396e3d.png`; country flags come from [FlagCDN](https://flagcdn.com/). Assets are served locally during playback. Amounts and routes are illustrative.
 
+## Homepage navigation
+
+The navigation follows Stripe's current shared-frame menu, using Credo's blue, coral accents and Georgian type. The desktop frame is 64px high, capped at 1262px inside the 1298px outer layout. All dropdowns share one persistent viewport: the first opening reveals the already measured frame in 200ms, subsequent sections resize in 300ms and crossfade/slide with Stripe's 250ms/500ms timing. Reversing direction retargets CSS transitions from their current position. Closing takes 180ms, retains the scroll lock until the frame is hidden, and releases the hidden Radix content afterward. Keyboard entry, selection and dismissal are instant. Inactive panels are inert and hidden from assistive technology. The consumer menu includes all 29 supplied entries across loans, cards, deposits, installments, insurance and other services. At wide sizes it uses four columns plus a quiet featured sidebar; the sidebar moves below the columns under 1400px.
+Category descriptions are omitted and category link labels use 14px / 500 weight, per the latest annotations. The descriptions remain in the search index. Below 1200px, Radix Dialog presents a full-screen menu with slide-in category drill-down, a Back action, scrollable groups and fixed video/Internetbank actions. Radix Navigation Menu handles desktop entry, dismissal and focus; Radix Dialog handles search/mobile focus and Escape. Search filters the local product index rather than Credo's full backend. Destinations use Credo's public product sitemap and the official MyCredo links, opening external pages in a separate tab.
+
+The header's reserved 104px / 88px height preserves the existing hero position. All other homepage sections, bento artwork, shader versions, globe settings and animations are unchanged. Source captures and matched-viewport comparison images are saved in `../stripe-navigation/`.
+
+- `components/SiteHeader.jsx`: shared menu, search and full-screen mobile drill-down.
+- `components/useDesktopNavigationMotion.js`: desktop visual phases, panel measurement and input modality.
+- `app/navigation.css`: scoped typography, source geometry, motion and responsive layout.
+- `data/site-navigation.mjs`: all consumer groups, official destinations and search entries.
+
 ## Continue editing
 
 - `app/page.jsx`: section composition, calculator state, product actions, dialogs.

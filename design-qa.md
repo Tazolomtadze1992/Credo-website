@@ -465,3 +465,62 @@ The isolated full production build, renderer syntax and diff checks passed. All 
 # Approved globe framing — 16 October 2026
 
 Applied the user's DialKit screenshot values as the homepage and Reset framing defaults: Zoom `1.18`, Vertical `−2.0` (CSS Y `−.02`). Horizontal framing remains `0`; slider ranges and saved browser-local versions are preserved. The diff changes only these defaults and their documentation. The full production build and diff check passed. No browser session was started for this numeric adjustment, and port 3010 remains stopped as requested.
+
+# Lighter homepage navigation — 16 October 2026
+
+Retained the supplied header's categories and services in a lighter composition aligned to the homepage container. Current scope is the header; the bento, shader controls, news and calculator remain intact.
+
+| Before | After |
+| --- | --- |
+| Seven repeated placeholder category links in the local header | Consumer, business, about and contact categories from the supplied image; verified business/about destinations and the existing local news section |
+| Dense, prominent controls in the supplied reference | 14px regular Georgian navigation, a slightly smaller optically aligned logo, explicit spacing and the existing pale page surface |
+| Large video-banking pill competing with Internetbank | Plain secondary-blue video action and a single 44px Internetbank button; deeper coral `#cf4435` gives white labels 4.63:1 contrast |
+| Ringed search and prominent language treatment in the supplied image | Flat 40×44 desktop controls, 44×44 touch controls, compact globe/EN link; English opens Credo's official English site |
+| Placeholder links without functional menus | Radix Navigation Menu for business/about and a nonmodal Dropdown Menu for individual/business MyCredo choices; 304px white menus use an 8px inset, 16px outer / 8px inner corners and faint neutral edge/depth |
+| No search surface | Radix Dialog with a 16px search field, local Georgian/English keyword matching, result links, result count and empty state; this searches the prototype index, not Credo's full website backend |
+| Navigation hidden on compact screens | Complete Radix Dialog menu below 1260px, native business/about disclosures and all banking/language actions; below 540px the banking button moves into the menu |
+| Old header styling mixed into global layout rules | Scoped `navigation.css` and `SiteHeader.jsx`; obsolete header rules removed, logo targets the actual header top, skip-link stays above overlays and small secondary text has 4.94:1 contrast on white |
+
+Menus stay immediate for pointer/keyboard use. Only hover colors and the `.96` button press use short, explicit CSS transitions; no page-load choreography or reduced-motion changes were added. The desktop/phone header heights remain 104px / 88px, preserving the hero's original vertical position.
+
+Destinations were checked against [Credo's homepage](https://credobank.ge/), its [business loan](https://credobank.ge/products/business-loan), [video banking](https://credobank.ge/services/video-banking), [about](https://credobank.ge/about) and contact pages. MyCredo destinations came from the live header menu (`onelink.to/mycredo` and `onelink.to/business-mycredo`). External links open in a separate tab. No login, booking or submission was performed. The temporary reference tab was closed.
+
+In-app checks: desktop menus open correctly, banking keyboard entry focuses the first choice, Escape dismisses and returns focus, search matches `ბარათი` to two results and displays an empty state for an unmatched term. Selecting the local card result closes search and navigates to `#bank-card`. The mobile business disclosure expands, and Escape closes the menu and returns focus to its trigger. Widths 320, 390, 615, 1240, 1260 and 1440 fit the header within the page grid without horizontal overflow. At 1440px the financial-highlights item fits a single 44px-high row. Local warnings/errors are empty.
+
+Evidence in `../navigation-polish/`: original local header, finished desktop composition, search, full phone menu, 320px header and about menu. `header-preview.png` is an unscaled crop of the finished desktop capture. The final isolated production build, diff check and preservation manifest covering all other bento components/renderers and news passed. No tests were added for the reversible styling change. The local preview remains running; no GitHub push was requested for this pass.
+
+# Stripe-style shared navigation and category annotations — 16 October 2026
+
+Final result: **passed** for the requested navigation scope.
+
+Reference: the supplied recording and Stripe's live Netherlands homepage. Captured desktop Products and Solutions, mobile root and Products drill-down; measured the shared header/popup geometry and inspected the live transition styles. Current implementation uses Radix Navigation Menu's shared viewport and directional content presence, with Radix Dialog and Motion for the mobile drill-down. Three exact reference navigation marks retain their captured paths; utility icons use Radix Icons. No new pages were added.
+
+At 1440px, both source and local header frames are x89/y6, width1262, height64; the menu starts y70, with 32px content padding, 40px column gaps and a 258px full-height secondary area. Shared height transitions use 300ms, panel slides use 500ms with ±20% offsets, opacity uses 250ms, and the background overlay uses 5px blur. At narrower desktop sizes the secondary area moves below the four columns and the menu scrolls within the available viewport. Consumer coverage is 6 loans + 5 cards + 4 deposits + 5 installments + 6 insurance + 3 services = 29 entries, with real destinations listed in Credo's public sitemap.
+
+Latest annotation changes: descriptions are removed from all category groups on desktop and mobile; labels remain 14px and increase from weight400 to500. Search retains explanatory result text. Removing descriptions deliberately makes the consumer panel shorter than Stripe's current content. Credo branding, blue actions, Georgian labels, the real Credo lounge image and the 1200px compact breakpoint are intentional adaptations. The reserved header height remains unchanged, preserving the homepage composition.
+
+In-app checks covered hover opening and switching, rapid reversal between menus, shared viewport resizing, internal desktop scrolling, Enter/Down keyboard entry, Escape focus restoration and scroll unlock, mobile root/back/close, all 29 mobile entries and the fixed footer while scrolling. Search found five card results. Widths320,390,615,1200 and1440 fit without document overflow; the320px footer uses equal columns and compact text. No local browser warnings/errors were reported. An isolated production build passed after the category markup/weight changes; the final small footer CSS adjustment was verified through the live compiler and browser. Diff checks and the preservation manifest passed for the globe, family card, card renderer, shared bento and news files. No reduced-motion changes were made.
+
+Evidence: `../stripe-navigation/source-products-1440.png`, `source-solutions.png`, `source-mobile-root.png`, `source-mobile-products.png`, the matching local captures, `comparison-desktop.png`, `comparison-mobile.png` and `category-annotations-615.png`. Comparisons were assembled at matching1440×900 and390×844 viewport sizes and visually reviewed together. The local preview stays running; no push was requested.
+
+# Desktop navigation motion refinement — 16 October 2026
+
+Final result: **passed** for desktop motion. Reviewed with Animate, Improve Animations, Review Animations and Emil Design Engineering. The audit plan is `plans/001-desktop-navigation-motion.md`. The user explicitly restricted this pass to desktop; the prior reduced-motion deferral remains in force.
+
+| Before | After | Why |
+| --- | --- | --- |
+| Re-triggered panel/reveal keyframes (`work/navigation-motion/navigation.before.css`, former lines36–42,159–164) | Persistent viewport and reversible CSS transitions (`app/navigation.css:37`, `:41`; `components/SiteHeader.jsx:124`) | Switching/reversing keeps the current transform and opacity instead of restarting |
+| Opening height and reveal run together | Selected panel measured at ref attachment before paint; fully closed first-open snaps its height and reveals once (`components/useDesktopNavigationMotion.js:41`, `:47`; `app/navigation.css:39`) | Removes double expansion and clipping of the first rows |
+| Same motion for keyboard and pointer | Immediate keyboard transitions and correct Escape target, including hover-open/page focus (`components/useDesktopNavigationMotion.js:79`, `:92`; `app/navigation.css:163`) | Keyboard navigation responds directly |
+| Scroll lock released at logical close | Lock retained until the visible exit ends (`components/useDesktopNavigationMotion.js:61`) | The page does not shift behind the closing panel |
+| Persisting inactive Radix layers after closure during the first implementation | Content remains only while presented, then unmounts; viewport remains (`components/SiteHeader.jsx:141`, `:145`, `:150`) | Closed navigation cannot intercept other dialogs' Escape handling |
+
+**Interruptibility and timing — approve:** desktop slide/reveal keyframes removed. Source-matched switching retains ±20% transform over 500ms and opacity 250ms, cubic-bezier(.4,0,.2,1); the large1262px-wide reference panel justifies the longer travel. The isolated frame resizes in 300ms using the captured source curve, cubic-bezier(.45,.05,.55,.95). The first opening uses one 200ms clip/opacity reveal. Closing uses 180ms cubic-bezier(.23,1,.32,1). Open/close and switches retarget from current CSS values without scaling text. No child stagger or bounce was added.
+
+**Performance — approve within the inspected desktop scope:** content moves with transform/opacity, backdrop blur is static 5px with opacity transition, and React updates only at interaction/phase boundaries. Height is deliberately confined to the positioned viewport with four absolutely positioned fixed-width panels whose layout does not depend on its height; this is the isolated-viewport exception in the review standards. No per-frame inherited CSS variables or blanket will-change layers were added. Hardware frame-rate profiling was not performed.
+
+**Origin/cohesion and keyboard access — approve:** the frame stays anchored below the header; outgoing panels are inert immediately, and at most one logical panel is accessible. Enter/Down focuses the first active product; Escape returns to the actual trigger and releases scrolling. Hover grace, chevron path origins, link-arrow transitions, names-only 14px/500 typography, palette, layout and all other homepage motion remain. Mobile implementation and mobile motion/style block compare byte-for-byte with the pre-pass snapshot.
+
+Checks: live in-app comparison with Stripe's Products/Solutions/Developers transitions and supplied recording frames; desktop 1440×900 and 1280×720; opening, short/tall switching, reversal sequences, pointer entry across the header/panel gap, banking, outside dismissal, keyboard from trigger/content/page focus, search Escape and the existing native product-dialog Escape. At1280×720 the active consumer menu caps at 650px, contains all 29 entries and internally scrolls to the sidebar without document overflow. Closed state has zero Radix content layers. Fresh-load browser warnings/errors were absent; a development-only refresh warning during the intermediate hook edit did not recur after reloading. Final production build, diff check and other-card/news preservation checks passed. Evidence: `../navigation-motion/switching-frames.png`, `desktop-1280.png`, `desktop-final.png`; captured transition frames/timestamps in `work/navigation-motion/`. Source recording contact sheet remains in `work/stripe-nav-reference/`.
+
+Decision: **Approve for the requested desktop scope.** No mobile or reduced-motion changes; no new dependency, commit or push.
