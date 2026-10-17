@@ -524,3 +524,180 @@ Final result: **passed** for desktop motion. Reviewed with Animate, Improve Anim
 Checks: live in-app comparison with Stripe's Products/Solutions/Developers transitions and supplied recording frames; desktop 1440×900 and 1280×720; opening, short/tall switching, reversal sequences, pointer entry across the header/panel gap, banking, outside dismissal, keyboard from trigger/content/page focus, search Escape and the existing native product-dialog Escape. At1280×720 the active consumer menu caps at 650px, contains all 29 entries and internally scrolls to the sidebar without document overflow. Closed state has zero Radix content layers. Fresh-load browser warnings/errors were absent; a development-only refresh warning during the intermediate hook edit did not recur after reloading. Final production build, diff check and other-card/news preservation checks passed. Evidence: `../navigation-motion/switching-frames.png`, `desktop-1280.png`, `desktop-final.png`; captured transition frames/timestamps in `work/navigation-motion/`. Source recording contact sheet remains in `work/stripe-nav-reference/`.
 
 Decision: **Approve for the requested desktop scope.** No mobile or reduced-motion changes; no new dependency, commit or push.
+
+# დაყავი dithered logo — 17 October 2026
+
+Result: **Approve for the requested desktop scope.** Studied the supplied recording frame by frame and found the live Emil Kowalski reference at [Linear /next](https://linear.app/next). Its source logo remains still at rest, with a local circular cursor displacement and a damped return. The implementation here independently recreates that observed interaction. Linear's implementation and logo coordinates are not included.
+
+| Before | After | Why |
+| --- | --- | --- |
+| Generic payment-plan panels competing with the neighboring artwork | Actual supplied დაყავი mark, cropped to its three tiles, rendered as 12,279 fine square dots | Preserves recognizable Georgian lettering and product identity while simplifying the composition |
+| Intense inherited shared background behind the payment panels | A near-white surface with restrained low blue/coral light | Keeps the upper area clear and balances the loan card without changing its shader |
+| No interaction connected to the product's division concept | Local cubic cursor field, with a 24%-of-logo-width radius and damped spring return | Only nearby particles divide; the rest of the mark remains legible |
+| Replacing artwork would lose the original | Byte-preserved V1 at `?dayavi=original#products`; default V2 at `?dayavi=particles#products` | Enables direct comparison; saved shared-background previews explicitly retain V1 |
+| Fixed visual parameters | Query-only DialKit panel at `?dayaviControls=1#products` | Allows zoom, dot weight, cursor radius, push and opacity tuning with browser-local versions; normal homepage has no editor or stored override |
+
+**Geometry:** the original 448×208 supplied image is retained. Crop `(9,9,439,148)` removes the lower Credo lockup and outer frame. A deterministic serpentine Floyd–Steinberg pass samples the actual artwork on a 240×78 grid; white letter counters remain open. Original navy `#1f3d75` and coral `#f0442f` are retained. The JSON and exact SVG fallback are generated from the same coordinate groups. A second generator run produced identical checksums for JSON, SVG and cropped PNG.
+
+**Motion and performance:** one Canvas 2D surface batches the two source colors. There are no particle DOM nodes, no ambient drift and no React update per animation frame. The pointer field retargets existing positions and velocities; the spring uses stiffness260/damping30 with integration substeps capped at1/120s. Frames stop at equilibrium, offscreen and in hidden documents. A full-coordinate numerical check settled both hover and release in41 frames at60Hz. The live desktop sample reported approximately1.2–1.6ms average CPU physics-plus-paint time per active frame; this is not a hardware frame-rate guarantee or compositor profile. Canvas is a deliberate raster-rendering exception to the usual transform/opacity preference. There is no additional WebGL context or dependency.
+
+**Checks:** six Node tests pass for localized falloff, exact-center numerical safety, home return/sleep, interruption continuity, equivalent30/60/120Hz integration and source-coordinate fidelity. The isolated production build and diff checks pass. In-app desktop checks at1440 and1280 cover fine dot readability, localized cursor separation across all three tiles, rapid reversal, complete reassembly, idle frame sleep, offscreen pause, the existing card action/Escape, and no horizontal overflow. Zoom changed the actual logo width455→568.8px; cursor radius changed136.5→227.5px at that zoom; Reset restored455px/109.2px. Editor interactions did not invoke the product dialog. Development `?dayaviRenderer=static` verified the visible source-matched SVG fallback and hidden canvas. Actual hardware context loss and physical-device frame rates are untested. Reduced-motion handling remains deferred by the user's instruction.
+
+**Scope:** preservation checksums passed for the loan, shared shader versions, family card, bank card, globe, bento backgrounds/hover, news and navigation. The V1 JSX and CSS checksums passed. Evidence is in `../dayavi-particles/`; source video frames and live Linear captures are in `../../work/dayavi-particles/`. The preview remains running locally. No commit or GitHub push was requested.
+
+# Bento hover edge correction — 17 October 2026
+
+The supplied corner screenshots and the live desktop preview reproduced a shared layering defect. `.product-card-surface` was pre-sized for its maximum hover extent, while `.product-card-content` subtracted that extent and remained at the original card size. Opening the rounded clip exposed an unpainted strip around the content. The globe, family and bank-card renderers showed the same fixed rectangle; on დაყავი the strip additionally revealed the stronger shared shader beneath the light particle background.
+
+| Before | After |
+| --- | --- |
+| `app/bento-hover.css`: content inset by `calc(var(--bento-grow-y) - 1px)` / `calc(var(--bento-grow-x) - 1px)`, leaving a smaller visual rectangle inside the expanding surface | Content uses `inset:0`, filling the complete pre-sized surface on all five cards. The existing concentric rounded clips remain the single visible edge. |
+
+The content dimensions stay constant throughout hover; the existing clip opens and closes around the complete visual. Renderer layout now includes the small overscan area from its initial measurement, rather than exposing a fixed canvas boundary. No animation duration, easing, physics, palette, glow, shader, logo asset or camera-framing setting was changed. The compact loan's existing relative-layout override remains intact.
+
+Checks: in-app hover entry, full expansion, exit and rapid reversal across all five cards; every content/surface edge delta measured exactly0px at1440px and1280px, with no horizontal overflow. The globe retained zoom1.18/vertical−.02 and17,877 points; family retained12,000 particles; bank card retained its flow renderer; all remained active. The isolated production build and diff checks passed. Saved savings V1–V8 and split V1 checksums passed, as did renderer/news/navigation preservation checks. No new tests or reduced-motion changes were needed for this shared CSS correction. Before/after evidence is in `../bento-hover-fix/`.
+
+# Mirrored loan wave and approved დაყავი defaults — 17 October 2026
+
+The homepage loan card now uses the fourth card's exact saved V3 flowing ribbon material, palette and time phase, with horizontally mirrored UV coordinates. Its original phone video and heading remain. The physical bank card and its renderer are unchanged. `?loanBackground=shared#products` restores the previous rich shared-field treatment; saved shared-background studies still use their original artwork and background. No copied shader fork or new dependency was introduced.
+
+`ProductCard` accepts an optional background layer inside its complete clipped surface, ahead of the fixed content. Only the homepage loan supplies it. This preserves the prior corner correction and lets the compact loan's background fill the entire card around its existing relative video frame. The new plane uses the same ambient30fps / pointer-settling60fps cadence and13-per-second pointer damping as the fourth card. It pauses offscreen and in hidden documents. The existing V3 static image is mirrored for fallback. Canvas positioning is explicit before stylesheet loading, keeping its bitmap out of layout during development refreshes. Hardware context loss and physical-device frame-rate profiling were not tested.
+
+Approved particle defaults changed from Radius24/Push85 to Radius16/Push95, in both `DAYAVI_MOTION` and the DialKit config. On the normal desktop homepage the455px logo reports a72.8px cursor radius. Reset logo displays16 and95 in the panel. Custom saved versions remain intact; the normal homepage ignores authoring overrides.
+
+The production build, six existing particle physics/source tests, syntax and diff checks passed. In-app checks confirmed the live mirrored wave, its complete hover fill (all four edge deltas0px), the unchanged phone video and the previous-background query. Bank-card shader V1/V2/V3 checksums and preservation checks for the fourth card, loan-video component, globe, family selector, news, nav, hover CSS, shared-field component and shader snapshots passed. No reduced-motion behavior was changed. Evidence is in `../loan-ribbon/`.
+
+# Lower loan wave and family-style დაყავი wash — 17 October 2026
+
+| Before | After |
+| --- | --- |
+| Loan wave crossed the upper part of the artwork | Live canvas and matching fallback translate down 8% of their height (46.88px at desktop size). The existing paper backing fills above; the full surface clips below. |
+| დაყავი used a nearly white, faint wash | Uses the family V8 base gradient, corner blue/coral halo colors, opacity and heading mask exactly. The heading remains white and the lower surface has more depth. |
+
+Only two background stylesheets changed for this pass. Loan video, wave shader/flow, logo geometry and interaction, approved Radius16/Push95, the hover clipping fix, family card, bank card, globe, news and navigation remain. Desktop visual inspection and the isolated production build passed; preservation hashes and diff checks passed. No new tests were added for these reversible CSS changes. Evidence is in `../loan-wave-spacing/`.
+
+# Globe playback control removal — 17 October 2026
+
+Removed the user-facing pause/play button, its unused React state/readiness callback and orphaned button styles. The renderer still starts unpaused, animates when visible and retains its existing offscreen, visibility and reduced-motion behavior. Globe geometry, routes, colors, framing and authoring controls are unchanged. The isolated production build and diff checks passed. The in-app preview confirms zero playback buttons; evidence is in `../globe-no-playback/`.
+
+# Consistent white heading areas — 17 October 2026
+
+The approved family and დაყავი surfaces stay byte-for-byte intact. Loan, bank-card and globe heading areas now match their white / faint secondary-blue direction. The colored wave bodies retain their palette and flow.
+
+| Before | After |
+| --- | --- |
+| Wave paper `[.993,.002,30]`, with coral layers visible close to the heading | Saved V4 paper `[.993,.002,232.094]`, blending to pure white `[1,0,0]` at the top; color stays out of the upper24% and fades in through42% |
+| Loan background backing `oklch(.993 .002 30)` | Pure white `oklch(1 0 0)` |
+| Warm paper in the loan and bank-card fallback images | White-to-`oklch(.993 .002 232.094)` heading fade over the existing V3 bitmap, beneath foreground artwork |
+| Globe background base `oklch(.993 .002 30)` and warm clearing layer | Cool base `oklch(.993 .002 232.094)`; pure white through16%, near-white blue at28%, transparent by60% |
+| Loan wave translated down8% | Down16%, approximately94px total /47px further at desktop size; phone placement is unchanged |
+
+V4 is a new immutable shader snapshot; V1/V2/V3 remain unchanged and reachable. `?cardRibbon=flow#bank-card` still selects V3 and was verified live. The default and `?cardRibbon=cool#bank-card` select V4. The loan directly reuses V4 with its horizontal mirror. Physical card geometry, face, tilt, lighting and shadow are unchanged. No overlay washes out the physical card.
+
+The isolated production build, syntax and diff checks passed. Preservation checks confirm the family and დაყავი backgrounds, particle physics/defaults, globe renderer/component, loan-video component, hover clipping, news and nav remain unchanged. All four ribbon snapshot hashes pass. Desktop screenshot samples in clear heading areas measured RGB255/255/255 for loan, bank card and globe, versus253/255/254 for the two approved surfaces; all are near-white without a warm bias. Visual evidence is in `../bento-cool-tops/`. No new tests or reduced-motion changes were needed for the color/placement treatment.
+
+# MyCredo app showcase — 17 October 2026
+
+Replaced the small centered static phone with a two-column product showcase: the existing heading, a short benefit sentence and white download button on the homepage grid at left; a 320px upright phone at right. The phone uses the exact approved loan-card recording, within a restrained CSS bezel with concentric screen corners. No continuous phone motion or new dependency was added.
+
+The old static blue fields are replaced by a deep blue base with broad secondary-blue light and a localized coral glow. Three already-soft radial-gradient layers drift only through transform/opacity over22–28seconds; no animated blur, gradient stops, shader or per-frame React update is needed. The phone enters once over600ms, while copy and CTA remain still. An IntersectionObserver and document-visibility listener pause the video and background loops when inactive. Video loads on first visibility with preload none. Its existing remote hosting remains; no additional recording was created.
+
+In-app checks at1440px and615px confirmed live playback, natural light movement, no horizontal overflow, offscreen pause/resume, download-dialog opening, Escape dismissal and focus return. The compact background was adjusted to keep gradient layer edges outside the section, removing a hard seam. The isolated production build and diff checks passed. Preservation hashes confirm all pre-existing components, renderers, bento styles, news and navigation are unchanged; the homepage diff against the turn baseline contains only the new import and app-section replacement. Global CSS is unchanged. No new tests or reduced-motion changes were added for this reversible section redesign. Before-source backup and preservation results are in `../../work/app-showcase/`; desktop evidence is in `../app-showcase/`.
+
+# Restore the original MyCredo composition — 17 October 2026
+
+Restored the original centered heading, phone slot and white download action, using the existing `.mycredo` layout rules without changing global CSS. The extra MyCredo label, benefit paragraph, two-column composition, coral glow and enlarged phone from the previous pass are removed. The original844px desktop section and32px/600 heading remain. The approved video replaces the static mockup inside a220px frame, approximately460px tall, within the original244×464px artwork slot.
+
+The background directly reuses the original `BlueFieldArt`, its `#3065AB` / `#236BCF` SVG fills, static blur and `#14161d` base. Only the two original field containers translate18–20px over24/28seconds; the second scales by1.015. No fill, opacity or filter is animated. Existing lazy video playback and offscreen/document-visibility pausing remain. The phone and copy do not drift or animate in.
+
+The section uses overflow clip to prevent native focus scrolling its oversized background artwork internally. After opening/dismissing the dialog, internal scrollTop stays0 and the heading remains80px from the section top. The in-app desktop check confirmed original typography, centered composition, exact original SVG assets, live video and moving background fields. Both fields and video pause offscreen. The download dialog opens, Escape closes it and focus returns to its button. No horizontal overflow or new dependency was introduced. The isolated production build and diff checks passed. Preservation hashes confirm every pre-existing component, renderer and stylesheet except the two AppShowcase files remains unchanged, including all bento, news and navigation work. No new tests or reduced-motion changes were added. Evidence is in `../app-showcase-restored/`; the rejected larger showcase remains backed up in `../../work/app-showcase-restored/baseline/`.
+
+# Roomier MyCredo section with blue fluid hover — 17 October 2026
+
+Kept the original centered32px/600 heading,220px video phone and white download action. Default desktop padding increases from80px to112px vertically, with80px horizontal homepage gutters at1440px. Height is now content-driven with a920px minimum. The normal compact preview uses88px vertical padding. The prior844px layout and original drifting blue SVGs remain at `?appBackground=classic#mycredo`.
+
+Studied the live shaders.com hero and fedor.design liquid reveal, and reused the user's approved local portfolio `LiquidTrail.tsx` simulation as the starting point. The new background paints an advected blue density field, with pressure projection and gentle surface shading. Cursor strokes merge and move, then recede; the foreground content never follows the cursor. The resting field has a very quiet blue light pool. The reference sites' rainbow/image assets are not copied.
+
+| Before | After |
+| --- | --- |
+| Base `#14161d` | `oklch(0.245 0.035 232.094)` / `#0d232e` |
+| Original fields `#3065ab` and `#236bcf` | Ambient `oklch(0.36 0.065 232.094)` / `#0f4359` |
+| No pointer surface | Surface `oklch(0.525 0.09 232.094)` / `#287395`, with highlight `oklch(0.65 0.09 232.094)` / `#5199bd` |
+
+The four colors retain Credo secondary's232.094-degree hue. All are within sRGB without channel clipping. A conservative maximum shader-output calculation including ambient light and grain gives white-text contrast4.46:1, exceeding the3:1 large-text threshold for the32px/600 heading; its additional upper-area attenuation provides more contrast. The unchanged button uses dark text on white. Color calculations are saved in `../../work/mycredo-liquid/palette-check.json`.
+
+WebGL2 simulation resolution is capped at320px on its longest edge, pressure uses16 iterations, and the final bitmap is capped at1600px /1.25DPR. It renders at a60fps maximum while interacting,30fps while settling/at rest; physics passes are skipped after8seconds without input. No per-frame React updates or CSS-filter animation is used. Intersection/document visibility pause rendering and clear stale ink, so a trail cannot freeze when returning after a long absence; resources release on unmount. Unsupported contexts retain a CSS field. Native context-loss/restoration handlers exist; hardware loss and device frame-rate profiling were not tested.
+
+The in-app checks confirmed ordinary pointer hover, merging fluid strokes, fade-out, live video, saved classic selection, no horizontal overflow, download-dialog opening/Escape dismissal/focus return, and zero internal section scroll. Browser logs reported no shader errors. The isolated production build, syntax and diff checks passed. Preservation hashes confirm all pre-existing components, renderers, styles and assets except the two AppShowcase files remain unchanged, including every bento, nav and news file. No dependencies were added or reduced-motion scope expanded. Evidence is in `../mycredo-liquid/`.
+
+# Restore the original rich blues under the fluid hover — 17 October 2026
+
+The new fluid layer is now transparent at rest, with the original `BlueFieldArt` rendered underneath it. This restores the actual original SVG fills, shape positions, blur and drift over the original `#14161d` base, rather than approximating the old look with a new dark field. The same artwork is also the fallback when WebGL is unavailable.
+
+| Before | After |
+| --- | --- |
+| Base `#0d232e` | Original `#14161d` |
+| Ambient `#0f4359` | Original SVG fields `#3065ab` and `#236bcf` |
+| Fluid surface `#287395` | Original cobalt `#236bcf`, stored as `oklch(0.54 0.17 257.936)` |
+| Fluid light `#5199bd` | Lighter cobalt `#6199eb`, `oklch(0.68 0.136 257.936)` |
+
+Both hover colors are in sRGB. The fluid simulation, pressure/advection, cursor force, fade, render cadence, visibility lifecycle and resource cleanup are unchanged; a comparison against the turn baseline confirms only the display/compositing shader and context alpha setting changed in the renderer. The112px desktop padding,920px section minimum, centered220px video and CTA are unchanged. All other homepage components, styles, renderers and assets pass the preservation manifest.
+
+In-app desktop inspection confirms the original SVG assets, `rgb(20,22,29)` base, live video and rich cobalt hover. The isolated production build, syntax and diff checks passed. Screenshots are in `../mycredo-rich-blues/`; the prior palette is backed up in `../../work/mycredo-rich-blues/baseline/`.
+
+# Dark top-left shades and barely visible matte hover — 17 October 2026
+
+Sampled the previous rich-blue idle screenshot's upper-left corner: #181c27 at(20,60), #181e2a at(80,90), #1a222f at(120,140) and #19212e at(220,90). The default surface now uses that darkest range across the section. Original field geometry, static blur and24/28-second drift are retained in two separately saved dark SVGs; original bright SVG assets and the classic query remain unchanged.
+
+| Before | After |
+| --- | --- |
+| Base #14161d | #181c27 / oklch(0.228 0.022 269.062) |
+| Left field #3065ab | #1a222f / oklch(0.25 0.027 259.971) |
+| Right field #236bcf | #19212e / oklch(0.246 0.028 259.963) |
+| Hover #236bcf with #6199eb highlight | Single matte #1f2836 / oklch(0.275 0.029 259.963) |
+
+Removed density-normal lighting, directional light and the lighter highlight from the display pass. Hover opacity caps at0.45 rather than0.88, keeping the nearby tone barely visible. The fluid's pressure/advection, cursor force, density fade, timing and resource lifecycle are byte-for-byte unchanged outside the display pass. All four new colors are within sRGB; white contrast ranges14.84–17:1 against their solid values. The112px padding, centered220px phone/video, CTA and920px desktop minimum remain.
+
+Desktop in-app checks confirmed loaded dark SVGs, matching background, live video, a subtle ordinary-pointer trail and no browser shader errors. Pixel comparisons in clean left-side areas are saved in `../../work/mycredo-dark-matte/hover-samples.json`. The isolated production build, syntax and diff checks passed, as did preservation checks for all other components, renderers, styles and assets. No new tests, dependency or reduced-motion work was added. Evidence is in `../mycredo-dark-matte/`.
+
+# Reference-based blue depth for MyCredo — 17 October 2026
+
+Used the supplied Credo/EBRD screenshot as the actual color source: ink #020714, midnight #071433, cobalt #0b2055 and a deeper blue accent #19377a. Replaced the almost-uniform dark-grey SVG wash with a midnight-to-ink ground and three prepainted, overlapping blue fields. Blue is concentrated toward the upper-left, the right remains ink navy, and a quieter lower-right pool provides balance. No waves, line artwork, logos or panel from the reference were added. The field transforms retain quiet24/28-second cycles and pause with the section.
+
+| Before | After |
+| --- | --- |
+| Base #181c27 / oklch(0.228 0.022 269.062) | Ink #020714 / oklch(0.13 0.033 259.224) |
+| Fields #1a222f and #19212e | Midnight #071433 / oklch(0.201 0.064 264.012); cobalt #0b2055 / oklch(0.265 0.1 264.222); accent #19377a / oklch(0.357 0.12 263.396) |
+
+All four sampled tones are within sRGB after rounding; white contrast against their solid values ranges11.23–20.13:1. Reference samples and calculations are in `../../work/mycredo-reference-depth/reference-colors.json`.
+
+The approved matte hover shader, color, particle-free fluid simulation, cursor force, density fade and rendering lifecycle are unchanged. The canvas's final CSS opacity is0.35 so the effective maximum hover opacity is0.1575 over the more varied ground; this maintains the accepted quiet response. The112px desktop padding,220px phone/video, heading, CTA and920px minimum are unchanged. The classic background remains available.
+
+The isolated production build, diff checks and preservation manifest passed, including the shader/palette and every other homepage component/asset. The background component's complete control effect matches its turn baseline. In-app desktop checks confirmed visible blue/ink variation, calm hover, live video, no horizontal overflow and unchanged sizing. A development stylesheet hot-reload exception was resolved with a fresh page reload; production compilation passed. Evidence is in `../mycredo-reference-depth/`.
+
+# Match MyCredo hover to the reference blue palette — 17 October 2026
+
+The earlier hover retained the low-chroma grey blue from the previous background. Raised its chroma and aligned its hue with the current reference midnight/cobalt fields; the lightness lift remains small.
+
+| Color | Before | After |
+| --- | --- | --- |
+| Matte fluid surface | #1f2836 / oklch(0.275 0.029 259.963) | #162b5a / oklch(0.3 0.09 264.012) |
+
+The color is within sRGB without clipping; white contrast against its solid value is13.81:1. Canvas opacity0.35 and shader alpha cap0.45 remain unchanged (effective maximum0.1575). The background fields, matte shader, fluid simulation, motion, padding, phone/video and all other homepage components/assets match the turn baseline (244 preserved files).
+
+In-app desktop checks verified the ordinary-pointer hover over both the lighter cobalt left and darker ink right, live video, no horizontal overflow and no new browser warnings/errors after reload. Syntax, diff and isolated production build checks passed. Evidence is in `../mycredo-hover-color/`; the prior palette and calculation report are in `../../work/mycredo-hover-color/`.
+
+# Autonomous blue shader for the MyCredo section — 17 October 2026
+
+Replaced the cursor-driven fluid overlay with an autonomous, full-section WebGL background. It uses broad domain-warped color areas and overlapping blue pools that drift and reshape slowly, with deep navy between them. There are no pointer listeners, cursor reveal, lighting glints, particles or narrow ribbons in the new renderer. The accepted four-color Credo/EBRD palette is reused without adding hues.
+
+| Before | After |
+| --- | --- |
+| Ink #020714, midnight #071433, cobalt #0b2055 and accent #19377a in drifting CSS fields | Same palette, blended in linear light by the autonomous shader |
+| Cursor surface #162b5a | Removed from the displayed section |
+
+All four endpoints remain within sRGB. Their solid-color white contrast ranges11.23–20.13:1; shader interpolation is bounded to those endpoints. A small stable grain avoids gradient steps. Rendering uses one full-screen triangle/draw per frame, no simulation textures or pressure passes, a1280px maximum dimension and30fps cap. Intersection/document visibility pause the renderer; elapsed time resumes without a jump. Context loss switches to the existing CSS field, and renderer resources/observers release on unmount. CSS fallback fields stop displaying once the shader is ready.
+
+The112px desktop padding,920px minimum,220px phone/video, heading, CTA, classic background query and all other homepage sections are preserved. The prior hover implementation is backed up in `../../work/mycredo-ambient-shader/baseline/`. The preservation manifest confirms243 pre-existing source/asset files unchanged; AppShowcase's only JSX changes are the background import, mode and component.
+
+Syntax, diff and isolated production build checks passed. In-app desktop checks confirmed evolving blue areas in separated frames, a live phone video, offscreen pause for shader/video, no horizontal overflow and no new browser shader warnings/errors. Hardware context loss and device frame-rate profiling were not exercised. Evidence is in `../mycredo-ambient-shader/`; color calculations are in `../../work/mycredo-ambient-shader/palette-check.json`.

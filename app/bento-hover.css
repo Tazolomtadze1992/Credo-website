@@ -54,7 +54,6 @@
   isolation: isolate;
   pointer-events: none;
 }
-.product-card-surface .globe-playback { pointer-events: auto; }
 
 /* One color field lives between the existing borders and lead-card artwork. */
 .product-grid { position: relative; isolation: isolate; }
@@ -62,10 +61,11 @@
 :is(.product-loan, .product-split) .product-card-surface { background: transparent; z-index: 2; }
 :is(.product-loan, .product-split) .product-heading { z-index: 3; }
 
-/* Keep every illustration's original dimensions and animation coordinates. */
+/* Pre-size every visual to the complete surface. Hover only opens the clip;
+   an inset content rectangle would expose backing layers around its corners. */
 .product-card-content {
   position: absolute;
-  inset: calc(var(--bento-grow-y) - 1px) calc(var(--bento-grow-x) - 1px);
+  inset: 0;
 }
 
 .product-heading { z-index: 2; pointer-events: none; }

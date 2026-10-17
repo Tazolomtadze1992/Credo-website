@@ -1,7 +1,8 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { CardArt, MyCredoArt, BlueFieldArt } from '../components/DesignArt';
+import { CardArt } from '../components/DesignArt';
+import AppShowcase from '../components/AppShowcase';
 import SiteHeader from '../components/SiteHeader';
 import TransferGlobe from '../components/TransferGlobe';
 import NewsSection from '../components/NewsSection';
@@ -10,6 +11,7 @@ import SavingsGoal from '../components/SavingsGoal';
 import ProductCard from '../components/ProductCard';
 import SplitPayment from '../components/SplitPayment';
 import SharedBentoBackground from '../components/SharedBentoBackground';
+import LoanRibbonBackground from '../components/LoanRibbonBackground';
 import { ArtStage, CredoPhoneVideo } from '../components/LoanCardArtwork';
 
 const modes = ['სესხი', 'ანაბარი', 'ვალუტის კურსი'];
@@ -100,14 +102,14 @@ export default function Home() {
     <main id="top">
       <section className="hero section-container" aria-labelledby="hero-title"><div className="hero-content"><h1 id="hero-title">{'ავტო სესხი'.toUpperCase()}</h1><p>შეიძინე ახალი ან მეორადი ავტომობილი მარტივი პირობებით და მართე განაცხადი შენთვის მოსახერხებლად.</p><Action onClick={() => explore(0)}>გაიგე მეტი</Action></div><div className="hero-photo"><img src="/assets/2fed6.png" alt="ნარინჯისფერი ავტომობილი ქალაქის ქუჩაზე" fetchPriority="high" /></div><div className="hero-controls" aria-label="კამპანიის ნავიგაცია"><button type="button" disabled aria-label="წინა კამპანია"><img src="/assets/2409b.svg" alt="" /></button><button type="button" disabled aria-label="შემდეგი კამპანია"><img src="/assets/2409b.svg" alt="" /></button></div></section>
       <section className="products section-container" id="products" aria-labelledby="products-title"><h2 id="products-title">{'იპოვე შენთვის საჭირო პროდუქტი'.toUpperCase()}</h2><div className="product-grid">
-        <ProductCard kind="loan" title="მიიღე სესხი სახლიდან გაუსვლელად" onExplore={() => explore(0)}><ArtStage width={733} height={698}><CredoPhoneVideo /></ArtStage></ProductCard>
+        <ProductCard kind="loan" title="მიიღე სესხი სახლიდან გაუსვლელად" background={<LoanRibbonBackground />} onExplore={() => explore(0)}><ArtStage width={733} height={698}><CredoPhoneVideo /></ArtStage></ProductCard>
         <ProductCard kind="split" title="და-ყა-ვი შენს ტემპში" onExplore={() => showDialog('და-ყა-ვი შენს ტემპში')}><SplitPayment /></ProductCard>
       <SavingsGoal onExploreSavings={() => explore(1)} onJoinFamily={() => window.location.assign('https://credobank.ge/products/current-account')} />
         <ProductCard kind="card" title="ბარათი ყოველდღიური ფინანსებისთვის" onExplore={() => showDialog('ბარათი ყოველდღიური ფინანსებისთვის')}><BankCard3D><div className="bank-card-art"><ArtStage width={244} height={387}><CardArt /></ArtStage></div></BankCard3D></ProductCard>
         <ProductCard kind="transfer" title="გააგზავნე და მიიღე ფული საზღვარგარეთ" onExplore={() => explore(2)}><TransferGlobe /></ProductCard>
         <SharedBentoBackground />
       </div></section>
-      <section className="mycredo" id="mycredo" aria-labelledby="mycredo-title"><div className="blue-field"><ArtStage width={1440} height={844}><BlueFieldArt /></ArtStage></div><h2 id="mycredo-title">{'ყველა შენი საბანკო საქმე ერთ სივრცეში'.toUpperCase()}</h2><div className="mycredo-phone"><MyCredoArt /></div><Action white onClick={() => showDialog('გადმოწერე მობაილბანკი')}>{'გადმოწერე მობაილბანკი'.toUpperCase()}<img src="/assets/b0100.svg" alt="" /></Action></section>
+      <AppShowcase onDownload={() => showDialog('გადმოწერე მობაილბანკი')} />
       <Calculator mode={mode} setMode={setMode} onAction={showDialog} />
       <NewsSection />
     </main>

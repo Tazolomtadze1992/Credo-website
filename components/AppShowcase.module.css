@@ -1,0 +1,101 @@
+.section { overflow: clip; }
+
+.section[data-background='shader'] {
+  height: auto;
+  min-height: 920px;
+  padding: 112px var(--gutter);
+  background: oklch(0.13 0.033 259.224);
+}
+
+.shaderBackground {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Palette sampled from the supplied Credo / EBRD reference. */
+.referenceField {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(115deg, oklch(0.201 0.064 264.012), oklch(0.13 0.033 259.224) 80%);
+}
+
+.cobaltField {
+  position: absolute;
+  inset: -35% 15% -15% -35%;
+  background: radial-gradient(ellipse at 38% 31%, oklch(0.265 0.1 264.222), oklch(0.265 0.1 264.222 / 0.8) 24%, oklch(0.265 0.1 264.222 / 0) 66%);
+  animation: blue-field-left 24s cubic-bezier(.45, .05, .55, .95) infinite alternate;
+}
+
+.blueAccent {
+  position: absolute;
+  inset: -15% 12% 10% -18%;
+  background: radial-gradient(ellipse at 32% 44%, oklch(0.357 0.12 263.396 / 0.6), oklch(0.357 0.12 263.396 / 0) 49%);
+  animation: blue-field-right 28s cubic-bezier(.45, .05, .55, .95) infinite alternate;
+}
+
+.lowerField {
+  position: absolute;
+  inset: 30% -30% -45% 35%;
+  background: radial-gradient(ellipse at 55% 55%, oklch(0.265 0.1 264.222 / 0.38), oklch(0.265 0.1 264.222 / 0) 62%);
+  animation: blue-field-left 28s cubic-bezier(.45, .05, .55, .95) -12s infinite alternate;
+}
+
+.referenceField > div { animation-play-state: paused; }
+.section[data-active='true'] .referenceField > div { animation-play-state: running; }
+
+.shaderCanvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; }
+.shaderCanvas[data-ready='true'] { opacity: 1; }
+.shaderBackground:has(.shaderCanvas[data-ready='true']) .referenceField { display: none; }
+
+@media (max-width: 760px) {
+  .section[data-background='shader'] { min-height: 850px; padding-block: 88px; }
+}
+
+/* Move the original blue artwork, retaining its exact fills and blur. */
+.background :global(.art-131) {
+  animation: blue-field-left 24s cubic-bezier(.45, .05, .55, .95) infinite alternate;
+  animation-play-state: paused;
+}
+
+.background :global(.art-133) {
+  animation: blue-field-right 28s cubic-bezier(.45, .05, .55, .95) infinite alternate;
+  animation-play-state: paused;
+}
+
+.section[data-active='true'] .background :global(.art-131),
+.section[data-active='true'] .background :global(.art-133) {
+  animation-play-state: running;
+}
+
+.phoneSlot { display: grid; place-items: center; }
+
+.phone {
+  width: 220px;
+  padding: 6px;
+  border: 1px solid #ffffff2c;
+  border-radius: 28px;
+  background: #0a0a0a;
+  box-shadow: 0 1px 2px #0a0a0a1f, 0 12px 26px -12px #0609148c;
+}
+
+.screen {
+  aspect-ratio: 1170 / 2532;
+  overflow: hidden;
+  border-radius: 21px;
+  background: #f5f9fc;
+}
+
+.screen video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+@keyframes blue-field-left {
+  from { transform: translate(0, 0); }
+  to { transform: translate(18px, -14px); }
+}
+
+@keyframes blue-field-right {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-20px, 12px) scale(1.015); }
+}

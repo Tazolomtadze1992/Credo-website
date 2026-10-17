@@ -37,11 +37,6 @@ h1,h2,h3,.action,.calculator-tabs button{text-transform:none}
 .transfer-flag img{width:24px;height:18px;object-fit:cover}
 .transfer-label-text{display:flex;align-items:baseline;gap:4px;font-family:Arial,sans-serif;font-size:12px;line-height:16px;color:#15252f;letter-spacing:0;font-variant-numeric:tabular-nums}
 .transfer-label-text [data-currency]{font-size:11px;color:#52606b}
-.globe-playback{position:absolute;bottom:12px;right:12px;width:32px;height:32px;display:grid;place-items:center;z-index:3;background:#ffffffb3;color:var(--blue);border-radius:50%;opacity:.55;transition:opacity 150ms ease}
-.globe-playback::before{content:'';position:absolute;inset:-6px}
-@media(hover:hover) and (pointer:fine){.product-transfer:hover .globe-playback{opacity:1}}
-.globe-playback:focus-visible{opacity:1}
-@media(prefers-reduced-motion:reduce){.globe-playback{transition:none}}
 
 /* Keep the scaled phone clear of its title on compact two-column layouts. */
 @media(min-width:761px) and (max-width:1100px){

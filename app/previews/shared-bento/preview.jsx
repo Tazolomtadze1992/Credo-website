@@ -15,7 +15,7 @@ function BentoStudy({ version, showDetail }) {
     </header>
     <div className={`product-grid ${styles.pair}`}>
       <ProductCard kind="loan" title="მიიღე სესხი სახლიდან გაუსვლელად" onExplore={() => showDetail('მიიღე სესხი სახლიდან გაუსვლელად')}><ArtStage width={733} height={698}><CredoPhoneVideo /></ArtStage></ProductCard>
-      <ProductCard kind="split" title="და-ყა-ვი შენს ტემპში" onExplore={() => showDetail('და-ყა-ვი შენს ტემპში')}><SplitPayment /></ProductCard>
+      <ProductCard kind="split" title="და-ყა-ვი შენს ტემპში" onExplore={() => showDetail('და-ყა-ვი შენს ტემპში')}><SplitPayment version="original" /></ProductCard>
       <SharedBentoBackground version={version.id} />
     </div>
     <p className={styles.detail}>{version.detail}</p>

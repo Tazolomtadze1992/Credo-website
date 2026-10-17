@@ -2,7 +2,8 @@
 
 - V1, original: http://localhost:3010/?cardRibbon=original#bank-card
 - V2, polished: http://localhost:3010/?cardRibbon=polished#bank-card
-- V3, flowing satin (homepage default): http://localhost:3010/?cardRibbon=flow#bank-card
+- V3, flowing satin: http://localhost:3010/?cardRibbon=flow#bank-card
+- V4, cool white heading space (homepage default): http://localhost:3010/?cardRibbon=cool#bank-card
 
 V1 is the original file copied without changes. V2 keeps the same four Credo OKLCH shades, shader plane, camera framing, animation speed and pointer response. It adds a slightly fuller curve, variable band widths, irregular fibers, softer asymmetric crests and shallow shading within the blue fold. The physical card and its existing tilt/shadow renderer are unchanged.
 
@@ -19,3 +20,9 @@ V3 replaces the small bend-in-place motion with independent folds travelling dia
 The existing four OKLCH shades are unchanged. V3 adds `blueFold: [.71, .075, 232.094]`, used at a maximum of 17% in a localized fold. Every palette endpoint is inside sRGB gamut. The static equivalent is `public/assets/card/ribbon-flow-fallback.png`, rendered at time zero from the same field math.
 
 The card's face, framing, tilt, lighting, shadow, pointer response and renderer lifecycle remain unchanged. Rendering continues at the existing ambient 30fps / settling 60fps, and pauses offscreen or when hidden. V1/V2 sources and assets remain intact. The query parameter applies on page load; no prototype controls are added to the homepage.
+
+## V4 · Cool white heading space · 17 October 2026
+
+The saved V3 flow is unchanged in shape, fibers, pointer response and timing. Paper changes from warm `[.993,.002,30]` to cool `[.993,.002,232.094]`, blending to pure white toward the top. Colored layers stay out of the top 24% and fade in through the next 18%, preserving a clean heading area throughout the flow. Coral, blue, peach and fold colors are unchanged; the physical card is untouched.
+
+The homepage loan uses the same V4 material with its existing horizontal mirror and a 16% downward offset. Its previous rich shared background is still at `/?loanBackground=shared#products`. Static fallbacks use a white-to-cool heading treatment over the existing saved V3 bitmap, beneath the card artwork. V1–V3 sources, assets and URLs remain intact.

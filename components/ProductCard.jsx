@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import BentoBackground from './BentoBackground';
 
-export default function ProductCard({ title, kind, onExplore, children }) {
+export default function ProductCard({ title, kind, onExplore, children, background }) {
   const rootRef = useRef(null), glowRef = useRef(null), buttonRef = useRef(null);
 
   useEffect(() => {
@@ -62,6 +62,7 @@ export default function ProductCard({ title, kind, onExplore, children }) {
       </button>
     </div>
     <div className="product-card-surface">
+      {background}
       {kind !== 'loan' && kind !== 'split' && <BentoBackground />}
       <div className="product-card-content">{children}</div>
     </div>

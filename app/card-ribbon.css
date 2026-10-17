@@ -16,3 +16,9 @@
 .bank-card-3d[data-card-ribbon-version="flow"] .bank-card-3d-fallback::before {
   background-image: url('/assets/card/ribbon-flow-fallback.png');
 }
+
+.bank-card-3d[data-card-ribbon-version="cool"] .bank-card-3d-fallback::before {
+  background:
+    linear-gradient(180deg,oklch(1 0 0) 10%,oklch(.993 .002 232.094) 24%,oklch(.993 .002 232.094 / 0) 42%),
+    url('/assets/card/ribbon-flow-fallback.png') center / 100% 100% no-repeat;
+}

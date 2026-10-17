@@ -143,11 +143,16 @@
 }
 
 .product-transfer .bento-background {
+  --bento-base: oklch(.993 .002 232.094);
   --bento-blue-opacity: .85;
   --bento-coral-opacity: .6;
   --bento-peach-opacity: .65;
   --bento-blue-delay: -8s;
   --bento-coral-delay: -11s;
+}
+
+.product-transfer .bento-background-clear {
+  background:linear-gradient(180deg,oklch(1 0 0) 16%,oklch(.993 .002 232.094 / .96) 28%,oklch(.993 .002 232.094 / 0) 60%);
 }
 
 .product-savings .bento-background {

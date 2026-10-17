@@ -7,7 +7,7 @@ export default function BankCard3D({ children }) {
   const [ready, setReady] = useState(false);
   useEffect(() => {
     const requestedVersion = new URLSearchParams(window.location.search).get('cardRibbon');
-    const ribbonVersion = ['original', 'polished'].includes(requestedVersion) ? requestedVersion : 'flow';
+    const ribbonVersion = ['original', 'polished', 'flow', 'cool'].includes(requestedVersion) ? requestedVersion : 'cool';
     rootRef.current.dataset.cardRibbonVersion = ribbonVersion;
     let disposed = false, started = false, engine;
     const observer = new IntersectionObserver(([entry]) => {
