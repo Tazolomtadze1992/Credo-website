@@ -7,5 +7,5 @@ export const metadata = {
   description: 'Credo Bank homepage design prototype.'
 };
 export default function RootLayout({ children }) {
-  return <html lang="ka"><body>{children}</body></html>;
+  return <html lang="ka" data-scroll-behavior="smooth"><body>{children}</body></html>;
 }

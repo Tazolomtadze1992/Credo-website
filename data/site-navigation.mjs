@@ -23,7 +23,7 @@ export const consumerGroups = [
     product('საბავშვო ანაბარი', 'მათი მომავლისთვის', 'kids-deposit'),
   ]},
   { id: 'installments', label: 'განვადება', links: [
-    product('და-ყა-ვი', 'გადაიხადე შენს ტემპში', 'split'),
+    { label: 'და-ყა-ვი', detail: 'გადაიხადე შენს ტემპში', href: '/prototypes/dayavi' },
     product('აგრო განვადება', 'შენი მეურნეობისთვის', 'agro-installment'),
     product('ონლაინ განვადება', 'შეიძინე ონლაინ', 'online-installment'),
     product('სამომხმარებლო', 'განვადება შენს შენაძენზე', 'consumer-installment'),
