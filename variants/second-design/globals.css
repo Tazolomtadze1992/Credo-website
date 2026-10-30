@@ -1,0 +1,147 @@
+.design-two {
+  /* Design tokens from Figma */
+  --background-additional: #ffffff;
+  --grayscale-900: #000000;
+  --alpha-8: rgba(0, 0, 0, 0.08);
+  --alpha-200: rgba(0, 0, 0, 0.16);
+  --text-96: rgba(0, 0, 0, 0.96);
+  --grayscale-800: #333333;
+  --grayscale-600: #666666;
+  --alpha-4: rgba(0, 0, 0, 0.04);
+  --background-main: #f6f9fb;
+  --negative-500: #ff4539;
+  --alpha-16: rgba(0, 0, 0, 0.16);
+  --positive-50: #f9fcf8;
+  --positive-600: #73b76f;
+  --background-primary: rgba(252, 98, 80, 0.1);
+  --background-informative: rgba(50, 173, 230, 0.1);
+  --informative-500: #32ade6;
+  --notice-500: #ffb900;
+  --notice-300: #ffeab2;
+  --positive-700: #66a262;
+  --background-secondary: rgba(30, 110, 145, 0.1);
+  --background-positive: rgba(128, 203, 123, 0.1);
+  --background-notice: rgba(255, 185, 0, 0.1);
+  --secondary-50: #f4f8f9;
+  --secondary-500: #1e6e91;
+  --primary-500: #fc6250;
+  --base-white: #ffffff;
+  /* Gradient/1: primary → secondary; the button shows only the coral end of it */
+  --gradient-1: linear-gradient(45deg, var(--primary-500) -6.5%, var(--secondary-500) 245%);
+
+  /* Design font is Helvetica Neue (Georgian build); Noto Sans Georgian covers machines without it */
+  /* Layout: the Figma frame is 1440 wide with 124px side gutters (1192 content) */
+  --page-max-width: 1440px;
+  --page-gutter: 124px;
+  /* 1192px on desktop; shrinks to the padded parent on narrower screens */
+  --content-width: min(1192px, 100%);
+  /* Gutter that keeps content at --content-width, centered, on screens wider than 1440 */
+  --page-inline-padding: max(var(--page-gutter), calc((100% - var(--content-width)) / 2));
+
+  --font-family: "Helvetica Neue", Georgian, Helvetica, Arial, sans-serif;
+
+  /* Text alphas (Figma Alpha/*) */
+  --alpha-900: rgba(0, 0, 0, 0.9);
+  --alpha-700: rgba(0, 0, 0, 0.7);
+  --alpha-600: rgba(0, 0, 0, 0.6);
+  --alpha-400: rgba(0, 0, 0, 0.4);
+  --alpha-300: rgba(0, 0, 0, 0.3);
+  --icon-filter: none;
+}
+
+/* Dark mode: Figma variable values for the dark collection (e.g. the რჩეული page, 1013:1844) */
+:where(.design-two) [data-theme="dark"] {
+  --background-additional: #051115;
+  --background-main: #030b0e;
+  --grayscale-900: #ffffffe0;
+  --grayscale-800: #e6e6e6;
+  --grayscale-600: #b3b3b3;
+  --alpha-4: #ffffff0a;
+  --alpha-8: #ffffff14;
+  --alpha-16: #ffffff29;
+  --alpha-200: #ffffff29;
+  --alpha-900: #ffffffe5;
+  --alpha-700: #ffffffb2;
+  --alpha-600: #ffffff99;
+  --alpha-400: #ffffff66;
+  --alpha-300: #ffffff4d;
+  --text-96: #fffffff5;
+  --secondary-50: #06161d;
+  --positive-50: #131e12;
+  --positive-600: #8dd088;
+  /* Monochrome dark icons are drawn light on the dark background */
+  --icon-filter: invert(1);
+  background: var(--background-additional);
+  color: var(--grayscale-900);
+}
+
+:where(.design-two) [data-theme="dark"] :is(
+  img[src$="/chevron-down.svg"], img[src$="/search.svg"], img[src$="/globe.svg"], img[src$="/check.svg"],
+  img[src$="/keyboard-arrow-down.svg"], img[src$="/select-chevron.svg"], img[src$="/search-20.svg"],
+  img[src$="/chevron-down-small.svg"], img[src$="/chevron-left.svg"], img[src$="/apple.svg"],
+  img[src$="/google-play-wordmark.svg"], img[src*="/footer/phone"], img[src*="/footer/chat"],
+  img[src*="/footer/location"], img[src*="/footer/mail"], img[src$="/divider-line.svg"]
+) {
+  filter: var(--icon-filter);
+}
+
+@media (max-width: 1280px) {
+  .design-two {
+    --page-gutter: 32px;
+  }
+}
+
+/* Tablet / mobile gutters */
+@media (max-width: 1024px) {
+  .design-two {
+    --page-gutter: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .design-two {
+    --page-gutter: 16px;
+  }
+}
+
+:where(.design-two) *,
+:where(.design-two) *::before,
+:where(.design-two) *::after {
+  box-sizing: border-box;
+}
+
+.design-two,
+.design-two {
+  margin: 0;
+  padding: 0;
+}
+
+/* The open nav menu locks page scroll; keep the gutter so the layout doesn't shift */
+.design-two {
+  scrollbar-gutter: stable;
+}
+
+.design-two {
+  background: var(--background-additional);
+  color: var(--grayscale-900);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+}
+
+:where(.design-two) button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+:where(.design-two) a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:where(.design-two) :is(h1,h2,h3,h4,h5,h6,p){margin:revert}
+.design-two{min-height:100vh;line-height:normal}
+.design-two main{padding-bottom:0}

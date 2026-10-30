@@ -1,0 +1,247 @@
+/* ---------- Shared card typography ---------- */
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Headline 4: Bold 24 / 30 */
+.cardTitle {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+/* Body 2 */
+.cardText {
+  margin: 0;
+  color: var(--alpha-700);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+.cardTextNarrow {
+  width: 292px;
+  height: 40px;
+}
+
+/* Subtitle 1: Medium 16 / 20 */
+.more {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-500);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.moreNegative {
+  color: var(--negative-500);
+}
+
+.more img {
+  display: block;
+  transition: transform 0.15s ease;
+}
+
+.more:hover img {
+  transform: translateX(3px);
+}
+
+.more:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Figma crop: full width, 112.4% height, anchored to the top */
+.photo {
+  object-fit: cover;
+  object-position: top;
+}
+
+.photoCover {
+  object-fit: cover;
+}
+
+/* ---------- Featured loans (871:3371) ---------- */
+
+.featured {
+  display: flex;
+  justify-content: center;
+  padding: 48px var(--page-inline-padding) 0;
+}
+
+.featuredRow {
+  display: flex;
+  flex-shrink: 0;
+  align-items: stretch;
+  gap: 24px;
+  width: var(--content-width);
+}
+
+.featuredCard {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  min-width: 1px;
+  padding: 28px;
+  border: 1px solid var(--alpha-16);
+  border-radius: 28px;
+}
+
+.featuredMedia {
+  position: relative;
+  flex-shrink: 0;
+  height: 296px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* ---------- Mortgage (871:3393) ---------- */
+
+.mortgageWrap {
+  display: flex;
+  justify-content: center;
+  padding: 48px var(--page-inline-padding) 0;
+}
+
+.mortgage {
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  gap: 24px;
+  width: var(--content-width);
+  padding: 48px 40px;
+  border-radius: 16px;
+  background: var(--alpha-4);
+}
+
+.mortgageMedia {
+  position: relative;
+  flex: 1 0 0;
+  min-width: 1px;
+  height: 365px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.mortgageContent {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-self: stretch;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  min-width: 1px;
+}
+
+.mortgageText {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 258px;
+  width: 100%;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.points li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--grayscale-900);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+.points img {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Fixed width in the design */
+.cta {
+  width: 179px;
+}
+
+/* ---------- Other loans (871:3832) ---------- */
+
+.other {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 72px var(--page-inline-padding) 88px;
+  background: #fff;
+}
+
+.otherHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--content-width);
+  margin-bottom: 36px;
+}
+
+.sectionTitle {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 42px;
+  white-space: nowrap;
+}
+
+.otherRow {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  width: var(--content-width);
+}
+
+/* Card clips its photo to the 28px corners, as in the Figma render */
+.otherCard {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 1px;
+  padding-bottom: 28px;
+  overflow: hidden;
+  border: 1px solid var(--alpha-16);
+  border-radius: 28px;
+  background: #fff;
+}
+
+.otherMedia {
+  position: relative;
+  flex-shrink: 0;
+  height: 296px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.otherBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 24px;
+}

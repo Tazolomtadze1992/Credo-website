@@ -1,0 +1,555 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  height: 640px;
+  overflow: clip;
+  padding: 40px var(--page-inline-padding);
+  border-radius: 32px;
+  background: var(--background-additional);
+}
+
+.heading,
+.body {
+  width: var(--content-width);
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 42px;
+  white-space: nowrap;
+}
+
+.inputs {
+  display: flex;
+  gap: 12px;
+}
+
+.city,
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 64px;
+  padding: 22px 24px;
+  border-radius: 16px;
+}
+
+.city {
+  flex-shrink: 0;
+  width: 265px;
+  background: var(--alpha-4);
+  cursor: pointer;
+}
+
+/* Native select sits invisibly on top so the two-line field keeps the design's look */
+.city select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.city:focus-within,
+.search:focus-within {
+  box-shadow: inset 0 0 0 2px var(--secondary-500);
+}
+
+.cityText {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Subtitle 3: Medium 12 / 16 */
+.cityLabel {
+  color: var(--alpha-300);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.cityValue {
+  color: var(--alpha-900);
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.32px;
+}
+
+.search {
+  flex: 1 0 0;
+  min-width: 1px;
+  background: var(--background-main);
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--alpha-900);
+  font: inherit;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.32px;
+}
+
+.search input::placeholder {
+  color: var(--alpha-600);
+}
+
+.search input::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+.city img,
+.search img {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ---------- Body ---------- */
+
+.body {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  height: 406px;
+  overflow: clip;
+}
+
+.panel {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 14px;
+  width: 500px;
+  padding-bottom: 20px;
+  overflow: clip;
+  border-radius: 24px;
+  background: var(--background-additional);
+}
+
+.filters {
+  display: flex;
+  gap: 12px;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 6px 12px;
+  border-radius: 32px;
+  background: var(--alpha-4);
+  color: var(--alpha-900);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.filter:hover:not(.filterActive) {
+  background: var(--alpha-8);
+}
+
+.filterActive {
+  background: var(--secondary-500);
+  color: #fff;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 320px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+  scrollbar-width: thin;
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  /* Inside stroke, as in Figma: doesn't add to the 92px item height */
+  box-shadow: inset 0 0 0 1px var(--alpha-8);
+  text-align: left;
+  transition: box-shadow 0.15s ease;
+}
+
+.item:hover {
+  box-shadow: inset 0 0 0 1px var(--alpha-16);
+}
+
+.filter:focus-visible,
+.item:focus-visible,
+.marker:focus-visible,
+.close:focus-visible {
+  outline: 2px solid var(--secondary-500);
+  outline-offset: 2px;
+}
+
+.slot {
+  position: relative;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  overflow: clip;
+  border: 1px solid var(--alpha-4);
+  border-radius: 100px;
+  background: var(--secondary-50);
+}
+
+.slot img {
+  position: absolute;
+  inset: calc(25% - 0.5px);
+  display: block;
+}
+
+.itemSelected .slot {
+  background: var(--primary-500);
+}
+
+.itemText {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 1px;
+}
+
+.itemCity {
+  color: var(--secondary-500);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.itemSelected .itemCity {
+  font-weight: 700;
+  letter-spacing: 0.28px;
+}
+
+.itemAddress {
+  color: var(--grayscale-900);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.itemHours {
+  color: var(--alpha-400);
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+}
+
+.itemBadge {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  padding: 6px;
+  border-radius: 32px;
+  background: var(--background-primary);
+  color: var(--primary-500);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.empty {
+  padding: 14px 16px;
+  color: var(--alpha-600);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ---------- Map (1288 × 406 frame, clipped by the body) ---------- */
+
+.map {
+  position: relative;
+  flex-shrink: 0;
+  width: 1288px;
+  height: 406px;
+}
+
+.mapImage {
+  position: absolute;
+  top: -16.76px;
+  left: -170px;
+  width: 1900px;
+  height: 411.611px;
+  border-radius: 24px;
+  mask-mode: alpha;
+  mask-composite: intersect;
+  mask-clip: no-clip;
+  mask-repeat: no-repeat;
+  mask-position: 170px 16.761px;
+  mask-size: 1288px 395px;
+}
+
+.mapImage img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  /* The source screenshot is pre-compressed; Figma stretches it to the 1900 × 411.6 box
+     (verified by pixel-matching the Figma render: fill beats any cover crop) */
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.marker {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  transition: opacity 0.2s ease, translate 0.15s ease;
+}
+
+.marker:hover {
+  translate: 0 -2px;
+}
+
+.markerDimmed {
+  opacity: 0.25;
+}
+
+.marker > img {
+  display: block;
+}
+
+.branchPin {
+  position: absolute;
+  top: 8.33%;
+  bottom: 9.9%;
+  left: 8px;
+  width: 32px;
+  height: auto;
+}
+
+.branchLogo {
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  mask-mode: alpha;
+  mask-repeat: no-repeat;
+  mask-size: 20px 20px;
+}
+
+.yourLocation {
+  position: absolute;
+  top: 217.31px;
+  left: 650px;
+  width: 12px;
+  height: 7.81px;
+  pointer-events: none;
+}
+
+/* ---------- Tooltip (Figma 918:2025) ---------- */
+
+.tooltip {
+  position: absolute;
+  top: 102px;
+  left: 63px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 352px;
+  backdrop-filter: blur(16px);
+  filter: drop-shadow(0 6px 6px var(--alpha-8));
+}
+
+.pointer {
+  display: block;
+}
+
+.tooltipBox {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.tooltipHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.tooltipTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tooltipSlot {
+  position: relative;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  overflow: clip;
+  border: 1.25px solid var(--alpha-8);
+  border-radius: 125px;
+  background: var(--secondary-50);
+}
+
+.tooltipSlot img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  translate: -50% -50%;
+}
+
+.tooltipName {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 20px;
+}
+
+.tooltipName strong {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tooltipName span {
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 14px;
+  letter-spacing: 0.28px;
+}
+
+.close {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 32px;
+  background: var(--secondary-50);
+}
+
+.close img {
+  display: block;
+}
+
+.tooltipSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Overline 1: Medium 14 / 16 */
+.overline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.overline img {
+  display: block;
+}
+
+.address {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1024px) {
+  .section {
+    height: auto;
+    border-radius: 0;
+  }
+
+  .body {
+    flex-direction: column;
+    height: auto;
+    gap: 24px;
+  }
+
+  .panel {
+    width: 100%;
+  }
+
+  .list {
+    max-height: none;
+  }
+
+  /* The map keeps its 1288px artwork and shows the left part, as the desktop clip does */
+  .map {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
+    line-height: 34px;
+    white-space: normal;
+  }
+
+  .inputs {
+    flex-direction: column;
+  }
+
+  .city {
+    width: 100%;
+  }
+
+  .itemAddress {
+    white-space: normal;
+  }
+
+  .filters {
+    flex-wrap: wrap;
+  }
+}

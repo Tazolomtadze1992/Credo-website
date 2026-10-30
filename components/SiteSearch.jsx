@@ -7,6 +7,7 @@ import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { SEARCH_STARTS, findSearchResults } from '../data/site-search.mjs';
 import styles from './SiteSearch.module.css';
+import { resolveDesignHref } from '../lib/site-design-navigation.mjs';
 
 function Mark({ kind }) {
   const paths = {
@@ -38,7 +39,7 @@ const overlayMotion = {
   exit: ({ instant }) => ({ opacity: 0, transition: { duration: instant ? 0 : .12 } }),
 };
 
-export default function SiteSearch({ onOpen }) {
+export default function SiteSearch({ onOpen, design = 1 }) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [group, setGroup] = useState(null);
@@ -115,6 +116,7 @@ export default function SiteSearch({ onOpen }) {
             <div className={styles.body}>
               <div id={listId} role="listbox" aria-label={searching ? 'ძიების შედეგები' : group ? group.label : 'ძიების კატეგორიები'}>
                 {items.map((item, index) => {
+                  const href = item.href && resolveDesignHref(item.href, design);
                   const props = {
                     id: `${listId}-${index}`, role: 'option', 'aria-selected': active === index,
                     className: styles.row, ref: element => { rowsRef.current[index] = element; },
@@ -123,8 +125,8 @@ export default function SiteSearch({ onOpen }) {
                   };
                   const content = <><span className={styles.mark}><Mark kind={item.icon} /></span><span className={styles.label}>{item.label}</span>{item.items && <svg className={styles.chevron} width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 4 4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg>}</>;
                   return item.items ? <button key={item.id} type="button" {...props} onClick={() => browse(item)}>{content}</button>
-                    : item.href.startsWith('/') ? <Link key={item.href} {...props} href={item.href} onClick={choose}>{content}</Link>
-                    : <a key={item.href} {...props} href={item.href} target="_blank" rel="noopener noreferrer" onClick={choose}>{content}</a>;
+                    : href.startsWith('/') ? <Link key={item.href} {...props} href={href} onClick={choose}>{content}</Link>
+                    : <a key={item.href} {...props} href={href} target="_blank" rel="noopener noreferrer" onClick={choose}>{content}</a>;
                 })}
               </div>
               {!items.length && <div className={styles.empty}><MagnifyingGlassIcon /><p>შედეგი ვერ მოიძებნა</p><span>სცადე სხვა სიტყვა.</span><button type="button" onClick={reset}>ყველა კატეგორია</button></div>}

@@ -1,14 +1,17 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import * as Dialog from '@radix-ui/react-dialog';
 import { GlobeIcon } from '@radix-ui/react-icons';
 import Search from './SiteSearch';
+import { resolveDesignHref } from '../lib/site-design-navigation.mjs';
 import { AnimatePresence, motion } from 'motion/react';
 import { LogoArt } from './DesignArt';
 import { useDesktopNavigationMotion } from './useDesktopNavigationMotion';
 import { consumerGroups, contactHref, englishHref, navigationSections, spaceLinks, videoHref } from '../data/site-navigation.mjs';
+
+const HeaderDesignContext = createContext(1);
 
 // These three navigation marks preserve the paths from the captured Stripe reference.
 function Chevron() {
@@ -23,23 +26,27 @@ function Hamburger({ open = false }) {
 function BackMark() {
   return <svg width="6" height="10" viewBox="0 0 6 10" fill="none" aria-hidden="true"><path fill="currentColor" d="M.618 5.238 0 4.62.618 4l4-4 1.238 1.238-3.38 3.381L5.856 8 4.618 9.238z" /></svg>;
 }
-function Destination({ href, children, ...props }) {
+function Destination({ href: originalHref, children, ...props }) {
+  const design = useContext(HeaderDesignContext);
+  const href = resolveDesignHref(originalHref, design);
   return <a href={href} {...(href.startsWith('https:') ? { target: '_blank', rel: 'noreferrer' } : {})} {...props}>{children}</a>;
 }
 function Brand({ onClick }) {
-  return <a className="site-brand" href="/#site-top" aria-label="კრედო ბანკი" onClick={onClick}><LogoArt /></a>;
+  return <Destination className="site-brand" href="/#site-top" aria-label="კრედო ბანკი" onClick={onClick}><LogoArt /></Destination>;
 }
 function MenuLink({ item, onChoose, desktop = false, showDetail = true }) {
   const link = <Destination className="site-product-link" href={item.href} onClick={onChoose}><span className="site-product-title">{item.label}<Arrow /></span>{showDetail && item.detail && <span className="site-product-detail">{item.detail}</span>}</Destination>;
   return desktop ? <NavigationMenu.Link asChild>{link}</NavigationMenu.Link> : link;
 }
 function Group({ group, desktop = false, onChoose }) {
+  const design = useContext(HeaderDesignContext);
+  const href = design === 2 && group.id === 'loans' ? '/loans' : group.href;
   const trackSide = event => {
     const bounds = event.currentTarget.getBoundingClientRect();
     event.currentTarget.style.setProperty('--entry-side', event.clientX < bounds.x + bounds.width / 2 ? 'left' : 'right');
   };
   return <section className="site-product-group" onPointerEnter={trackSide} aria-labelledby={`nav-${desktop ? 'desktop' : 'mobile'}-${group.id}`}>
-    <h3 id={`nav-${desktop ? 'desktop' : 'mobile'}-${group.id}`}>{group.href ? (desktop ? <NavigationMenu.Link asChild><Destination className="site-group-heading-link" href={group.href} onClick={onChoose}>{group.label}</Destination></NavigationMenu.Link> : <Destination className="site-group-heading-link" href={group.href} onClick={onChoose}>{group.label}</Destination>) : group.label}</h3>
+    <h3 id={`nav-${desktop ? 'desktop' : 'mobile'}-${group.id}`}>{href ? (desktop ? <NavigationMenu.Link asChild><Destination className="site-group-heading-link" href={href} onClick={onChoose}>{group.label}</Destination></NavigationMenu.Link> : <Destination className="site-group-heading-link" href={href} onClick={onChoose}>{group.label}</Destination>) : group.label}</h3>
     <ul>{group.links.map(item => <li key={item.href}><MenuLink item={item} desktop={desktop} onChoose={onChoose} showDetail={false} /></li>)}</ul>
   </section>;
 }
@@ -56,7 +63,7 @@ function ConsumerPanel({ onChoose }) {
       <div><Group group={byId('insurance')} desktop onChoose={onChoose} /></div>
     </div>
     <aside className="site-menu-sidebar"><Group group={byId('services')} desktop onChoose={onChoose} /><Featured onChoose={onChoose} /></aside>
-    <div className="site-menu-footer"><NavigationMenu.Link asChild><a className="site-footer-link" href="/#products" onClick={onChoose}>ყველა სამომხმარებლო პროდუქტი<Arrow /></a></NavigationMenu.Link></div>
+    <div className="site-menu-footer"><NavigationMenu.Link asChild><Destination className="site-footer-link" href="/#products" onClick={onChoose}>ყველა სამომხმარებლო პროდუქტი<Arrow /></Destination></NavigationMenu.Link></div>
   </div>;
 }
 function SpacesPanel({ onChoose, desktop = false }) {
@@ -103,7 +110,7 @@ function MobileMenu({ onOpen }) {
             <li><Destination href={contactHref} onClick={close}>კონტაქტი<Arrow /></Destination></li>
             <li><button onClick={() => chooseSection('banking')}>ინტერნეტბანკი<Chevron /></button></li>
             <li><Destination href={englishHref} lang="en" onClick={close}><span className="site-mobile-language"><GlobeIcon />English</span><Arrow /></Destination></li>
-          </ul><a href="/#products" className="site-mobile-all" onClick={close}><span>ყველა პროდუქტი<small>შენზე მორგებული შესაძლებლობები</small></span><Arrow /></a></nav>}
+          </ul><Destination href="/#products" className="site-mobile-all" onClick={close}><span>ყველა პროდუქტი<small>შენზე მორგებული შესაძლებლობები</small></span><Arrow /></Destination></nav>}
         </motion.div>
       </AnimatePresence>
       <div className="site-mobile-footer"><Destination href={videoHref} className="site-action site-action-secondary" onClick={close}>ვიდეო ბანკი<Arrow /></Destination><button className="site-action site-action-primary" onClick={() => chooseSection('banking')}>ინტერნეტბანკი<Arrow /></button></div>
@@ -117,10 +124,10 @@ function DesktopPanel({ section, value, visualValue, onChoose, panelRef }) {
     {section.id === 'consumer' ? <ConsumerPanel onChoose={onChoose} /> : section.id === 'space' ? <SpacesPanel onChoose={onChoose} desktop /> : <CompactPanel section={section} onChoose={onChoose} />}
   </NavigationMenu.Content>;
 }
-export default function SiteHeader() {
+export default function SiteHeader({ design = 1 }) {
   const nav = useDesktopNavigationMotion();
   const { value, visualValue, close } = nav;
-  return <header className="site-header" id="site-top" data-nav-input={nav.input}>
+  return <HeaderDesignContext.Provider value={design}><header className="site-header" id="site-top" data-nav-input={nav.input}>
     <div className="site-nav-backdrop" data-open={Boolean(value)} aria-hidden="true" onPointerDown={close} />
     <div className="site-header-layout"><NavigationMenu.Root ref={nav.frameRef} className="site-nav-frame" value={value} onValueChange={nav.changeValue} delayDuration={100} skipDelayDuration={300} aria-label="მთავარი ნავიგაცია" data-open={nav.presented} data-expanded={Boolean(value)} data-phase={nav.phase} onKeyDownCapture={nav.onKeyDownCapture} onPointerMoveCapture={nav.onPointerMoveCapture}>
       <NavigationMenu.List className="site-nav-list">
@@ -132,11 +139,11 @@ export default function SiteHeader() {
         <NavigationMenu.Item className="site-desktop-item"><NavigationMenu.Link asChild><Destination className="site-nav-link" href={contactHref} onClick={close}>კონტაქტი</Destination></NavigationMenu.Link></NavigationMenu.Item>
         <li className="site-video-item"><Destination className="site-action site-action-secondary" href={videoHref}>ვიდეო ბანკი<Arrow /></Destination></li>
         <NavigationMenu.Item value="banking" className="site-desktop-item site-bank-item"><NavigationMenu.Trigger className="site-action site-action-primary" data-nav-trigger="banking">ინტერნეტბანკი<Chevron /></NavigationMenu.Trigger>{nav.presented && <DesktopPanel section={navigationSections.find(section => section.id === 'banking')} value={value} visualValue={visualValue} onChoose={close} panelRef={nav.registerPanel} />}</NavigationMenu.Item>
-        <li className="site-search-item"><Search onOpen={close} /></li>
+        <li className="site-search-item"><Search onOpen={close} design={design} /></li>
         <li className="site-desktop-item site-language-item"><Destination href={englishHref} className="site-language" lang="en" aria-label="English website"><GlobeIcon />EN</Destination></li>
         <li className="site-mobile-item"><MobileMenu onOpen={close} /></li>
       </NavigationMenu.List>
       <div className="site-viewport-position"><NavigationMenu.Viewport forceMount ref={nav.viewportRef} className="site-nav-viewport" inert={!value ? true : undefined} aria-hidden={!value} /></div>
     </NavigationMenu.Root></div>
-  </header>;
+  </header></HeaderDesignContext.Provider>;
 }

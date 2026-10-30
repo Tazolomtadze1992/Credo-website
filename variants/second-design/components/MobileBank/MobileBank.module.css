@@ -1,0 +1,349 @@
+/* 48px white gap above: the section's wrapper frame in Figma ("margin") */
+.section {
+  margin-top: 48px;
+  padding: 0 var(--page-inline-padding);
+  background: var(--alpha-4);
+}
+
+/* Moving alphabet band (emigrants page): 20% opacity as in Figma, full section width, 154.55% tall */
+.section:has(.letters) {
+  position: relative;
+  overflow: hidden;
+}
+
+.letters {
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.lettersTrack {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: flex;
+  width: 217.6%;
+  translate: 0 -50%;
+  animation: lettersDrift 120s linear infinite;
+}
+
+/* Tile = band + one spare column gap (8 columns at the band's 272px pitch), so the seam keeps the rhythm */
+.lettersTile {
+  flex: 0 0 50%;
+  padding-right: 4.044%; /* of the track, i.e. 8.8% of the section */
+}
+
+.lettersTile img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes lettersDrift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lettersTrack {
+    animation: none;
+  }
+}
+
+.phoneImage {
+  position: relative;
+  flex-shrink: 0;
+  width: 490px;
+  height: 363px;
+}
+
+.cover {
+  object-fit: cover;
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 72px 0;
+}
+
+.content {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  min-width: 1px;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Headline 2: Bold 36 / 42 */
+.title {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 42px;
+}
+
+/* Body 2: Regular 14 / 20 */
+.lead,
+.features li {
+  color: var(--alpha-700);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+.lead {
+  margin: 0;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.features li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.features img {
+  display: block;
+  flex-shrink: 0;
+}
+
+.download {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.qr {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  width: 101px;
+  height: 101px;
+  padding: 8px;
+  border: 1px solid var(--alpha-200);
+  border-radius: 12px;
+}
+
+.qr img {
+  display: block;
+}
+
+.downloadText {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 605px;
+}
+
+.downloadCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--grayscale-900);
+}
+
+.downloadTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+/* Body 3: Regular 12 / 16 */
+.downloadSub {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.24px;
+}
+
+/* ---------- Phone mockups (490 × 363 frame) ---------- */
+
+.phones {
+  position: relative;
+  flex-shrink: 0;
+  width: 490px;
+  height: 363px;
+  overflow: clip;
+}
+
+.layer {
+  position: absolute;
+}
+
+.layer img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.layer .cover {
+  object-fit: cover;
+}
+
+/* Masks are intersected, as in Figma. The two-mask screen layers need it too:
+   with the default "add", the full-rect frame mask would expose the screen's square corners. */
+.layer {
+  mask-mode: alpha;
+  mask-composite: intersect;
+  mask-clip: no-clip;
+  mask-repeat: no-repeat;
+}
+
+.p1Fix {
+  top: 70.21px;
+  left: 16.58px;
+  width: 291.839px;
+  height: 498.888px;
+  mask-position: -142.584px -29.215px;
+  mask-size: 563px 563px;
+}
+
+.p1Color {
+  top: calc(50% + 138.39px);
+  left: calc(50% - 89.5px);
+  width: 1000.592px;
+  height: 562.833px;
+  translate: -50% -50%;
+  mask-position: 218.796px 2.522px;
+  mask-size: 563px 563px;
+}
+
+.p1Screen {
+  top: 73.75px;
+  left: 17.25px;
+  width: 292.507px;
+  height: 489.957px;
+  mask-position: -143.252px -32.749px, -362.048px -35.021px;
+  mask-size: 563px 563px, 1000.593px 562.833px;
+}
+
+.p1Frame {
+  top: 38.73px;
+  left: -344.8px;
+  width: 1000.592px;
+  height: 562.833px;
+  mask-position: 218.796px 2.272px;
+  mask-size: 563px 563px;
+}
+
+.p2Color {
+  top: calc(50% + 119.83px);
+  left: calc(50% + 65px);
+  width: 1075.436px;
+  height: 604.933px;
+  translate: -50% -50%;
+  mask-position: 216.718px -26.862px;
+  mask-size: 642px 642px;
+}
+
+.p2Screen {
+  top: 54.7px;
+  left: 114.24px;
+  width: 363.544px;
+  height: 503.194px;
+  mask-position: -125.242px -82.698px, -341.96px -55.568px;
+  mask-size: 642px 642px, 1075.436px 604.933px;
+}
+
+.p2Frame {
+  top: -0.87px;
+  left: -227.72px;
+  width: 1075.436px;
+  height: 604.933px;
+  mask-position: 216.718px -27.131px;
+  mask-size: 642px 642px;
+}
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1024px) {
+  .phoneImage {
+    width: min(490px, 100%);
+    height: auto;
+    aspect-ratio: 490 / 363;
+    margin-inline: auto;
+  }
+
+  .inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+    padding-block: 48px;
+  }
+
+  .phones {
+    align-self: center;
+  }
+
+  .downloadText {
+    width: auto;
+  }
+
+  .features li {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    margin-top: 24px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  .title br {
+    display: none;
+  }
+}
+
+/* The 490px phone mockup is scaled down to fit narrow screens */
+@media (max-width: 540px) {
+  .phones {
+    transform: scale(0.7);
+    transform-origin: top center;
+    margin-bottom: -109px;
+  }
+}
+
+@media (max-width: 480px) {
+  .download {
+    flex-wrap: wrap;
+  }
+}

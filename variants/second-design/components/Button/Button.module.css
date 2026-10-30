@@ -1,0 +1,53 @@
+/* Button 2 - CAPS: Bold 14 / 18.
+   Labels are passed already in caps (Mtavruli for Georgian): with lang="ka",
+   Chrome's text-transform: uppercase turns Mtavruli back into Mkhedruli. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  overflow: hidden;
+  border-radius: 32px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  white-space: nowrap;
+  transition: filter 0.15s ease, background-color 0.15s ease;
+}
+
+.small {
+  width: 138px;
+  height: 40px;
+  padding-block: 16px;
+}
+
+.medium {
+  height: 48px;
+  padding-block: 14px;
+}
+
+.primary {
+  padding-inline: 24px;
+  background-image: var(--gradient-1);
+  color: var(--base-white);
+}
+
+.primary:hover {
+  filter: brightness(1.06);
+}
+
+.secondary {
+  padding-inline: 20px;
+  background-color: var(--secondary-50);
+  color: var(--secondary-500);
+}
+
+.secondary:hover {
+  background-color: #e8f0f3;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--secondary-500);
+  outline-offset: 2px;
+}

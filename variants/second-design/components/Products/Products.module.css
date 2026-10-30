@@ -1,0 +1,458 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px var(--page-inline-padding);
+}
+
+.heading {
+  width: 100%;
+  margin: 0 0 40px;
+  color: var(--grayscale-900);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 42px;
+  text-align: center;
+}
+
+.mosaic {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: var(--content-width);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.card {
+  position: relative;
+  flex-shrink: 0;
+  overflow: clip;
+  border-radius: 28px;
+}
+
+/* Headline 5: Bold 20 / 24 */
+.title {
+  position: relative;
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+/* Subtitle 1: Medium 16 / 20 */
+.more {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.more img {
+  display: block;
+  transition: transform 0.15s ease;
+}
+
+.more:hover img {
+  transform: translateX(3px);
+}
+
+.more:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.primary { color: var(--primary-500); }
+.informative { color: var(--informative-500); }
+.notice { color: var(--notice-500); }
+.positive { color: var(--positive-700); }
+.secondary { color: var(--secondary-500); }
+
+/* ---------- Consumer loan ---------- */
+
+.loan {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 788px;
+  height: 360px;
+  padding: 28px;
+  overflow: visible;
+  background: var(--background-primary);
+}
+
+.loanContent {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  height: 100%;
+  min-width: 1px;
+}
+
+.loanTitleWrap {
+  flex: 1 0 0;
+  min-height: 1px;
+}
+
+.limits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 328px;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: #fff;
+  filter: drop-shadow(0 6px 8px rgba(16, 41, 58, 0.08));
+}
+
+.limitsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+/* Body 2: Regular 14 / 20 */
+.limitsRow dt {
+  color: var(--alpha-700);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.28px;
+}
+
+.limitsRow dd {
+  margin: 0;
+  color: #10293a;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.limitsDivider {
+  height: 1px;
+  background: var(--background-primary);
+}
+
+.photos {
+  position: absolute;
+  top: calc(50% - 41.5px);
+  left: 394px;
+  width: 340px;
+  height: 277px;
+  transform: translateY(-50%);
+}
+
+.photoSlot {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 170.554px;
+  height: 239.343px;
+}
+
+.photoSlotFirst {
+  top: 20px;
+  left: 0;
+}
+
+.photoSlotSecond {
+  top: 37.66px;
+  left: 169px;
+}
+
+.photo {
+  position: relative;
+  flex: none;
+  width: 151.344px;
+  height: 227.016px;
+  border-radius: 8px;
+  overflow: hidden;
+  rotate: -5deg;
+}
+
+.photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- და-ყა-ვი ---------- */
+
+/* Figma has this card at 390px, which makes row 1 overhang row 2 by 6px;
+   384px keeps both rows on the 1192px grid like the other cards. */
+.dayavi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 384px;
+  height: 360px;
+  padding: 28px 24px;
+  background: var(--background-informative);
+}
+
+.dayaviTitle {
+  width: 100%;
+  white-space: pre-wrap;
+}
+
+/* ---------- Savings ---------- */
+
+.savings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 384px;
+  height: 380px;
+  min-height: 260px;
+  padding: 28px 24px;
+  background: var(--background-notice);
+}
+
+.categories {
+  position: absolute;
+  top: 272px;
+  left: 66px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 252px;
+  height: 140px;
+  margin: 0;
+  padding: 16px 16px 0;
+  list-style: none;
+  border: 2px solid var(--notice-300);
+  border-radius: 16px;
+  background: var(--background-additional);
+}
+
+.categories li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  color: var(--grayscale-900);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+.categories img {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ---------- Debit cards ---------- */
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 384px;
+  height: 380px;
+  padding: 28px;
+  background: var(--background-positive);
+}
+
+.cardArt {
+  position: relative;
+  flex-shrink: 0;
+  width: 328px;
+  height: 190px;
+  border-radius: 16px;
+}
+
+.cardArtInner {
+  position: absolute;
+  bottom: 0.22px;
+  left: 42px;
+  width: 243.166px;
+  height: 199.781px;
+}
+
+.bankCardSlot {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 134.111px;
+  height: 199.561px;
+}
+
+.bankCardSlot_left {
+  top: 0.22px;
+  left: 0;
+}
+
+.bankCardSlot_right {
+  top: 0;
+  left: 109.06px;
+}
+
+.bankCard {
+  position: relative;
+  flex: none;
+  width: 118px;
+  height: 190px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-image: linear-gradient(103.74deg, rgb(41, 61, 77) 7.98%, rgb(23, 28, 30) 55.17%, rgb(65, 35, 29) 133.73%);
+}
+
+.bankCard_left {
+  rotate: -5deg;
+}
+
+.bankCard_right {
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%),
+    linear-gradient(103.74deg, rgb(41, 61, 77) 7.98%, rgb(23, 28, 30) 55.17%, rgb(65, 35, 29) 133.73%);
+  rotate: 5deg;
+}
+
+.bankCard img {
+  position: absolute;
+  display: block;
+}
+
+.bankCardLogo {
+  top: 10px;
+  left: 10px;
+}
+
+.bankCardMark {
+  top: 169px;
+  left: 90px;
+}
+
+.visa {
+  position: absolute;
+  top: 169.66px;
+  left: 82.44px;
+  width: 28px;
+  height: 11px;
+  overflow: hidden;
+}
+
+.visa img {
+  top: 2px;
+  right: 0;
+}
+
+.cardsTitle {
+  flex: 1 0 0;
+  min-height: 1px;
+}
+
+/* ---------- Money transfers ---------- */
+
+.transfer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 384px;
+  height: 380px;
+  min-height: 260px;
+  padding: 28px 24px;
+  background: var(--background-secondary);
+}
+
+.transferText {
+  width: 100%;
+}
+
+/* Figma motion plays while a card is hovered: see motions.ts and HoverMotionCard.tsx */
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1024px) {
+  .section {
+    padding-block: 56px;
+  }
+
+  .heading {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .loan {
+    width: 100%;
+  }
+
+  .dayavi,
+  .savings,
+  .cards,
+  .transfer {
+    flex: 1 1 320px;
+    width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .loan {
+    height: auto;
+    padding: 24px;
+  }
+
+  /* The fanned photos need the desktop card width */
+  .photos {
+    display: none;
+  }
+
+  .limits {
+    width: 100%;
+  }
+
+  .dayavi,
+  .savings,
+  .cards,
+  .transfer {
+    flex-basis: 100%;
+  }
+
+  .cardArt {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  /* With an auto-height card, the column must size to its content */
+  .loanContent {
+    height: auto;
+  }
+
+  .loanTitleWrap {
+    flex: none;
+  }
+}

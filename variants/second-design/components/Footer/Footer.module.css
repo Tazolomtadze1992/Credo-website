@@ -1,0 +1,216 @@
+.footer {
+  padding: 0 var(--page-inline-padding);
+  background: var(--alpha-4);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: var(--content-width);
+  margin-inline: auto;
+  padding: 64px 0 32px;
+}
+
+.columns {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.column {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 1px;
+}
+
+.heading {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+/* Light 14 / 20, #333 */
+.links a,
+.contacts a {
+  color: var(--grayscale-800);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+.links a:hover,
+.contacts a:hover,
+.legal a:hover {
+  color: var(--secondary-500);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0 0 0 21px;
+  color: var(--grayscale-800);
+  list-style: disc;
+}
+
+.contactColumn {
+  justify-content: center;
+  gap: 32px;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contacts a {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.contacts img,
+.socials img {
+  display: block;
+  flex-shrink: 0;
+}
+
+.socials {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Button_Secondary_Circle: 40 × 40 */
+.socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 32px;
+  background: var(--alpha-4);
+  transition: background-color 0.15s ease;
+}
+
+.socials a:hover {
+  background: var(--alpha-8);
+}
+
+.download {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.links a:focus-visible,
+.contacts a:focus-visible,
+.socials a:focus-visible,
+.legal a:focus-visible,
+.logo:focus-visible {
+  outline: 2px solid var(--secondary-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Bottom bar ---------- */
+
+.bottom {
+  display: flex;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid #24364b;
+}
+
+.brand {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: 12px;
+  min-width: 1px;
+}
+
+.logo {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+}
+
+.logo img {
+  display: block;
+}
+
+/* Body 2 */
+.brand p,
+.legal a {
+  margin: 0;
+  color: var(--alpha-700);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+  white-space: nowrap;
+}
+
+.legal {
+  display: flex;
+  gap: 20px;
+}
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1024px) {
+  .columns {
+    flex-wrap: wrap;
+    row-gap: 40px;
+  }
+
+  .column {
+    flex: 1 1 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .inner {
+    gap: 32px;
+    padding-top: 48px;
+  }
+
+  .column {
+    flex-basis: 100%;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .brand p {
+    white-space: normal;
+  }
+
+  .legal {
+    flex-wrap: wrap;
+  }
+}

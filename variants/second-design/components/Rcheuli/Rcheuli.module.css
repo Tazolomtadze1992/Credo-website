@@ -1,0 +1,241 @@
+/* ---------- Shared ---------- */
+
+.row {
+  display: flex;
+  flex-shrink: 0;
+  align-items: stretch;
+  gap: 16px;
+  width: var(--content-width);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Headline 4: Bold 24 / 30 */
+.cardTitle {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+/* Body 2 */
+.cardText {
+  margin: 0;
+  color: var(--alpha-700);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+.cardTextNarrow {
+  width: 292px;
+  height: 40px;
+}
+
+/* Subtitle 1 */
+.more {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-500);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.moreNegative {
+  color: var(--negative-500);
+}
+
+.more img {
+  display: block;
+  transition: transform 0.15s ease;
+}
+
+.more:hover img {
+  transform: translateX(3px);
+}
+
+.cover {
+  object-fit: cover;
+}
+
+.cropLoans {
+  left: -42.87% !important;
+  width: 160.09% !important;
+  max-width: none;
+}
+
+.sectionTitle,
+.centerTitle {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 42px;
+}
+
+/* ---------- Hero (1013:2823) ---------- */
+
+.heroWrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.hero {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  width: var(--content-width);
+  height: 417px;
+  padding: 48px 124px 40px 40px;
+  overflow: clip;
+  border-radius: 16px;
+  background: rgba(2, 48, 66, 0.1);
+}
+
+.heroContent {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  min-width: 1px;
+}
+
+/* Headline 3: Bold 32 / 40 */
+.heroTitle {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+/* Body 1, with an empty line between the sentences */
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 504px;
+  color: var(--grayscale-600);
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.32px;
+}
+
+.heroText p {
+  margin: 0;
+}
+
+.heroCta {
+  width: 179px;
+}
+
+.heroMedia {
+  position: relative;
+  flex-shrink: 0;
+  width: 430px;
+  height: 324px;
+  overflow: hidden;
+  border-radius: 37.33px;
+}
+
+/* Crop as set in Figma */
+.heroImage {
+  position: absolute;
+  top: 0;
+  left: -5.29%;
+  width: 110.27%;
+  max-width: none;
+  height: 100%;
+}
+
+/* ---------- Products (1013:1928) ---------- */
+
+.products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px var(--page-inline-padding);
+}
+
+.centerTitle {
+  width: var(--content-width);
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.productCard {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  min-width: 1px;
+  padding: 16px;
+  border: 1px solid var(--alpha-200);
+  border-radius: 28px;
+}
+
+.media {
+  position: relative;
+  flex-shrink: 0;
+  height: 296px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* ---------- Offers (1013:3047) ---------- */
+
+.offers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 72px var(--page-inline-padding) 64px;
+}
+
+.offersHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--content-width);
+  margin-bottom: 12px; /* 36px below the heading, minus the 24px gap */
+}
+
+.offerCard {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 1px;
+  padding-bottom: 28px;
+  overflow: hidden;
+  border: 1px solid var(--alpha-200);
+  border-radius: 28px;
+  background: var(--background-additional);
+}
+
+.offerMedia {
+  position: relative;
+  flex-shrink: 0;
+  height: 296px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.offerBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 24px;
+}

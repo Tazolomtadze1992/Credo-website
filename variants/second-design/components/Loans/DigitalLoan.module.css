@@ -1,0 +1,225 @@
+/* ---------- Hero (927:1533) ---------- */
+
+.heroWrap {
+  padding-top: 40px;
+}
+
+/* Full-width grey band with 16px corners, like the home hero */
+.hero {
+  display: flex;
+  justify-content: center;
+  padding: 48px var(--page-inline-padding) 40px;
+  overflow: clip;
+  border-radius: 16px;
+  background: var(--alpha-4);
+}
+
+.heroRow {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 12px;
+  width: var(--content-width);
+}
+
+.heroContent {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  min-width: 1px;
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Headline 4: Bold 24 / 30 */
+.title {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+/* Body 2; the design separates the two sentences with an empty line */
+.lead {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--alpha-700);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+.lead p {
+  margin: 0;
+}
+
+.audience {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.audience li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--grayscale-900);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+.audience img {
+  display: block;
+  flex-shrink: 0;
+}
+
+.cta {
+  width: 179px;
+}
+
+.heroMedia {
+  position: relative;
+  flex-shrink: 0;
+  width: 430px;
+  height: 324px;
+  overflow: hidden;
+  border-radius: 37.33px;
+}
+
+/* Crop as set in Figma */
+.heroImage {
+  position: absolute;
+  top: 0;
+  left: -5.29%;
+  width: 110.27%;
+  max-width: none;
+  height: 100%;
+}
+
+/* ---------- FAQ (928:1923) ---------- */
+
+.faq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 72px var(--page-inline-padding) 80px;
+}
+
+.faqTitle {
+  width: var(--content-width);
+  margin: 0 0 24px;
+  color: var(--grayscale-900);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 42px;
+}
+
+/* Design height with the second item open */
+.faqList {
+  display: flex;
+  flex-direction: column;
+  width: var(--content-width);
+  min-height: 378px;
+}
+
+.faqItem {
+  border-bottom: 0.5px solid rgba(54, 54, 54, 0.36);
+}
+
+.faqItemOpen {
+  padding-bottom: 16px;
+}
+
+.faqHeading {
+  margin: 0;
+}
+
+.faqButton {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  padding: 16px 12px;
+  text-align: left;
+}
+
+.faqButton[aria-disabled="true"] {
+  cursor: default;
+}
+
+.faqButton:focus-visible {
+  outline: 2px solid var(--secondary-500);
+  outline-offset: -2px;
+  border-radius: 4px;
+}
+
+.faqItemOpen .faqButton {
+  height: 62px;
+}
+
+.faqNumber {
+  flex-shrink: 0;
+  color: #000;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: normal;
+}
+
+/* Subtitle 1: Medium 16 / 20 */
+.faqQuestion {
+  flex: 1 0 0;
+  min-width: 1px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  transition: color 0.15s ease;
+}
+
+.faqItemOpen .faqQuestion,
+.faqButton:not([aria-disabled="true"]):hover .faqQuestion {
+  color: var(--primary-500);
+}
+
+.faqChevron {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* The open state uses the second chevron asset rotated 180° */
+.faqItemOpen .faqChevron {
+  rotate: 180deg;
+}
+
+.faqAnswer {
+  margin-top: 10px;
+  padding: 0 61px;
+}
+
+.faqAnswer p {
+  margin: 0;
+  color: #3d3d3d;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}

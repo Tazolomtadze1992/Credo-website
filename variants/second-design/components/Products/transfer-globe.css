@@ -1,0 +1,15 @@
+/* Ported from Credo-web-variants: app/globals.css (international money globe) */
+.design-two .transfer-globe{position:absolute;inset:0;isolation:isolate;overflow:hidden;background:transparent;border-radius:inherit}
+.design-two .transfer-globe-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.design-two .transfer-globe-canvas[hidden]{display:none}
+.design-two .transfer-globe-labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.design-two .transfer-label{position:absolute;top:0;left:0;display:flex;align-items:center;gap:10px;padding:4px 12px 4px 4px;border-radius:4px;background:#fff;box-shadow:0 13.5px 27px -12.4px oklch(0 0 0 / 0.08),0 8.1px 16.2px -8.1px #0000000d;opacity:0;transform-origin:center;white-space:nowrap;backface-visibility:hidden}
+.design-two .transfer-flag{display:grid;place-items:center;width:24px;height:24px;border-radius:2px;overflow:hidden;background:#f4f5f8;flex:none}
+.design-two .transfer-flag img{width:24px;height:18px;object-fit:cover}
+.design-two .transfer-label-text{display:flex;align-items:baseline;gap:4px;font-family:Arial,sans-serif;font-size:12px;line-height:16px;color:#15252f;letter-spacing:0;font-variant-numeric:tabular-nums}
+.design-two .transfer-label-text [data-currency]{font-size:11px;color:#52606b}
+.design-two .transfer-globe{--globe-frame-x:0;--globe-frame-y:-.02;--globe-frame-zoom:1.18}
+
+/* From components/figma-website/page.css: globe frame inside the 384×380 card */
+.design-two .figma-transfer-art{position:absolute;inset:0 0 auto;aspect-ratio:416/560;pointer-events:none}
+.design-two .figma-transfer-card>.figma-transfer-text{z-index:1}

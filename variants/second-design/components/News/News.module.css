@@ -1,0 +1,212 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 72px var(--page-inline-padding) 88px;
+  background: #fff;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--content-width);
+  margin-bottom: 36px;
+}
+
+.title {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 42px;
+  white-space: nowrap;
+}
+
+/* Subtitle 1: Medium 16 / 20 */
+.more {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--negative-500);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.more img {
+  display: block;
+  transition: transform 0.15s ease;
+}
+
+.more:hover img {
+  transform: translateX(3px);
+}
+
+.carousel {
+  width: var(--content-width);
+  border-radius: 20px;
+  outline: none;
+}
+
+.carousel:focus-visible {
+  box-shadow: 0 0 0 3px var(--secondary-500);
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: 474px;
+}
+
+/* Ported from Credo-web-variants app/news.css: canvas replaces the static layout once ready */
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.canvas[data-news-ready="true"] {
+  opacity: 1;
+}
+
+.canvas[data-news-ready="true"] + .preview {
+  visibility: hidden;
+}
+
+.preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  gap: 12px;
+}
+
+.previewCard {
+  position: relative;
+  flex: none;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.previewCard:nth-child(n + 5) {
+  border-radius: 4.5px;
+}
+
+/* Images keep the lead card's scale behind the narrowing clips, as the canvas draws them */
+.previewCard img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 831px;
+  max-width: none;
+  height: auto;
+  translate: -50% -50%;
+}
+
+/* ---------- Caption ---------- */
+
+.details {
+  display: grid;
+  margin-top: 14px;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  grid-area: 1 / 1;
+  width: 831px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+.detail[data-active="true"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.section[data-instant="true"] .detail {
+  transition: none;
+}
+
+/* Body 2 */
+.date {
+  margin: 0;
+  color: var(--alpha-700);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+/* Headline 6: Bold 16 / 20 */
+.storyTitle {
+  margin: 0;
+  color: #0e1b2c;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.storyTitle a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Body 1 */
+.description {
+  margin: 0;
+  color: #0e1b2c;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.32px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1024px) {
+  .section {
+    padding-block: 56px;
+  }
+
+  .stage {
+    height: 380px;
+  }
+
+  .detail {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .stage {
+    height: 260px;
+  }
+}
+
+/* The static preview keeps desktop column widths; clip it to the stage */
+.stage {
+  overflow: hidden;
+  border-radius: 20px;
+}

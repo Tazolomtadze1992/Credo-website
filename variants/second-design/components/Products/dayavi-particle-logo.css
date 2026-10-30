@@ -1,0 +1,26 @@
+/* Ported from Credo-web-variants: components/split-versions/v2-particle-logo.css */
+.design-two .dayavi-artwork { position:absolute;inset:0;pointer-events:none; }
+.design-two .dayavi-particle-art {
+  position:absolute;inset:0;overflow:hidden;pointer-events:none;
+  background:linear-gradient(180deg,oklch(1 0 0) 0%,oklch(.993 .002 232.094) 32%,oklch(.976 .008 232.094) 100%);
+}
+.design-two .dayavi-particle-light {
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 73% 63% at 5% 100%,oklch(.94 .02 232.094 / .72),transparent 85%),
+    radial-gradient(ellipse 69% 59% at 100% 87%,oklch(.953 .022 29.48 / .65),transparent 85%);
+  mask-image:linear-gradient(180deg,transparent 22%,oklch(0 0 0) 60%);
+}
+.design-two .dayavi-particle-poster {
+  position:absolute;left:50%;top:var(--dayavi-logo-top,46%);translate:-50% 0;
+  width:var(--dayavi-logo-width,74%);max-width:455px;height:auto;
+  pointer-events:none;user-select:none;
+}
+.design-two .dayavi-particle-canvas { position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none; }
+.design-two .dayavi-particle-art[data-particles-ready=true] .dayavi-particle-poster { visibility:hidden; }
+.design-two .dayavi-particle-art[data-particles-renderer=svg] .dayavi-particle-canvas { display:none; }
+
+/* From components/figma-website/page.css: artwork sits behind the card's text */
+.design-two .figma-dayavi-card{isolation:isolate}
+.design-two .figma-dayavi-card>.dayavi-artwork{z-index:-1}
+.design-two .figma-dayavi-card .dayavi-particle-art{background:transparent}

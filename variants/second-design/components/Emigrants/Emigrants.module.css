@@ -1,0 +1,376 @@
+/* ---------- Shared ---------- */
+
+.cover {
+  object-fit: cover;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Headline 1: Bold 40 / 42 */
+.sectionTitle {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 42px;
+}
+
+/* Headline 4: Bold 24 / 30 */
+.cardTitle {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+/* Body 2 */
+.cardText {
+  margin: 0;
+  color: var(--alpha-700);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+/* Subtitle 1: Medium 16 / 20 */
+.more {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-500);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.moreNegative {
+  color: var(--negative-500);
+}
+
+.more img {
+  display: block;
+  transition: transform 0.15s ease;
+}
+
+.more:hover img {
+  transform: translateX(3px);
+}
+
+.more:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Hero (1061:2529) ---------- */
+
+.heroWrap {
+  display: flex;
+  justify-content: center;
+  padding: 40px var(--page-inline-padding) 0;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: var(--content-width);
+  padding: 48px 124px 40px 40px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--alpha-4);
+}
+
+/* Figma inset: 0 -14.15% -3.56% 46.48% */
+.heroLetters {
+  position: absolute;
+  top: 0;
+  left: 46.48%;
+  display: block;
+  width: 67.67%;
+  height: 103.56%;
+  max-width: none;
+}
+
+.heroFade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, rgba(245, 245, 245, 0), #f5f5f5 55.769%);
+}
+
+.heroRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  width: 598px;
+}
+
+/* Headline 3: Bold 32 / 40 */
+.heroTitle {
+  margin: 0;
+  color: var(--grayscale-900);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+/* Body 1 */
+.heroLead {
+  width: 504px;
+  max-width: 100%;
+  margin: 0;
+  color: var(--grayscale-600);
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.32px;
+}
+
+.heroFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.heroFeatures li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--grayscale-900);
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+}
+
+.heroFeatures img {
+  display: block;
+  flex-shrink: 0;
+}
+
+.heroFeatures strong {
+  font-weight: 700;
+}
+
+.heroMedia {
+  position: relative;
+  flex-shrink: 0;
+  width: 430px;
+  height: 324px;
+  overflow: hidden;
+  border-radius: 37.33px;
+}
+
+/* ---------- Offers (1061:2549) ---------- */
+
+.offers {
+  padding: 72px var(--page-inline-padding) 64px;
+}
+
+.offersHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 36px;
+}
+
+.offersBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.offersRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.offerCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 28px;
+  overflow: hidden;
+  border: 1px solid var(--alpha-200);
+  border-radius: 28px;
+  background: var(--background-additional);
+}
+
+.offerMedia {
+  position: relative;
+  flex-shrink: 0;
+  height: 296px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.offerBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 24px;
+}
+
+/* ---------- Products (1061:2633) ---------- */
+
+.products {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 80px var(--page-inline-padding);
+  overflow: clip;
+}
+
+/* Figma inset: 0.2% -14.68% -2.79% -9.86%; the letter grid is rotated -30° inside it */
+.productsLetters {
+  position: absolute;
+  top: 0.2%;
+  right: -14.68%;
+  bottom: -2.79%;
+  left: -9.86%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
+  pointer-events: none;
+}
+
+.productsLetters img {
+  display: block;
+  flex: none;
+  width: hypot(76.0875cqw, 51.4713cqh);
+  height: hypot(23.9125cqw, 48.5287cqh);
+  max-width: none;
+  rotate: -30deg;
+}
+
+.productsTitle {
+  position: relative;
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.productsGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+  border: 1px solid var(--alpha-200);
+  border-radius: 28px;
+  background: var(--background-additional);
+}
+
+.productText {
+  min-height: 40px;
+}
+
+.productMedia {
+  position: relative;
+  flex-shrink: 0;
+  height: 230px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1280px) {
+  .hero {
+    padding-right: 40px;
+  }
+
+  .heroRow {
+    gap: 24px;
+    width: 100%;
+  }
+
+  .heroContent {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+  }
+
+  .heroMedia {
+    flex: 0 1 430px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    padding: 32px 24px;
+  }
+
+  .heroRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .heroContent {
+    flex: none;
+  }
+
+  .heroMedia {
+    flex: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 430 / 324;
+    border-radius: 24px;
+  }
+
+  .offers {
+    padding-block: 48px;
+  }
+
+  .products {
+    padding-block: 48px;
+  }
+
+  .sectionTitle {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .offersRow,
+  .productsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .offersRow,
+  .productsGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sectionTitle {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}

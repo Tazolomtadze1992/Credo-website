@@ -1,0 +1,332 @@
+/* Positioned above the page so the consumer menu and backdrop can overlay it */
+.header {
+  position: relative;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 68px;
+  padding: 0 var(--page-inline-padding);
+  background: var(--background-additional);
+}
+
+.left {
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  gap: 12px;
+  min-width: 1px;
+}
+
+/* Logo: 209.33 × 37.89 frame, children placed per Figma layer insets */
+.logo {
+  position: relative;
+  flex-shrink: 0;
+  width: 209.33px;
+  height: 37.89px;
+}
+
+.logoMark,
+.logoText {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+
+.logoMark {
+  left: 4.86%;
+  top: 11.5%;
+}
+
+.logoText {
+  left: 22.24%;
+  top: 29%;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navSlot {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+}
+
+/* Subtitle 2: Medium 14 / 20 */
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 0;
+  border-radius: 8px;
+  color: var(--grayscale-900);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+/* "სივრცე" dropdown: hangs under its trigger, styled like the consumer panel's links */
+.spaceSlot {
+  position: relative;
+}
+
+.spaceMenu {
+  position: absolute;
+  /* Slot padding is 12px, so this lines the menu up with the header's bottom edge */
+  top: calc(100% + 12px);
+  left: -16px;
+  min-width: 220px;
+  padding: 20px 24px;
+  border-top: 1px solid var(--nav-line, #e5edf0);
+  border-radius: 0 0 6px 6px;
+  background: #fff;
+  box-shadow: 0 18px 36px -18px #0000001a, 0 30px 45px -30px #23455940;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 180ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms cubic-bezier(0.23, 1, 0.32, 1), visibility 0ms linear 180ms;
+}
+
+.spaceMenu[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0ms;
+}
+
+.spaceMenu ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navItem img {
+  display: block;
+  flex-shrink: 0;
+}
+
+.navItem:hover .navLabel {
+  color: var(--secondary-500);
+}
+
+.navItemActive {
+  gap: 10px;
+  padding: 12px;
+  background: var(--alpha-8);
+}
+
+.navItemActive:hover .navLabel {
+  color: var(--grayscale-900);
+}
+
+.navItem:focus-visible,
+.search:focus-visible,
+.lang:focus-visible {
+  outline: 2px solid var(--secondary-500);
+  outline-offset: 2px;
+}
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 12px;
+}
+
+.utilities {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 12px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--alpha-200);
+  border-radius: 22px;
+  transition: background-color 0.15s ease;
+}
+
+.search:hover {
+  background: var(--alpha-8);
+}
+
+.search img {
+  display: block;
+}
+
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 0;
+  color: var(--text-96);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+  white-space: nowrap;
+}
+
+.lang img {
+  display: block;
+}
+
+/* ---------- Tablet / mobile ---------- */
+
+.burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--alpha-4);
+}
+
+.burger span,
+.burger span::before,
+.burger span::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--grayscale-900);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.burger span {
+  position: relative;
+}
+
+.burger span::before,
+.burger span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.burger span::before {
+  top: -6px;
+}
+
+.burger span::after {
+  top: 6px;
+}
+
+.burger span[data-open="true"] {
+  background: transparent;
+}
+
+.burger span[data-open="true"]::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.burger span[data-open="true"]::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.mobileMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  padding: 8px var(--page-inline-padding) 24px;
+  border-top: 1px solid var(--alpha-8);
+  background: var(--background-additional);
+  box-shadow: 0 16px 24px -16px rgba(0, 0, 0, 0.2);
+}
+
+.mobileMenu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mobileMenu li + li {
+  border-top: 1px solid var(--alpha-8);
+}
+
+.mobileMenu ul a {
+  display: block;
+  padding: 16px 0;
+  color: var(--grayscale-900);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.mobileMenu .mobileSubmenu {
+  margin: -8px 0 8px;
+  padding-left: 16px;
+}
+
+.mobileMenu .mobileSubmenu li {
+  border-top: none;
+}
+
+.mobileMenu .mobileSubmenu a {
+  padding: 10px 0;
+  color: #617580;
+  font-size: 14px;
+}
+
+.mobileActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.mobileActions > * {
+  flex: 1;
+}
+
+@media (max-width: 1279px) {
+  .nav,
+  .actions {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+
+@media (min-width: 1280px) {
+  .mobileMenu {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    width: 170px;
+  }
+
+  .logoText {
+    width: 124px;
+    height: auto;
+  }
+
+  .lang {
+    display: none;
+  }
+}
