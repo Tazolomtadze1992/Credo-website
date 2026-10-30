@@ -1,0 +1,9 @@
+.root{min-height:100svh;background:#fff;color:#39434a}
+.main{max-width:1040px;width:calc(100% - 64px);margin:0 auto;padding:64px 0 160px}
+.heroStage{position:relative;height:clamp(340px,calc(100svh - 390px),500px);max-width:1000px;margin:0 auto;isolation:isolate}
+.description{max-width:650px;margin:38px auto 0;font-family:var(--font-ui);font-size:20px;line-height:1.75;font-weight:400;color:#4a535a;text-wrap:pretty}
+.actions{max-width:650px;margin:24px auto 0}
+.limitAction{min-width:208px;text-decoration:none}
+.srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:800px){.main{width:calc(100% - 48px);padding-top:32px}.heroStage{height:clamp(340px,calc(100svh - 370px),440px)}.actions{max-width:580px}.description{max-width:580px;font-size:19px;margin-top:28px;line-height:1.75}}
+@media(max-width:500px){.main{width:calc(100% - 36px)}.heroStage{height:320px}.description{font-size:17px;line-height:1.8;margin-top:20px}}

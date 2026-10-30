@@ -1,0 +1,40 @@
+.root{min-height:100svh;background:#fff;color:#263e4b}
+.main{padding-bottom:0}
+.hero{position:relative;width:calc(100% - var(--gutter)*2);max-width:1280px;margin:auto;padding:72px 0 66px;isolation:isolate}
+.stage{position:relative;height:500px;isolation:isolate}
+.halo{position:absolute;width:650px;height:150px;left:50%;top:132px;transform:translateX(-50%);background:radial-gradient(ellipse at 23% 50%,#fc625014,transparent 52%),radial-gradient(ellipse at 76% 48%,#1e6e9118,transparent 58%);filter:blur(24px);z-index:0;pointer-events:none;animation:halo-enter 1.2s cubic-bezier(.25,.1,.25,1) .85s both}
+.glassLayer,.rimLayer{position:absolute;inset:0;pointer-events:none}
+.glassLayer{z-index:1}
+.rimLayer{z-index:4}
+.shieldPlane{animation:plane-enter .8s cubic-bezier(.25,.1,.25,1) both}
+.shield{position:absolute;top:4px;left:50%;width:350px;height:452px;transform:translateX(-50%);overflow:visible}
+.rim{opacity:1}
+.copy{position:absolute;inset:136px 0 auto;text-align:center;pointer-events:none}
+.copySharp{--settled-blur:0px;z-index:2;mask-image:linear-gradient(to right,#000 calc(50% + 52px),transparent calc(50% + 62px),transparent calc(50% + 175px),#000 calc(50% + 179px))}
+.copyBlur{--settled-blur:3px;z-index:3;mask-image:linear-gradient(to right,transparent calc(50% + 52px),#000 calc(50% + 62px),#000 calc(50% + 175px),transparent calc(50% + 179px))}
+.headline{font-family:var(--font-ui);font-size:72px;font-weight:500;line-height:1.2;letter-spacing:-.035em;color:#263e4b;margin:0;padding:12px 24px;text-wrap:balance}
+.headingWord{display:inline-block;padding-block:.2em;margin-block:-.2em;animation:heading-enter .8s cubic-bezier(.25,.1,.25,1) .85s both}
+.copyBlur .headline{color:#1b3340}
+.description{position:absolute;z-index:5;text-align:center;top:254px;inset-inline:0;font-size:17px;line-height:1.65;color:#7b8992;margin:0 auto;max-width:480px;padding-inline:12px;animation:description-enter .8s cubic-bezier(.25,.1,.25,1) 1.39s both}
+.packages{width:calc(100% - var(--gutter)*2);max-width:1160px;margin:36px auto 0;scroll-margin-top:48px!important;padding-bottom:90px}
+.packages h2{font-size:28px;line-height:1.3;font-weight:500;letter-spacing:-.015em;margin:0 0 32px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;list-style:none;margin:0;padding:0}
+.grid>li{min-width:0;scroll-margin-top:32px}
+.card{display:block;height:100%;position:relative;overflow:hidden;border-radius:22px;background:#fff;color:#2b414e;box-shadow:0 0 0 1px #0000000d,0 1px 2px #00000006;transition:box-shadow 180ms ease}
+.cover{aspect-ratio:1.7;position:relative;overflow:hidden;background:#f0f5f7}
+.photo{display:block;width:100%;height:100%;object-fit:cover;transition:transform 350ms cubic-bezier(.19,1,.22,1)}
+.carCover{background:radial-gradient(ellipse at 70% 80%,#dcebf3,transparent 70%),linear-gradient(135deg,#fafcfd,#edf4f8)}
+.carCover .photo{object-fit:contain;padding:8px 10px 0;transform:scale(1.08)}
+.badge{position:absolute;top:14px;right:14px;border-radius:99px;padding:7px 12px;font-size:12px;font-weight:500;line-height:18px;background:#f7fbfde8;color:#1e6e91;box-shadow:0 0 0 1px #ffffff88}
+.body{position:relative;padding:43px 24px 26px}
+.icon{position:absolute;left:24px;top:-26px;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:white;color:#38768f;box-shadow:0 0 0 1px #00000008,0 2px 4px #00000008}
+.body h3{font-size:18px;line-height:1.4;font-weight:500;letter-spacing:-.01em;margin:0 0 10px;text-wrap:balance}
+.body p{font-size:14px;line-height:1.65;font-weight:400;color:#76858e;margin:0;max-width:31ch;text-wrap:pretty}
+.card:focus-visible{outline:2px solid var(--blue);outline-offset:5px}
+.footer{max-width:1160px;width:calc(100% - var(--gutter)*2);margin:auto;padding:26px 0 30px;border-top:1px solid #0000000a;display:flex;justify-content:space-between;gap:24px;font-size:12px;color:#87959e}
+@media(hover:hover) and (pointer:fine){.card:hover{box-shadow:0 0 0 1px #00000012,0 8px 20px -14px #254b5c33}.card:hover .photo{transform:scale(1.025)}.card:hover .carCover .photo{transform:scale(1.105)}}
+@keyframes plane-enter{from{opacity:0}to{opacity:1}}
+@keyframes halo-enter{from{opacity:0}to{opacity:1}}
+@keyframes heading-enter{from{opacity:0;filter:blur(10px);transform:translateY(.3lh)}to{opacity:1;filter:blur(var(--settled-blur));transform:translateY(0lh)}}
+@keyframes description-enter{from{opacity:0;filter:blur(10px);transform:translateY(20%)}to{opacity:1;filter:blur(0px);transform:translateY(0%)}}
+@media(prefers-reduced-motion:reduce){.shieldPlane,.headingWord,.description,.halo{animation:none}.headingWord{filter:blur(var(--settled-blur))}.edgeLight{display:none}.photo,.card{transition:none}}

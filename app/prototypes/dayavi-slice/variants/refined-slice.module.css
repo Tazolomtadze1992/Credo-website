@@ -1,0 +1,10 @@
+.scene{position:relative;width:100%;height:100%;user-select:none;touch-action:pan-y;cursor:crosshair;-webkit-tap-highlight-color:transparent}
+.scene:focus-visible{outline:1px solid #a0bac7;outline-offset:7px;border-radius:12px}
+.canvas,.overlay,.poster{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.canvas{opacity:0;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 12px,#000 calc(100% - 12px),transparent);mask-image:linear-gradient(to bottom,transparent,#000 12px,#000 calc(100% - 12px),transparent)}
+.scene[data-renderer=webgl] .canvas{opacity:1}
+.scene[data-renderer=webgl] .poster{visibility:hidden}
+.poster svg,.overlay{overflow:visible;width:100%;height:100%}
+.blade{fill:none;stroke:#1e6e91;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.seamLight{fill:none;stroke:#fff;stroke-width:2.1;stroke-linecap:butt;opacity:0}
+.seamInk{fill:none;stroke:#314957;stroke-width:.55;stroke-linecap:butt;opacity:0}

@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import * as Dialog from '@radix-ui/react-dialog';
-import { Cross2Icon, GlobeIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons';
+import { GlobeIcon } from '@radix-ui/react-icons';
+import Search from './SiteSearch';
 import { AnimatePresence, motion } from 'motion/react';
 import { LogoArt } from './DesignArt';
 import { useDesktopNavigationMotion } from './useDesktopNavigationMotion';
-import { consumerGroups, contactHref, englishHref, navigationSections, searchLinks, videoHref } from '../data/site-navigation.mjs';
+import { consumerGroups, contactHref, englishHref, navigationSections, spaceLinks, videoHref } from '../data/site-navigation.mjs';
 
 // These three navigation marks preserve the paths from the captured Stripe reference.
 function Chevron() {
@@ -26,7 +27,7 @@ function Destination({ href, children, ...props }) {
   return <a href={href} {...(href.startsWith('https:') ? { target: '_blank', rel: 'noreferrer' } : {})} {...props}>{children}</a>;
 }
 function Brand({ onClick }) {
-  return <a className="site-brand" href="#site-top" aria-label="კრედო ბანკი" onClick={onClick}><LogoArt /></a>;
+  return <a className="site-brand" href="/#site-top" aria-label="კრედო ბანკი" onClick={onClick}><LogoArt /></a>;
 }
 function MenuLink({ item, onChoose, desktop = false, showDetail = true }) {
   const link = <Destination className="site-product-link" href={item.href} onClick={onChoose}><span className="site-product-title">{item.label}<Arrow /></span>{showDetail && item.detail && <span className="site-product-detail">{item.detail}</span>}</Destination>;
@@ -38,7 +39,7 @@ function Group({ group, desktop = false, onChoose }) {
     event.currentTarget.style.setProperty('--entry-side', event.clientX < bounds.x + bounds.width / 2 ? 'left' : 'right');
   };
   return <section className="site-product-group" onPointerEnter={trackSide} aria-labelledby={`nav-${desktop ? 'desktop' : 'mobile'}-${group.id}`}>
-    <h3 id={`nav-${desktop ? 'desktop' : 'mobile'}-${group.id}`}>{group.label}</h3>
+    <h3 id={`nav-${desktop ? 'desktop' : 'mobile'}-${group.id}`}>{group.href ? (desktop ? <NavigationMenu.Link asChild><Destination className="site-group-heading-link" href={group.href} onClick={onChoose}>{group.label}</Destination></NavigationMenu.Link> : <Destination className="site-group-heading-link" href={group.href} onClick={onChoose}>{group.label}</Destination>) : group.label}</h3>
     <ul>{group.links.map(item => <li key={item.href}><MenuLink item={item} desktop={desktop} onChoose={onChoose} showDetail={false} /></li>)}</ul>
   </section>;
 }
@@ -55,29 +56,17 @@ function ConsumerPanel({ onChoose }) {
       <div><Group group={byId('insurance')} desktop onChoose={onChoose} /></div>
     </div>
     <aside className="site-menu-sidebar"><Group group={byId('services')} desktop onChoose={onChoose} /><Featured onChoose={onChoose} /></aside>
-    <div className="site-menu-footer"><NavigationMenu.Link asChild><a className="site-footer-link" href="#products" onClick={onChoose}>ყველა სამომხმარებლო პროდუქტი<Arrow /></a></NavigationMenu.Link></div>
+    <div className="site-menu-footer"><NavigationMenu.Link asChild><a className="site-footer-link" href="/#products" onClick={onChoose}>ყველა სამომხმარებლო პროდუქტი<Arrow /></a></NavigationMenu.Link></div>
   </div>;
+}
+function SpacesPanel({ onChoose, desktop = false }) {
+  return <ul className="site-spaces-panel">{spaceLinks.map(item => <li key={item.href}><MenuLink item={item} desktop={desktop} onChoose={onChoose} showDetail={false} /></li>)}</ul>;
 }
 function CompactPanel({ section, onChoose }) {
   return <div className={`site-compact-panel site-panel-${section.id}`}>
     <div className="site-compact-groups">{section.groups.map(group => <Group key={group.id} group={group} desktop onChoose={onChoose} />)}</div>
     <aside className="site-compact-aside"><p>{section.id === 'banking' ? 'ბანკი ყოველთვის შენთან' : 'შენთან ერთად, ყოველდღე'}</p><MenuLink item={{ label: 'ვიდეო ბანკი', href: videoHref }} onChoose={onChoose} desktop showDetail={false} /></aside>
   </div>;
-}
-function Search({ onOpen }) {
-  const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState('');
-  const term = query.trim().toLocaleLowerCase('ka-GE');
-  const results = term ? searchLinks.filter(item => `${item.label} ${item.detail} ${item.keywords}`.toLocaleLowerCase('ka-GE').includes(term)) : searchLinks.slice(0, 6);
-  return <Dialog.Root open={open} onOpenChange={value => { setOpen(value); if (value) onOpen(); else setQuery(''); }}>
-    <Dialog.Trigger className="site-icon-button" aria-label="ძიება"><MagnifyingGlassIcon /></Dialog.Trigger>
-    <Dialog.Portal><Dialog.Overlay className="site-modal-overlay" /><Dialog.Content className="site-search-dialog" aria-describedby={undefined}>
-      <div className="site-dialog-heading"><Dialog.Title>რას ეძებ?</Dialog.Title><Dialog.Close className="site-icon-button" aria-label="ძიების დახურვა"><Cross2Icon /></Dialog.Close></div>
-      <div className="site-search-field"><MagnifyingGlassIcon /><input aria-label="მოძებნე კრედოში" placeholder="სესხი, ბარათი, ანაბარი…" value={query} onChange={event => setQuery(event.target.value)} autoComplete="off" /></div>
-      <p className="site-search-caption" aria-live="polite">{term ? `${results.length} შედეგი` : 'სწრაფი ბმულები'}</p>
-      <div className="site-search-results">{results.map(item => <MenuLink key={`${item.href}:${item.label}`} item={item} onChoose={() => setOpen(false)} />)}{!results.length && <p className="site-search-empty">შედეგი ვერ მოიძებნა. სცადე სხვა სიტყვა.</p>}</div>
-    </Dialog.Content></Dialog.Portal>
-  </Dialog.Root>;
 }
 const mobileMotion = {
   enter: direction => ({ x: `${direction * 20}%`, opacity: 0 }),
@@ -109,12 +98,12 @@ function MobileMenu({ onOpen }) {
       <div className="site-mobile-heading">{section ? <button ref={backRef} className="site-back-button" onClick={() => chooseSection('')}><BackMark />უკან</button> : <Brand onClick={close} />}<Dialog.Close className="site-mobile-close" aria-label="მენიუს დახურვა"><Hamburger open /></Dialog.Close></div>
       <AnimatePresence initial={false} custom={direction}>
         <motion.div key={sectionId || 'root'} className="site-mobile-stage" custom={direction} variants={mobileMotion} initial="enter" animate="visible" exit="exit" transition={{ x: { duration: .5, ease: [.4, 0, .2, 1] }, opacity: { duration: .25 } }}>
-          {section ? <div className="site-mobile-products">{section.groups.map(group => <Group key={group.id} group={group} onChoose={close} />)}{sectionId === 'consumer' && <Featured onChoose={close} />}</div> : <nav aria-label="მობილური ნავიგაცია"><ul className="site-mobile-root-list">
+          {section ? <div className="site-mobile-products">{sectionId === 'space' ? <SpacesPanel onChoose={close} /> : section.groups.map(group => <Group key={group.id} group={group} onChoose={close} />)}{sectionId === 'consumer' && <Featured onChoose={close} />}</div> : <nav aria-label="მობილური ნავიგაცია"><ul className="site-mobile-root-list">
             {navigationSections.filter(item => item.id !== 'banking').map((item, index) => <li key={item.id}><button ref={index === 0 ? firstRef : undefined} onClick={() => chooseSection(item.id)}>{item.label}<Chevron /></button></li>)}
             <li><Destination href={contactHref} onClick={close}>კონტაქტი<Arrow /></Destination></li>
             <li><button onClick={() => chooseSection('banking')}>ინტერნეტბანკი<Chevron /></button></li>
             <li><Destination href={englishHref} lang="en" onClick={close}><span className="site-mobile-language"><GlobeIcon />English</span><Arrow /></Destination></li>
-          </ul><a href="#products" className="site-mobile-all" onClick={close}><span>ყველა პროდუქტი<small>შენზე მორგებული შესაძლებლობები</small></span><Arrow /></a></nav>}
+          </ul><a href="/#products" className="site-mobile-all" onClick={close}><span>ყველა პროდუქტი<small>შენზე მორგებული შესაძლებლობები</small></span><Arrow /></a></nav>}
         </motion.div>
       </AnimatePresence>
       <div className="site-mobile-footer"><Destination href={videoHref} className="site-action site-action-secondary" onClick={close}>ვიდეო ბანკი<Arrow /></Destination><button className="site-action site-action-primary" onClick={() => chooseSection('banking')}>ინტერნეტბანკი<Arrow /></button></div>
@@ -125,7 +114,7 @@ function DesktopPanel({ section, value, visualValue, onChoose, panelRef }) {
   const index = navigationSections.findIndex(item => item.id === section.id);
   const visualIndex = navigationSections.findIndex(item => item.id === visualValue);
   return <NavigationMenu.Content forceMount ref={panelRef} className="site-nav-content" data-panel={section.id} data-visible={section.id === visualValue} data-side={index < visualIndex ? 'start' : 'end'} inert={section.id !== value ? true : undefined} aria-hidden={section.id !== value}>
-    {section.id === 'consumer' ? <ConsumerPanel onChoose={onChoose} /> : <CompactPanel section={section} onChoose={onChoose} />}
+    {section.id === 'consumer' ? <ConsumerPanel onChoose={onChoose} /> : section.id === 'space' ? <SpacesPanel onChoose={onChoose} desktop /> : <CompactPanel section={section} onChoose={onChoose} />}
   </NavigationMenu.Content>;
 }
 export default function SiteHeader() {

@@ -1,0 +1,86 @@
+{
+  "gojo-history": {
+    "label": "Gojo · history",
+    "url": "https://gojo.co/history"
+  },
+  "proparco-equity": {
+    "label": "Proparco · equity project · 22.06.2021",
+    "url": "https://www.proparco.fr/en/carte-des-projets/credo-equity"
+  },
+  "about": {
+    "label": "Credo · ოფიციალური ისტორია",
+    "url": "https://credobank.ge/about"
+  },
+  "r2009": {
+    "label": "წლიური ანგარიში 2009",
+    "url": "https://s3.eu-central-1.amazonaws.com/cms-storage.noxtton.com/b688904b-2e02-4969-971a-134c950968ca.pdf"
+  },
+  "r2011": {
+    "label": "წლიური ანგარიში 2011",
+    "url": "https://s3.eu-central-1.amazonaws.com/cms-storage.noxtton.com/42f98c1c-4ce4-43b6-9c24-f50564560ecb.pdf"
+  },
+  "r2013": {
+    "label": "წლიური ანგარიში 2013",
+    "url": "https://s3.eu-central-1.amazonaws.com/cms-storage.noxtton.com/d78029ff-e90f-40e3-91d7-c1965ef33883.pdf"
+  },
+  "r2014": {
+    "label": "წლიური ანგარიში 2014",
+    "url": "https://s3.eu-central-1.amazonaws.com/cms-storage.noxtton.com/9ae0fa42-4ee2-4d7b-a489-05dedc413ad0.pdf"
+  },
+  "r2016": {
+    "label": "წლიური ანგარიში 2016",
+    "url": "https://s3.eu-central-1.amazonaws.com/cms-storage.noxtton.com/94d7333b-f825-4e69-b838-a3b9842d2484.pdf"
+  },
+  "nbg": {
+    "label": "საქართველოს ეროვნული ბანკი · 20.03.2017",
+    "url": "https://nbg.gov.ge/en/media/news/the-national-bank-of-georgia-has-issued-the-banking-license-to-the-jsc-credo-bank"
+  },
+  "proparco": {
+    "label": "საფრანგეთის განვითარების საფინანსო ინსტიტუტი პროპარკო კრედო ბანკის აქციონერი გახდა",
+    "url": "https://credobank.ge/media-and-blog/media/proparco"
+  },
+  "gojo": {
+    "label": "იაპონური სოციალური გავლენის ინვესტორი Gojo & Company, Inc. კრედო ბანკის აქციონერი გახდა",
+    "url": "https://credobank.ge/media-and-blog/media/gojo"
+  },
+  "gabv": {
+    "label": "GABV · 2021 წლიური ანგარიშის მიმოხილვა",
+    "url": "https://www.gabv.org/news/gabvs-2021-annual-report-launched/"
+  },
+  "video": {
+    "label": "BlueOrchard · Pioneer Talk #8 · 31.08.2021",
+    "url": "https://www.blueorchard.com/fostering-financial-inclusion/"
+  },
+  "ebrd": {
+    "label": "EBRD · 40 მილიონი დოლარის დაფინანსება",
+    "url": "https://www.ebrd.com/home/news-and-events/news/2026/ebrd-provides-up-to-us--40-million-to-credo-bank-to-support-msme.html"
+  },
+  "GABV-2024-meeting": {
+    "label": "კრედო ბანკმა Global Alliance for Banking on Values (GABV)-ს 2024 წლის ევროპის რეგიონალურ შეკრებას უმასპინძლა",
+    "url": "https://credobank.ge/media-and-blog/media/GABV-2024-meeting"
+  },
+  "mfc-annual-conference": {
+    "label": "თბილისში, კრედო ბანკის მხარდაჭერით, მიკროფინანსების ცენტრის (MFC) 27-ე ყოველწლიური კონფერენცია გაიმართა",
+    "url": "https://credobank.ge/media-and-blog/media/mfc-annual-conference"
+  },
+  "Stepantsminda": {
+    "label": "კრედო ბანკის ახალი სერვისცენტრი სტეფანწმინდაში გაიხსნა!",
+    "url": "https://credobank.ge/media-and-blog/media/Stepantsminda"
+  },
+  "khulo-service-center": {
+    "label": "კრედო ბანკის ახალი სერვისცენტრი ხულოში გაიხსნა",
+    "url": "https://credobank.ge/media-and-blog/media/khulo-service-center"
+  },
+  "ebrd-financing-agreement": {
+    "label": "კრედო ბანკსა და EBRD-ს შორის, მიკრო, მცირე და საშუალო ზომის საწარმოების მხარდასაჭერად, ეროვნულ ვალუტაში დენომინირებული 40 მილიონი დოლარის მოცულობის ხელშეკრულება გაფორმდა",
+    "url": "https://credobank.ge/media-and-blog/media/ebrd-financing-agreement"
+  },
+  "rcheuli-lounge-saburtalo": {
+    "label": "კრედო ბანკის ახალი „რჩეული ლაუნჯი“ თბილისში - ვაჟა-ფშაველას №35-ში გაიხსნა",
+    "url": "https://credobank.ge/media-and-blog/media/rcheuli-lounge-saburtalo"
+  },
+  "obligacia": {
+    "label": "სს კრედო ბანკმა, თიბისი კაპიტალის მხარდაჭერით, $10 მილიონის დამატებითი პირველადი კაპიტალის (AT1) კერძო ობლიგაციები განათავსა",
+    "url": "https://credobank.ge/media-and-blog/media/obligacia"
+  }
+}

@@ -4,6 +4,8 @@ import { useEffect, useRef } from 'react';
 import { createParticleState, resetParticles, stepParticles, DAYAVI_MOTION } from '../../../../lib/dayavi-particle-physics.mjs';
 import styles from './particles.module.css';
 
+// Drawing gutter allows the existing repulsion physics to leave the resting logo bounds.
+const DRAW_GUTTER = Math.ceil(620 * DAYAVI_MOTION.radius * DAYAVI_MOTION.force * 1.1 + 8);
 let dotsPromise;
 const loadDots = () => dotsPromise ||= fetch('/assets/dayavi/dayavi-dither-v2.json').then(response => {
   if (!response.ok) throw new Error('Dayavi coordinates unavailable');
@@ -23,8 +25,8 @@ export default function Particles() {
     const pointer = { active: false, x: -1000, y: -1000 };
     const paint = () => {
       if (!state || !width || !height) return;
-      context.setTransform(dpr, 0, 0, dpr, 0, 0);
-      context.clearRect(0, 0, width, height);
+      context.setTransform(dpr, 0, 0, dpr, DRAW_GUTTER * dpr, DRAW_GUTTER * dpr);
+      context.clearRect(-DRAW_GUTTER, -DRAW_GUTTER, width + DRAW_GUTTER * 2, height + DRAW_GUTTER * 2);
       context.globalAlpha = .95;
       const dot = logoWidth / data.width * .83;
       for (const range of ranges) {
@@ -51,7 +53,7 @@ export default function Particles() {
       bounds = root.getBoundingClientRect(); width = bounds.width; height = bounds.height;
       if (!width || !height) return;
       dpr = Math.min(devicePixelRatio || 1, 2);
-      canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
+      canvas.width = Math.round((width + DRAW_GUTTER * 2) * dpr); canvas.height = Math.round((height + DRAW_GUTTER * 2) * dpr);
       if (!data) return;
       logoWidth = Math.min(620, width * .78);
       logoHeight = logoWidth * data.height / data.width;
@@ -94,6 +96,6 @@ export default function Particles() {
   }, []);
   return <div ref={rootRef} className={styles.scene} role="img" aria-label="და-ყა-ვი — ნაწილაკებისგან შედგენილი ლოგო, რომელიც კურსორთან იყოფა და ისევ ერთიანდება.">
     <img className={styles.poster} src="/assets/dayavi/dayavi-dither-v2.svg" alt="" aria-hidden="true" draggable="false" />
-    <canvas ref={canvasRef} className={styles.canvas} aria-hidden="true" />
+    <canvas ref={canvasRef} className={styles.canvas} style={{ inset: -DRAW_GUTTER, width: `calc(100% + ${DRAW_GUTTER * 2}px)`, height: `calc(100% + ${DRAW_GUTTER * 2}px)` }} aria-hidden="true" />
   </div>;
 }

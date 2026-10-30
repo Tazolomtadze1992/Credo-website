@@ -1,0 +1,9 @@
+.scene{position:relative;width:100%;height:100%;cursor:crosshair;user-select:none;touch-action:pan-y;-webkit-tap-highlight-color:transparent;overflow:visible}
+.scene:focus-visible{outline:1px solid #a0bac7;outline-offset:7px;border-radius:12px}
+.canvas{position:absolute;display:block;pointer-events:none;opacity:0}
+.poster{position:absolute;inset:0;pointer-events:none}
+.poster svg{width:100%;height:100%;overflow:visible}
+.scene[data-renderer=webgl] .canvas{opacity:1}
+.scene[data-renderer=webgl] .poster{visibility:hidden}
+.bladeOverlay{position:fixed;inset:0;display:block;width:100vw;height:100vh;overflow:visible;pointer-events:none;z-index:70}
+.blade{fill:none;stroke:#1e6e91;stroke-width:.85;stroke-linecap:round;stroke-linejoin:round;opacity:0}

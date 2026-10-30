@@ -1,0 +1,8 @@
+.scene{position:relative;width:100%;height:100%;cursor:pointer;touch-action:pan-y;user-select:none;-webkit-tap-highlight-color:transparent}
+.scene:focus-visible{outline:1px solid oklch(.75 .04 232);outline-offset:7px;border-radius:12px}
+.canvas,.poster{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none}
+.canvas{opacity:0;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 18px,#000 calc(100% - 18px),transparent);mask-image:linear-gradient(to bottom,transparent,#000 18px,#000 calc(100% - 18px),transparent)}.scene[data-renderer=webgl] .canvas{opacity:1}.scene[data-renderer=webgl] .poster{visibility:hidden}
+.poster svg{height:100%;width:100%;overflow:visible}
+
+.scene[data-renderer=fallback] .poster [data-poster-piece],.scene[data-renderer=fallback] .poster [data-cake-piece]{transition:transform 650ms cubic-bezier(.23,1,.32,1)}
+@media(prefers-reduced-motion:reduce){.scene[data-renderer=fallback] .poster [data-poster-piece],.scene[data-renderer=fallback] .poster [data-cake-piece]{transition:none}}

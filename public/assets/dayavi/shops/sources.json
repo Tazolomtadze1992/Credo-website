@@ -1,0 +1,70 @@
+{
+  "partnerList": "https://s3.eu-central-1.amazonaws.com/cms-storage.noxtton.com/4d1adfab-72a3-4e62-8634-b2211be4f51f.pdf",
+  "checked": "2026-10-29",
+  "images": {
+    "elite": {
+      "source": "elite-editorial-5.jpg",
+      "url": "https://static.ee.ge/Elite/a96819f9-3d43-412f-b1c4-be42744f7f49_Thumb.jpeg",
+      "output": "elite.webp"
+    },
+    "zoommer": {
+      "source": "zoommer-photo.jpg",
+      "url": "https://s3.zoommer.ge/site/24ae8886-4d06-497a-82bf-ed7340346085.jpeg",
+      "output": "zoommer.webp"
+    },
+    "ispace": {
+      "source": "ispace-store.webp",
+      "url": "https://prod-cdn.prod.asbis.io/s3size/el:t/f:webp/h:728/rt:fill/plain/s3://cms/rich-block/ff/69/ff69f83bdabfb99555a94747c72b3a54/dsc05763.webp",
+      "output": "ispace.webp"
+    },
+    "dressup": {
+      "source": "dressup-campaign.webp",
+      "url": "https://media.dressup.ge/img/cms/october-content/vante-cover.webp",
+      "output": "dressup.webp"
+    },
+    "embawood": {
+      "source": "embawood-alt.png",
+      "url": "https://api.embawood.ge/storage/1219/arizona-(2)-(1).png",
+      "output": "embawood.webp"
+    },
+    "domino": {
+      "source": "domino-room.webp",
+      "url": "https://www.domino.com.ge/images/thumbnails/660/400/blog/9749/japandi.jpg.webp",
+      "output": "domino.webp"
+    }
+  },
+  "logos": {
+    "elite-logo": "https://ee.ge/images/logo.png",
+    "zoommer-logo": "https://zoommer.ge/icons/main-logo.svg",
+    "ispace-logo": "https://cdn0.it4profit.com/s3/cms/site/1e/68/1e683aa2d71c945785f041cbd8bb93f5/group_19402_2.webp",
+    "domino-logo": "https://www.domino.com.ge/images/ab__webp/logos/4588/logo_domino_png.webp",
+    "embawood-logo": "https://embawood.ge/images/logo.png",
+    "dressup-logo": "https://media.dressup.ge/img/dressupge-logo-1761632874.svg"
+  },
+  "marks": {
+    "elite": {
+      "url": "https://ee.ge/favicon.ico",
+      "bytes": 109389
+    },
+    "zoommer": {
+      "url": "https://zoommer.ge/icons/favicon.ico",
+      "bytes": 268286
+    },
+    "ispace": {
+      "url": "https://cdn0.it4profit.com/s3/cms/site/15/41/15418bb28def25919e240eefd73f301b/logo_1.webp",
+      "bytes": 390
+    },
+    "embawood": {
+      "url": "https://embawood.ge/android-chrome-512x512.png",
+      "bytes": 166625
+    },
+    "domino": {
+      "url": "https://www.domino.com.ge/images/ab__webp/logos/4588/icon_domino_png.webp",
+      "bytes": 236
+    },
+    "dressup": {
+      "url": "https://media.dressup.ge/img/favicon.ico?1791273777",
+      "bytes": 174894
+    }
+  }
+}

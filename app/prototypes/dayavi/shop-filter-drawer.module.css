@@ -1,0 +1,51 @@
+.trigger{display:inline-flex;flex:none;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:11px 17px;background:#f1f6f8;color:#1e6e91;border-radius:999px;font-size:14px;line-height:20px;font-weight:500;transition:background-color 150ms ease,transform 150ms cubic-bezier(.25,.46,.45,.94)}
+.triggerCount,.groupCount{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding-inline:5px;border-radius:6px;background:#e5eff4;color:#1e6e91;font-size:12px;line-height:1;font-weight:500;font-variant-numeric:tabular-nums}
+.triggerCount{border-radius:999px;background:#1e6e91;color:#fff;margin-left:2px}
+.trigger:active{transform:scale(.97)}
+.overlay{position:fixed;inset:0;background:rgb(16 30 40 / .28);z-index:2147483647}
+.drawer{position:fixed;inset:16px 16px 16px auto;width:min(500px,calc(100vw - 32px));display:flex;flex-direction:column;background:#fff;color:#29343a;border:1px solid #0000000d;border-radius:16px;box-shadow:0 16px 60px -20px #12232f40,0 2px 10px #12232f0a;z-index:2147483647;overflow:hidden;font-family:var(--font-ui);outline:none!important;isolation:isolate}
+.header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 24px 22px 28px;flex:none;border-bottom:1px solid #0000000d}
+.title{font-size:22px;line-height:28px;font-weight:500;letter-spacing:-.3px}
+.close{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:8px;background:transparent;color:#718087;transition:background-color 120ms ease,color 120ms ease}
+.scrollArea{min-height:0;flex:1;overflow-y:auto;overscroll-behavior:contain;padding:26px 28px 32px;scrollbar-width:thin;scrollbar-color:#c9d4d9 transparent;scroll-padding-block:12px}
+.statusGroup{padding:0;margin:0 0 20px;min-width:0;border:0}
+.statusGroup legend{padding:0;margin-bottom:12px;font-size:15px;line-height:22px;font-weight:500}
+.optionList{display:flex;flex-direction:column;gap:2px}
+.option{position:relative;display:flex;align-items:center;gap:12px;min-height:44px;padding:9px 10px;margin-inline:-10px;font-size:15px;line-height:24px;color:#53626b;cursor:pointer;border-radius:8px;transition:background-color 120ms ease}
+.option input{position:absolute;opacity:0;width:20px;height:20px;left:10px;margin:0;cursor:pointer}
+.check{display:grid;place-items:center;flex:none;width:18px;height:18px;border:1px solid #c9d3d8;background:#fff;border-radius:5px;color:white}
+.check svg{opacity:0}
+.optionIcon{display:grid;place-items:center;flex:none;width:20px;height:24px;color:#718b98}
+.option input:checked~.optionIcon{color:#1e6e91}
+.option input:checked~.check{border-color:#1e6e91;background:#1e6e91}
+.option input:checked~.check svg{opacity:1}
+.option input:checked~span:last-child{color:#273e4a}
+.option input:focus-visible{outline:none}
+.option:has(input:focus-visible){outline:2px solid #1e6e91;outline-offset:2px}
+.group{border-top:1px solid #0000000d;padding-block:16px}
+.groupTrigger{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;min-height:38px;padding:4px 0;background:transparent;text-align:left;font-size:15px;line-height:24px;font-weight:500;color:#29343a;border-radius:4px}
+.groupTrigger>span{display:inline-flex;align-items:center;gap:9px}
+.chevron{flex:none;color:#839098;transition:transform 160ms cubic-bezier(.25,1,.5,1)}
+.chevron[data-expanded=true]{transform:rotate(180deg)}
+.groupContent{padding-top:10px}
+.groupContent[hidden]{display:none}
+.selectionSummary{font-size:13px;line-height:22px;color:#1e6e91;padding:4px 24px 0 0;overflow-wrap:anywhere}
+.search{position:relative;display:flex;align-items:center;gap:10px;min-height:42px;margin-bottom:12px;border:1px solid #dfe7eb;border-radius:8px;background:#fafcfd;color:#87949c;padding:0 12px}
+.search:focus-within{outline:2px solid #1e6e91;outline-offset:2px}
+.search svg{flex:none}
+.search input{min-width:0;width:100%;height:40px;padding:8px 0;background:transparent;outline:none;font-size:14px;color:#29343a}
+.search input::placeholder{color:#87949c;opacity:1}
+.search input:focus-visible{outline:none}
+.noOptions{padding:12px 0;color:#78868e;font-size:14px;line-height:22px}
+.footer{padding:20px 28px 16px;border-top:1px solid #0000000d;background:#fff;flex:none;display:flex;flex-direction:column;align-items:center;gap:8px}
+.footer .apply{width:100%;min-height:52px;padding:15px 20px;gap:7px;font-size:15px;line-height:22px}
+.apply span{font-variant-numeric:tabular-nums}
+.clear{min-height:36px;padding:8px 14px;background:transparent;color:#1e6e91;font-size:13px;line-height:20px;font-weight:500;border-radius:6px;transition:background-color 120ms ease}
+.clear:disabled{color:#a5afb4}
+.drawer :is(button,input):focus-visible,.trigger:focus-visible{outline:2px solid #1e6e91;outline-offset:3px}
+.drawer .search input:focus-visible{outline:none}
+@media(hover:hover) and (pointer:fine){.trigger:hover{background:#e7f0f4}.close:hover{background:#f1f5f7;color:#29343a}.option:hover{background:#f6f9fa}.clear:not(:disabled):hover{background:#f2f7f9}.groupTrigger:hover{color:#1e6e91}}
+@media(max-width:540px){.drawer{inset:8px 8px 8px auto;width:calc(100vw - 16px);border-radius:14px}.header{padding:18px 18px 18px 22px}.scrollArea{padding:22px}.footer{padding:16px 22px 12px}.title{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.trigger,.option,.chevron,.clear,.close{transition:none}}
+
+/* The prototype picker uses the maximum z-index. These body portals follow it in DOM order. */

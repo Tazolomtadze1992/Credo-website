@@ -3,7 +3,7 @@ const product = (label, detail, slug) => ({ label, detail, href: `https://credob
 export const consumerGroups = [
   { id: 'loans', label: 'სესხი', links: [
     product('ციფრული სესხი', 'სესხი სახლიდან გაუსვლელად', 'digital-loan'),
-    product('ავტო სესხი', 'შენი შემდეგი ავტომობილისთვის', 'auto-loan'),
+    { label: 'ავტო სესხი', detail: 'შენი შემდეგი ავტომობილისთვის', href: '/auto-loan' },
     product('იპოთეკური სესხი', 'შენი სახლისთვის', 'mortgage-loan'),
     product('სტუდენტური სესხი', 'შენი განათლებისთვის', 'student-loan'),
     product('აგრო სესხი', 'შენი მეურნეობის განვითარებისთვის', 'agro-loan'),
@@ -29,7 +29,7 @@ export const consumerGroups = [
     product('სამომხმარებლო', 'განვადება შენს შენაძენზე', 'consumer-installment'),
     product('აგრო და-ყა-ვი', 'შენი აგრო შენაძენისთვის', 'agro-dakavi'),
   ]},
-  { id: 'insurance', label: 'დაზღვევა', links: [
+  { id: 'insurance', label: 'დაზღვევა', href: '/insurance', links: [
     product('ჯანმრთელობის დაზღვევა', 'იზრუნე საკუთარ თავზე', 'health-insurance-vitamini'),
     product('დაზღვევა და მეტი', 'მეტი სიმშვიდე ყოველდღე', 'benefits-and-more'),
     product('ქონების დაზღვევა', 'დაიცავი შენი ქონება', 'property-insurance'),
@@ -50,7 +50,7 @@ export const businessLinks = [
   product('ბიზნეს ბარათი', 'ბიზნესის ყოველდღიური ხარჯებისთვის', 'visa-business-card'),
 ];
 export const aboutLinks = [
-  { label: 'კრედოს შესახებ', detail: 'გაიცანი ჩვენი ბანკი', href: 'https://credobank.ge/about' },
+  { label: 'კრედოს შესახებ', detail: 'გაიცანი ჩვენი ბანკი', href: '/prototypes/credo-history?v=1' },
   { label: 'მფლობელები', detail: 'ჩვენი პარტნიორები', href: 'https://credobank.ge/owners' },
   { label: 'მმართველობა', detail: 'გაიცანი ჩვენი გუნდი', href: 'https://credobank.ge/management' },
   { label: 'ფინანსური მაჩვენებლები', detail: 'კრედო ბანკი რიცხვებში', href: 'https://credobank.ge/financial-highlights' },
@@ -61,6 +61,11 @@ export const bankingLinks = [
   { label: 'ფიზიკური პირისთვის', detail: 'MyCredo — შენი ციფრული ბანკი', href: 'https://onelink.to/mycredo' },
   { label: 'ბიზნესისთვის', detail: 'Business MyCredo', href: 'https://onelink.to/business-mycredo' },
 ];
+export const spaceLinks = [
+  { label: 'რჩეული', href: 'https://credobank.ge/rcheuli' },
+  { label: 'ემიგრანტი', href: 'https://credobank.ge/emigrants' },
+  { label: 'ექსპატი', href: 'https://credobank.ge/expats' },
+];
 export const contactHref = 'https://credobank.ge/contact';
 export const videoHref = 'https://credobank.ge/services/video-banking';
 export const englishHref = 'https://credobank.ge/en';
@@ -69,6 +74,9 @@ export const navigationSections = [
   { id: 'business', label: 'ბიზნესი', groups: [
     { id: 'business-finance', label: 'ბიზნესის დაფინანსება', links: businessLinks.slice(0, 2) },
     { id: 'business-everyday', label: 'ყოველდღიური საბანკო სერვისები', links: businessLinks.slice(2) },
+  ]},
+  { id: 'space', label: 'სივრცე', groups: [
+    { id: 'spaces', label: 'სივრცე', links: spaceLinks },
   ]},
   { id: 'about', label: 'ჩვენ შესახებ', groups: [
     { id: 'about-bank', label: 'კრედო ბანკი', links: aboutLinks.slice(0, 3) },
@@ -79,10 +87,12 @@ export const navigationSections = [
   ]},
 ];
 export const searchLinks = [
+  { label: 'დაზღვევა', detail: 'სადაზღვევო პაკეტები', href: '/insurance', keywords: 'დაზღვევები insurance პაკეტები' },
   ...consumerGroups.flatMap(group => group.links.map(item => ({ ...item, keywords: group.label }))),
   { label: 'კრედოს ოჯახი', detail: 'გახდი კრედოს ოჯახის წევრი', href: '#credo-family', keywords: 'ოჯახი family' },
   { label: 'კალკულატორი', detail: 'სესხი, ანაბარი და ვალუტის კურსი', href: '#calculator', keywords: 'გამოთვალე კურსი calculator' },
   { label: 'კონტაქტი', detail: 'სერვისცენტრები და დახმარება', href: contactHref, keywords: 'დახმარება მისამართი contact' },
   ...businessLinks.map(item => ({ ...item, keywords: 'ბიზნესი business' })),
+  ...spaceLinks.map(item => ({ ...item, keywords: 'სივრცე space' })),
   ...aboutLinks.map(item => ({ ...item, keywords: 'ჩვენ შესახებ about' })),
 ];
