@@ -3,17 +3,19 @@
 import { useState } from 'react';
 import styles from './AppBanner.module.css';
 
-export default function AppShowcase() {
+/* The MyCredo download banner. The homepage uses the defaults; other pages can
+   pass their own heading and drop the design-review switch. */
+export default function AppShowcase({ id = 'mycredo', title = 'ყველა შენი საბანკო საქმე ერთ სივრცეში'.toUpperCase(), className = 'section-container', switchable = true }) {
   const [storeDownloads, setStoreDownloads] = useState(true);
   const [instantSwitch, setInstantSwitch] = useState(false);
-  return <section className={`section-container ${styles.section}`} id="mycredo" aria-labelledby="mycredo-title" data-download-variant={storeDownloads ? 'stores' : 'button'}>
-    <button type="button" role="switch" aria-checked={storeDownloads} aria-label="ჩამოტვირთვის ვარიანტის გადართვა" aria-controls="mycredo-download-options" className={styles.variantSwitch} data-instant={instantSwitch} onClick={event => { setInstantSwitch(event.detail === 0); setStoreDownloads(value => !value); }}>
+  return <section className={`${className} ${styles.section}`} id={id} aria-labelledby={`${id}-title`} data-download-variant={storeDownloads ? 'stores' : 'button'}>
+    {switchable && <button type="button" role="switch" aria-checked={storeDownloads} aria-label="ჩამოტვირთვის ვარიანტის გადართვა" aria-controls={`${id}-download-options`} className={styles.variantSwitch} data-instant={instantSwitch} onClick={event => { setInstantSwitch(event.detail === 0); setStoreDownloads(value => !value); }}>
       <span className={styles.switchTrack} aria-hidden="true"><span className={styles.switchThumb} /></span>
-    </button>
+    </button>}
     <img className={styles.background} src="/assets/mycredo/app-banner/blue-fold-v1.webp" width="1998" height="787" alt="" loading="lazy" draggable={false} />
     <div className={styles.copy}>
-      <h2 id="mycredo-title">{'ყველა შენი საბანკო საქმე ერთ სივრცეში'.toUpperCase()}</h2>
-      <div id="mycredo-download-options">
+      <h2 id={`${id}-title`}>{title}</h2>
+      <div id={`${id}-download-options`}>
         {storeDownloads ? <div className={styles.downloads}>
         <a className={styles.qr} href="https://onelink.to/mycredo" target="_blank" rel="noopener noreferrer" aria-label="დაასკანერე QR კოდი MyCredo-ს გადმოსაწერად" title="დაასკანერე MyCredo-ს გადმოსაწერად">
           <img src="/assets/mycredo/app-banner/mycredo-download-qr.svg" width="99" height="99" alt="MyCredo-ს გადმოსაწერი QR კოდი" loading="lazy" />

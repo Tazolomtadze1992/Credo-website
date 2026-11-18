@@ -63,7 +63,7 @@ export const bankingLinks = [
 ];
 export const spaceLinks = [
   { label: 'რჩეული', href: 'https://credobank.ge/rcheuli' },
-  { label: 'ემიგრანტი', href: 'https://credobank.ge/emigrants' },
+  { label: 'ემიგრანტი', href: '/emigrants' },
   { label: 'ექსპატი', href: 'https://credobank.ge/expats' },
 ];
 export const contactHref = 'https://credobank.ge/contact';
