@@ -1,0 +1,229 @@
+/* /expats service centers variants (?centers=). Tokens come from sections.module.css .root. */
+
+/* ───────── shared ───────── */
+.heading h2{font-size:38px;line-height:1.18;font-weight:600;letter-spacing:-.025em;color:var(--ink);text-wrap:balance}
+.heading h2 span{display:block;color:var(--sub)}
+.heading p{margin-top:16px;max-width:440px;font-size:16px;line-height:1.7;color:var(--sub);text-wrap:pretty}
+.heading[data-dark] h2{font-size:26px;color:#fff}
+.heading[data-dark] h2 span{color:#7d8790}
+
+.mapBox{position:absolute !important;inset:0}
+.mapBox :global(.maplibregl-ctrl-attrib){font-size:10px}
+.mapBox :global(.maplibregl-ctrl-group){border-radius:10px;box-shadow:0 0 0 1px rgb(0 0 0 / .06),0 6px 16px -8px rgb(2 48 66 / .35)}
+.mapBox :global(.maplibregl-cooperative-gesture-screen){font-size:15px;background:rgb(14 23 29 / .55)}
+
+.status{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--sub);font-variant-numeric:tabular-nums}
+.status i{width:7px;height:7px;border-radius:50%;background:#c3ccd2}
+.status[data-ready]{color:var(--ink)}
+.status[data-ready] i{background:#e5484d;box-shadow:0 0 0 3px rgb(229 72 77 / .15)}
+.status[data-open] i{background:#1f9d6b;box-shadow:0 0 0 3px rgb(31 157 107 / .18)}
+.statusDark[data-ready]{color:#fff}
+
+.hours{display:grid;gap:2px;margin-top:12px;font-size:13px;font-variant-numeric:tabular-nums}
+.hours>div{display:flex;justify-content:space-between;gap:16px;padding:6px 10px;margin:0 -10px;border-radius:8px;color:var(--sub)}
+.hours dd{color:var(--ink)}
+.hours>div[data-today]{background:rgb(0 99 147 / .06)}
+.hours>div[data-today] dt{color:var(--exp-blue);font-weight:500}
+.hoursDark>div{color:rgb(255 255 255 / .55)}
+.hoursDark dd{color:#fff}
+.hoursDark>div[data-today]{background:rgb(255 255 255 / .07)}
+.hoursDark>div[data-today] dt{color:#ffb3a5}
+
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.go,.goGhost{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 15px;border:1px solid transparent;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap;transition:scale 150ms ease-out,background-color 150ms ease,box-shadow 150ms ease}
+.go{background:var(--ink);color:#fff}
+.goGhost{background:#fff;color:var(--ink);box-shadow:var(--shadow-border)}
+.actions[data-dark] .go{background:#fff;color:var(--night)}
+.actions[data-dark] .goGhost{background:rgb(255 255 255 / .08);color:#fff;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .14)}
+.go:active,.goGhost:active{scale:.96}
+
+.contacts{display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:20px}
+.contacts a{display:inline-flex;align-items:center;gap:7px;min-height:32px;font-size:14px;color:var(--ink)}
+.contacts svg{color:var(--exp-blue)}
+.contacts[data-dark] a{color:rgb(255 255 255 / .8)}
+.contacts[data-dark] svg{color:#ffb3a5}
+
+.seg{display:flex;gap:2px;padding:3px;border-radius:12px;background:#eef3f5}
+.seg button{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:34px;padding:0 12px;border:0;border-radius:9px;background:transparent;font-size:13px;font-weight:500;color:var(--sub);transition:background-color 200ms ease,color 200ms ease,box-shadow 200ms ease}
+.seg button span{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.seg button[aria-pressed=true]{background:#fff;color:var(--ink);box-shadow:0 0 0 1px rgb(0 0 0 / .05),0 2px 6px -2px rgb(2 48 66 / .2)}
+.seg button[aria-pressed=true] span{color:var(--exp-coral)}
+.segDark{background:rgb(255 255 255 / .06)}
+.segDark button{color:rgb(255 255 255 / .55)}
+.segDark button span{color:rgb(255 255 255 / .35)}
+.segDark button[aria-pressed=true]{background:rgb(255 255 255 / .12);color:#fff;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .12)}
+
+/* pins (map markers). MapLibre owns the element's position and transform. */
+.pin{width:36px;height:46px;padding:0;border:0;background:none;cursor:pointer}
+.pin::after{content:'';position:absolute;left:50%;bottom:0;width:2px;height:10px;margin-left:-1px;border-radius:2px;background:var(--ink)}
+.pinHead{position:absolute;left:0;top:0;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px rgb(0 0 0 / .08),0 8px 18px -6px rgb(2 48 66 / .5);transform-origin:50% 130%;transition:scale 300ms var(--ease),box-shadow 200ms ease}
+.pinHead img{width:28px;height:28px;border-radius:50%}
+.pinPulse{position:absolute;left:50%;bottom:-5px;width:26px;height:10px;margin-left:-13px;border-radius:50%;background:rgb(217 72 40 / .35);opacity:0}
+.pin[data-active] .pinHead{scale:1.14;box-shadow:0 0 0 2px var(--exp-coral),0 10px 22px -6px rgb(217 72 40 / .55)}
+.pin[data-active] .pinPulse{animation:groundPulse 1.8s ease-out infinite}
+.pinLabel{position:absolute;left:44px;top:3px;display:flex;flex-direction:column;padding:5px 10px 6px;border-radius:10px;background:#fff;box-shadow:0 0 0 1px rgb(0 0 0 / .05),0 6px 16px -8px rgb(2 48 66 / .45);text-align:left;white-space:nowrap;pointer-events:none}
+.pinLabel b{font-size:12px;font-weight:600;color:var(--ink)}
+.pinLabel small{font-size:11px;color:var(--sub)}
+.pin[data-dark]::after{background:rgb(255 255 255 / .7)}
+.pin[data-dark] .pinHead{background:#1a2730;box-shadow:0 0 0 1px rgb(255 255 255 / .14),0 0 26px 2px rgb(217 72 40 / .28)}
+.pin[data-dark][data-active] .pinHead{box-shadow:0 0 0 2px var(--exp-coral),0 0 34px 6px rgb(217 72 40 / .45)}
+.pin[data-dark] .pinLabel{background:rgb(16 24 30 / .82);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .1);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.pin[data-dark] .pinLabel b{color:#fff}
+.pin[data-dark] .pinLabel small{color:rgb(255 255 255 / .5)}
+
+/* ───────── A · locator ───────── */
+.locHead{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.locHead .contacts{flex:none;flex-direction:column;align-items:flex-start;gap:0;margin:0}
+.locFrame{display:grid;grid-template-columns:380px minmax(0,1fr);height:600px;margin-top:40px;border-radius:24px;background:#fff;box-shadow:0 0 0 1px rgb(0 0 0 / .07),0 30px 60px -40px rgb(2 48 66 / .35);overflow:hidden}
+.locPanel{display:flex;flex-direction:column;min-height:0;padding:16px;border-right:1px solid rgb(0 0 0 / .06)}
+.locList{flex:1;min-height:0;margin-top:10px;overflow-y:auto;overscroll-behavior:contain}
+.locList li+li{border-top:1px solid rgb(0 0 0 / .05)}
+.locItem{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;width:100%;padding:14px 10px;border:0;border-radius:12px;background:transparent;text-align:left;transition:background-color 150ms ease}
+.locNum{padding-top:2px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--faint)}
+.locText{display:flex;flex-direction:column;gap:2px}
+.locText b{font-size:16px;font-weight:600;color:var(--ink)}
+.locText span{font-size:14px;color:var(--sub)}
+.locText small{font-size:12px;color:var(--faint)}
+.locList li[data-active] .locNum{color:var(--exp-coral)}
+.locList li[data-active] .locItem{background:#f4f8fa}
+.locMore{display:grid;grid-template-rows:0fr;transition:grid-template-rows 400ms var(--ease)}
+.locMore>div{overflow:hidden;padding:0 10px 0 50px}
+.locList li[data-active] .locMore{grid-template-rows:1fr}
+.locList li[data-active] .locMore>div{padding-top:12px;padding-bottom:16px}
+.locFoot{display:flex;flex-direction:column;gap:2px;margin-top:8px;padding:14px 10px 4px;border-top:1px solid rgb(0 0 0 / .06);font-size:12px;color:var(--faint)}
+.locMap{position:relative;min-width:0;background:#eef3f5}
+
+/* ───────── B · night ───────── */
+.night{position:relative;height:740px;border-radius:28px;background:#0e171d;overflow:hidden;isolation:isolate}
+.nightShade{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#0e171d 0%,rgb(14 23 29 / .75) 26%,transparent 52%),radial-gradient(120% 90% at 70% 50%,transparent 55%,rgb(14 23 29 / .7));pointer-events:none}
+.nightCard{position:absolute;z-index:2;left:24px;top:24px;bottom:24px;display:flex;flex-direction:column;width:380px;padding:28px;border-radius:20px;background:rgb(18 27 34 / .72);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .09),inset 0 1px 0 rgb(255 255 255 / .08),0 30px 60px -30px #000;-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);color:#fff;overflow-y:auto;overscroll-behavior:contain}
+.nightCard .seg{margin-top:20px}
+.nightContacts{flex-direction:column;gap:0}
+.nightList{display:grid;gap:4px;margin-top:12px}
+.nightList button{display:flex;flex-direction:column;gap:2px;width:100%;padding:10px 12px;border:1px solid transparent;border-radius:12px;background:transparent;text-align:left;transition:background-color 150ms ease}
+.nightList b{font-size:15px;font-weight:500;color:rgb(255 255 255 / .75)}
+.nightList span{font-size:13px;color:rgb(255 255 255 / .45)}
+.nightList button[aria-pressed=true]{background:rgb(255 255 255 / .08);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .1)}
+.nightList button[aria-pressed=true] b{color:#fff}
+.nightDetail{margin-top:18px;padding-top:18px;border-top:1px solid rgb(255 255 255 / .08);animation:in 400ms var(--ease) both}
+.nightContacts{margin-top:auto;padding-top:20px}
+.night :global(.maplibregl-ctrl-attrib){background:rgb(14 23 29 / .7);color:rgb(255 255 255 / .5)}
+.night :global(.maplibregl-ctrl-attrib a){color:rgb(255 255 255 / .6)}
+.night :global(.maplibregl-ctrl-attrib-button){filter:invert(1)}
+
+/* ───────── C · dot map ───────── */
+.dots{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px;align-items:center}
+.dotsCopy .seg{max-width:320px;margin-top:28px}
+.dotsList{display:grid;gap:0;margin-top:18px;border-top:1px solid rgb(0 0 0 / .06)}
+.dotsList li{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:2px 16px;padding:16px 0;border-bottom:1px solid rgb(0 0 0 / .06);animation:in 450ms var(--ease) calc(var(--i) * 80ms) both}
+.dotsDistrict{font-size:17px;font-weight:600;color:var(--ink)}
+.dotsAddress{grid-row:2;font-size:14px;color:var(--sub)}
+.dotsList .actions{grid-row:1/3;grid-column:2;margin:0}
+.dotsMeta{margin-top:22px}
+.dotsMeta .contacts{margin-top:10px}
+.dotsStage{position:relative;height:560px;border-radius:24px;background:radial-gradient(70% 70% at 55% 55%,#fff,#f3f6f8);box-shadow:inset 0 0 0 1px rgb(0 0 0 / .04);overflow:hidden}
+.dotsCanvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.lens{position:absolute;border-radius:50%;overflow:hidden;background:#eef3f5;box-shadow:0 0 0 6px #fff,0 0 0 7px rgb(0 0 0 / .06),0 30px 60px -20px rgb(2 48 66 / .45);transition:left 700ms var(--ease),top 700ms var(--ease),opacity 300ms ease;isolation:isolate}
+.lens :global(.maplibregl-ctrl-bottom-right){bottom:12%;right:50%;translate:50% 0}
+.lensTag{position:absolute;z-index:3;left:50%;top:12px;translate:-50% 0;padding:4px 10px;border-radius:999px;background:rgb(255 255 255 / .92);box-shadow:0 0 0 1px rgb(0 0 0 / .05);font-size:12px;font-weight:600;color:var(--ink)}
+.lens .pin .pinHead{scale:.8}
+
+/* ───────── D · postcards ───────── */
+.cardsHead{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:48px;align-items:end}
+.cardsSide .contacts{margin-top:14px}
+.cardList{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:40px}
+.card{display:flex;flex-direction:column;border-radius:20px;background:#fff;box-shadow:0 0 0 1px rgb(0 0 0 / .07),0 20px 40px -32px rgb(2 48 66 / .4);overflow:hidden;transition:box-shadow 250ms ease}
+.cardMap{position:relative;height:220px;background:#eef3f5}
+.cardMap::after{content:'';position:absolute;inset:auto 0 0;height:40px;background:linear-gradient(transparent,rgb(255 255 255 / .6));pointer-events:none}
+.cardIndex{position:absolute;z-index:2;left:12px;top:12px;padding:3px 8px;border-radius:999px;background:rgb(255 255 255 / .9);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--sub)}
+.cardBody{display:flex;flex-direction:column;align-items:flex-start;flex:1;padding:18px 20px 20px}
+.cardCity{font-size:12px;font-weight:500;color:var(--exp-coral)}
+.cardBody h3{margin-top:4px;font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.cardBody p{margin:4px 0 14px;font-size:14px;color:var(--sub)}
+.cardBody .actions{margin-top:auto;padding-top:16px}
+.attrib{margin-top:14px;font-size:11px;color:var(--faint)}
+.attrib a{color:inherit;text-decoration:underline;text-underline-offset:2px}
+
+/* ───────── E · tour ───────── */
+.tourHead{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.tourHead .contacts{margin:0}
+.tourStage{position:relative;height:640px;margin-top:36px;border-radius:28px;background:#eef3f5;overflow:hidden;isolation:isolate}
+.tourStage::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(transparent 55%,rgb(238 243 245 / .85));pointer-events:none}
+.tourCard{position:absolute;z-index:2;left:24px;bottom:24px;width:360px;padding:20px 22px 18px;border-radius:20px;background:rgb(255 255 255 / .9);box-shadow:0 0 0 1px rgb(0 0 0 / .05),0 30px 60px -30px rgb(2 48 66 / .45);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.tourTop{display:flex;justify-content:space-between;align-items:center}
+.tourCount{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--faint)}
+.tourCount b{font-weight:500;color:var(--exp-coral)}
+.tourNav{display:flex;gap:4px}
+.tourNav button{display:grid;place-items:center;width:32px;height:32px;border:1px solid transparent;border-radius:50%;background:#fff;box-shadow:var(--shadow-border);color:var(--ink);transition:scale 150ms ease-out}
+.tourNav button:active{scale:.96}
+.tourBody{margin-top:12px;animation:in 500ms var(--ease) both}
+.tourBody small{font-size:12px;font-weight:500;color:var(--sub)}
+.tourBody h3{font-size:28px;line-height:1.2;font-weight:600;letter-spacing:-.02em;color:var(--ink)}
+.tourBody p{margin:4px 0 12px;font-size:14px;color:var(--sub)}
+.tourBars{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:18px}
+.tourBars button{position:relative;height:18px;padding:0;border:0;background:none;cursor:pointer}
+.tourBars button::before{content:'';position:absolute;left:0;right:0;top:8px;height:2px;border-radius:2px;background:rgb(34 57 70 / .12)}
+.tourBars i{position:absolute;left:0;right:0;top:8px;height:2px;border-radius:2px;background:var(--exp-coral);transform-origin:left;animation:fill linear both}
+
+@keyframes in{from{opacity:0;translate:0 8px;filter:blur(4px)}}
+@keyframes fill{from{scale:0 1}to{scale:1 1}}
+@keyframes groundPulse{0%{scale:.6;opacity:.9}100%{scale:2.2;opacity:0}}
+
+@media(hover:hover) and (pointer:fine){
+  .go:hover{background:#13242e}
+  .actions[data-dark] .go:hover{background:#e9eef1}
+  .goGhost:hover{box-shadow:var(--shadow-border-hover)}
+  .contacts a:hover{text-decoration:underline;text-underline-offset:4px}
+  .seg button:not([aria-pressed=true]):hover{color:var(--ink)}
+  .segDark button:not([aria-pressed=true]):hover{color:#fff}
+  .locItem:hover{background:#f7fafb}
+  .nightList button:not([aria-pressed=true]):hover{background:rgb(255 255 255 / .04)}
+  .pin:hover .pinHead{scale:1.1}
+  .card:hover{box-shadow:0 0 0 1px rgb(0 99 147 / .16),0 30px 50px -30px rgb(2 48 66 / .45)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .nightDetail,.dotsList li,.tourBody{animation-name:fadeOnly}
+  .pin[data-active] .pinPulse{animation:none}
+  .lens{transition-property:opacity}
+}
+@keyframes fadeOnly{from{opacity:0}}
+
+@media(max-width:1100px){
+  .cardList{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dots{grid-template-columns:minmax(0,1fr);gap:32px}
+  .cardsHead{grid-template-columns:minmax(0,1fr);gap:24px}
+}
+@media(max-width:960px){
+  .locHead,.tourHead{flex-direction:column;align-items:flex-start;gap:20px}
+  .locFrame{grid-template-columns:minmax(0,1fr);grid-template-rows:380px auto;height:auto}
+  .locPanel{border-right:0;border-bottom:1px solid rgb(0 0 0 / .06)}
+  .locList{max-height:none;overflow:visible}
+  .locMap{order:-1}
+  .night{height:auto;display:flex;flex-direction:column}
+  .night>.mapBox{position:relative !important;inset:auto;height:380px;flex:none}
+  .nightShade{display:none}
+  .nightCard{position:relative;inset:auto;width:auto;border-radius:0;background:#121b22;box-shadow:none}
+  .tourStage{height:560px}
+}
+@media(max-width:640px){
+  .heading h2{font-size:28px}
+  .heading p{font-size:15px}
+  .heading[data-dark] h2{font-size:22px}
+  .locFrame{margin-top:28px;border-radius:20px;grid-template-rows:320px auto}
+  .locMore>div{padding-left:10px}
+  .night{border-radius:24px}
+  .night>.mapBox{height:320px}
+  .nightCard{padding:22px 18px}
+  .dotsStage{height:380px;border-radius:20px}
+  .dotsList li{grid-template-columns:minmax(0,1fr)}
+  .dotsList .actions{grid-row:auto;grid-column:auto;margin-top:10px}
+  .cardList{display:flex;gap:12px;margin:28px -16px 0;padding:0 16px 8px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;overscroll-behavior-x:contain;scrollbar-width:none}
+  .cardList::-webkit-scrollbar{display:none}
+  .card{flex:0 0 82%;scroll-snap-align:start}
+  .cardMap{height:190px}
+  .tourStage{height:600px;border-radius:24px;margin-top:28px}
+  .tourCard{left:12px;right:12px;bottom:12px;width:auto;padding:16px 16px 14px}
+  .tourBody h3{font-size:24px}
+}
+.stageAttrib{position:absolute;right:16px;bottom:12px;font-size:10px;color:var(--faint)}

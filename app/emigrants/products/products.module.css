@@ -90,6 +90,7 @@
   .hot:hover [data-kind=deposit] [data-part=roof]{transform:translateY(-1.5px)}
   .hot:hover [data-kind=deposit] [data-part=slot]{transform:scaleX(1.35)}
   .hot:hover [data-kind=card] [data-part=body],.hot:hover [data-kind=card] [data-part=stripe]{transform:rotate(-6deg)}
+  .hot:hover [data-kind=bell] [data-part=dome],.hot:hover [data-kind=bell] [data-part=knob]{animation:icon-ring 650ms var(--ease)}
   .hot:hover [data-kind=card] [data-part=digits]{animation:icon-draw 600ms var(--ease)}
   .hot:hover [data-kind=home] [data-part=roof]{transform:translateY(-1.5px)}
   .hot:hover [data-kind=home] [data-part=door]{animation:icon-door 600ms var(--ease)}
@@ -166,3 +167,5 @@
 @media(prefers-reduced-motion:reduce){
   .variantBody,.variantBody *,.variantBody *::before,.variantBody *::after{animation:none!important;transition-duration:1ms!important}
 }
+
+@keyframes icon-ring{25%{transform:rotate(-12deg)}50%{transform:rotate(9deg)}75%{transform:rotate(-4deg)}}

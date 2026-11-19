@@ -256,6 +256,10 @@
 /* the products section has its own dock; only one shows at a time */
 .switcher{transition:opacity 220ms ease,translate 320ms cubic-bezier(.19,1,.22,1)}
 :global(html[data-dock=products]) .switcher:not(.productsDock),.productsDock:not([data-visible=true]){opacity:0;translate:0 12px;pointer-events:none}
+:global(html[data-dock=rates]) .switcher:not(.ratesDock),.ratesDock:not([data-visible=true]){opacity:0;translate:0 12px;pointer-events:none}
+:global(html[data-dock=rcheuli]) .switcher:not(.rcheuliDock),.rcheuliDock:not([data-visible=true]){opacity:0;translate:0 12px;pointer-events:none}
+:global(html[data-dock=offers]) .switcher:not(.offersDock),.offersDock:not([data-visible=true]){opacity:0;translate:0 12px;pointer-events:none}
+:global(html[data-dock=video]) .switcher:not(.videoDock),.videoDock:not([data-visible=true]){opacity:0;translate:0 12px;pointer-events:none}
 
 /* ───────── Responsive ───────── */
 @media(max-width:1100px){
@@ -312,3 +316,4 @@
 @media(max-width:480px){.sceneChip{bottom:16px;font-size:12px;padding:7px 12px}.chipLabel{display:none}}
 @media(max-width:860px){.switchGroup{flex:1}.switchGroup:first-child{flex:.7}.switchDivider{margin:0 3px}}
 
+:global(html[data-dock=centers]) .switcher:not(.centersDock),.centersDock:not([data-visible=true]){opacity:0;translate:0 12px;pointer-events:none}

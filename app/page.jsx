@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import { CardArt } from '../components/DesignArt';
 import AppShowcase from '../components/AppShowcase';
-import SiteHeader from '../components/SiteHeader';
+import HeaderSwitch from '../components/nav-variants/HeaderSwitch';
 import TransferGlobe from '../components/TransferGlobe';
 import NewsSection from '../components/NewsSection';
 import BankCard3D from '../components/BankCard3D';
@@ -98,7 +98,7 @@ export default function Home() {
   }
   return <>
     <a className="skip-link" href="#products">გადადით მთავარ შინაარსზე</a>
-    <SiteHeader />
+    <HeaderSwitch />
     <main id="top">
       <section className="hero section-container" aria-labelledby="hero-title"><div className="hero-content"><h1 id="hero-title">{'ავტო სესხი'.toUpperCase()}</h1><p>შეიძინე ახალი ან მეორადი ავტომობილი მარტივი პირობებით და მართე განაცხადი შენთვის მოსახერხებლად.</p><a className="action" href="/auto-loan">{'გაიგე მეტი'.toUpperCase()}</a></div><div className="hero-photo"><img src="/assets/2fed6.png" alt="ნარინჯისფერი ავტომობილი ქალაქის ქუჩაზე" fetchPriority="high" /></div><div className="hero-controls" aria-label="კამპანიის ნავიგაცია"><button type="button" disabled aria-label="წინა კამპანია"><img src="/assets/2409b.svg" alt="" /></button><button type="button" disabled aria-label="შემდეგი კამპანია"><img src="/assets/2409b.svg" alt="" /></button></div></section>
       <section className="products section-container" id="products" aria-labelledby="products-title"><h2 id="products-title">{'იპოვე შენთვის საჭირო პროდუქტი'.toUpperCase()}</h2><div className="product-grid">

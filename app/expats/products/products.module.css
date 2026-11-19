@@ -1,0 +1,16 @@
+/* Fits the shared emigrants product layouts to the nine expats products. */
+
+/* nine products: three across instead of four, so no row is left with one */
+@media(min-width:1101px){
+  .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+/* bento: seven products plus this cell fill the 3-column grid */
+.allCell{grid-column:span 2}
+.all{grid-template-columns:minmax(0,1fr) 18px;padding-left:28px}
+.all h3{color:var(--blue)}
+.all :global(svg){opacity:1;transform:none}
+@media(max-width:1100px){
+  .allCell{grid-column:1/-1;border-left:0 !important}
+  .all{padding-left:4px}
+}

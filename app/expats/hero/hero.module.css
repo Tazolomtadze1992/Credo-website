@@ -1,0 +1,133 @@
+/* Expats hero — shared copy + five takes on the EXP logo (carpet medallion inside
+   two exchange arrows). Carpet disc = 74.9% of the arrow box, hence inset 12.55%. */
+@property --rad{syntax:'<length-percentage>';inherits:false;initial-value:14px}
+
+.hero{--ink:#223946;--sub:#697881;--exp-blue:#006393;--exp-coral:#d94828;--ease:cubic-bezier(.19,1,.22,1);
+  --shadow-border:0 0 0 1px oklch(0 0 0 / .06),0 1px 2px -1px oklch(0 0 0 / .06),0 2px 4px 0 oklch(0 0 0 / .04);
+  --lift:0 18px 40px -18px rgb(34 57 70 / .35);
+  position:relative;width:var(--frame);min-height:720px;margin:0 auto;display:grid;grid-template-columns:minmax(0,540px) minmax(0,1fr);gap:40px;align-items:center}
+.fill{display:block;width:100%;height:100%}
+
+/* copy */
+.copy{position:relative;z-index:2;padding-block:56px}
+.lockup{display:block;width:max-content}
+.lockup svg{display:block;width:auto;height:34px}
+.copy h1{margin-top:30px;font-size:clamp(38px,3.8vw,56px);line-height:1.1;font-weight:600;letter-spacing:-.03em;color:var(--ink);text-wrap:balance}
+.lede{margin-top:22px;max-width:470px;font-size:18px;line-height:1.65;color:var(--sub);text-wrap:pretty}
+.actions{display:flex;align-items:center;flex-wrap:wrap;gap:16px 28px;margin-top:36px}
+.textLink{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--blue);font-size:15px}
+.ticket{display:inline-flex;align-items:center;gap:14px;max-width:100%;margin-top:36px;padding:10px 18px 10px 10px;border-radius:18px;border:1px solid transparent;background:#fff;box-shadow:var(--shadow-border);transition:box-shadow 150ms ease-out}
+.ticketBadge{flex:none;display:grid;place-items:center;width:54px;height:54px;border-radius:12px;color:#fff;font-size:15px;font-weight:700;letter-spacing:-.01em;text-shadow:0 1px 6px rgb(60 10 5 / .6);
+  background:linear-gradient(rgb(217 72 40 / .78),rgb(217 72 40 / .78)),url(/assets/expats/carpet.svg) center/120px}
+.ticketText{display:flex;flex-direction:column;gap:3px;min-width:0;font-size:13px;line-height:1.45;color:var(--sub)}
+.ticketText b{font-size:14px;font-weight:600;color:var(--ink)}
+.ticketText s{color:#a3b1b9}
+.ticketArrow{flex:none;color:var(--blue);transition:translate 250ms var(--ease)}
+
+.stage{position:relative;align-self:stretch;min-height:600px;display:grid;place-items:center}
+@keyframes spin{to{rotate:360deg}}
+
+/* A — orbit */
+.orbit{--size:min(500px,36vw);position:relative;width:var(--size);aspect-ratio:1}
+.orbitRing{position:absolute;inset:-10%;border-radius:50%;border:1px dashed rgb(0 99 147 / .22)}
+.disc{position:absolute;inset:12.55%;border-radius:50%;overflow:hidden;box-shadow:0 30px 60px -30px rgb(80 20 15 / .5)}
+.orbitCarpet{display:block;width:100%;height:100%;animation:spin 140s linear infinite reverse}
+.orbitArrows{position:absolute;inset:0;animation:spin 20s linear infinite}
+.coins{position:absolute;inset:0;animation:spin 50s linear infinite;pointer-events:none}
+.coins i{position:absolute;left:50%;top:50%;transform:rotate(calc(var(--i) * 90deg + 45deg)) translateY(calc(var(--size) * -.6))}
+.coins i>span{display:block;transform:rotate(calc(var(--i) * -90deg - 45deg))}
+.coins b{display:grid;place-items:center;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:#fff;border:1px solid transparent;box-shadow:var(--shadow-border),var(--lift);font-size:21px;font-weight:600;color:var(--exp-blue);animation:spin 50s linear infinite reverse}
+.coins i:nth-child(even) b{color:var(--exp-coral)}
+
+/* B — flying carpet */
+.fly{--size:min(420px,32vw);position:relative;width:var(--size);aspect-ratio:1;perspective:1300px}
+.flyTilt,.flyPose,.flyBob,.rug{position:absolute;inset:0;transform-style:preserve-3d}
+.flyTilt{transform:rotateY(calc(var(--px, 0) * 16deg)) rotateX(calc(var(--py, 0) * -12deg));transition:transform 800ms var(--ease)}
+.flyPose{animation:lift 1700ms var(--ease) 2700ms both}
+.flyBob{animation:bob 5s ease-in-out 4400ms infinite alternate}
+.rug{border-radius:6px;background:#efe0cb}
+.rug::before,.rug::after{content:'';position:absolute;left:3%;right:3%;height:7%;background:repeating-linear-gradient(90deg,#ecdcc4 0 3px,transparent 3px 7px)}
+.rug::before{bottom:100%}
+.rug::after{top:100%}
+.rugWeave{position:absolute;inset:0;overflow:hidden;border-radius:6px;box-shadow:inset 0 0 0 1px rgb(0 0 0 / .08);animation:weave 2400ms steps(32,end) 300ms both}
+.shuttle{position:absolute;left:-5%;right:-5%;height:2px;border-radius:2px;background:var(--exp-coral);box-shadow:0 0 14px 1px rgb(217 72 40 / .8);animation:shuttle 2400ms steps(32,end) 300ms both,fade 260ms ease-out 2700ms both}
+.shuttle::after{content:'';position:absolute;top:-4px;width:22px;height:10px;border-radius:5px;background:#5a3b2a;animation:shuttle-x 150ms linear infinite alternate}
+.flyShadow{position:absolute;left:16%;right:16%;bottom:-2%;height:14%;border-radius:50%;background:rgb(34 57 70 / .28);filter:blur(22px);animation:show 1700ms ease 2700ms both,shadow-bob 5s ease-in-out 4400ms infinite alternate}
+@keyframes weave{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0)}}
+@keyframes shuttle{from{bottom:0}to{bottom:100%}}
+@keyframes shuttle-x{from{left:0}to{left:calc(100% - 22px)}}
+@keyframes fade{to{opacity:0}}
+@keyframes show{from{opacity:0}}
+@keyframes lift{from{transform:none}to{transform:translateY(-8%) rotateX(56deg) rotateZ(-18deg)}}
+@keyframes bob{from{transform:translateZ(0)}to{transform:translateZ(40px) rotateX(-5deg) rotateY(3deg)}}
+@keyframes shadow-bob{to{scale:.8;opacity:.6}}
+
+/* C — kaleidoscope */
+.kaleido{--size:min(520px,38vw);position:relative;width:var(--size);aspect-ratio:1}
+.kDisc{--a:0deg;--x:0%;--y:0%;position:absolute;inset:12.55%;border-radius:50%;overflow:hidden;isolation:isolate;background:#8c1d1a;box-shadow:0 30px 60px -30px rgb(80 20 15 / .55);animation:pop 900ms var(--ease) both}
+.wedge{position:absolute;inset:0;clip-path:polygon(50% 50%,49.7% -100%,157% -57%);transform:rotate(calc(var(--k) * 45deg))}
+.wedge[data-odd]{transform:rotate(calc((var(--k) + 1) * 45deg)) scaleX(-1)}
+.wedgeImg{position:absolute;left:50%;top:50%;width:150%;height:150%;max-width:none;translate:calc(-50% + var(--x)) calc(-50% + var(--y));rotate:var(--a)}
+.kArrows{position:absolute;inset:0;animation:spin 36s linear infinite}
+@keyframes pop{from{opacity:0;scale:.86}}
+
+/* D — lens over a carpet field */
+.hero[data-full]{isolation:isolate}
+.lensField{--r:170px;--x:70%;--y:50%;position:absolute;z-index:0;top:0;bottom:0;left:50%;width:100vw;translate:-50% 0;overflow:hidden}
+.lensBase,.lensColor{position:absolute;inset:0;background:url(/assets/expats/carpet.svg) center/240px}
+.lensBase{filter:grayscale(1) contrast(1.1);opacity:.1}
+.lensWash{position:absolute;inset:0;background:linear-gradient(90deg,#fff calc(50% - 360px),rgb(255 255 255 / .75) calc(50% - 120px),transparent calc(50% + 80px)),linear-gradient(0deg,#fff,transparent 18%)}
+.lensColor{-webkit-mask-image:radial-gradient(circle var(--r) at var(--x) var(--y),#000 calc(var(--r) - 1.5px),transparent var(--r));mask-image:radial-gradient(circle var(--r) at var(--x) var(--y),#000 calc(var(--r) - 1.5px),transparent var(--r))}
+.lensRing{position:absolute;left:var(--x);top:var(--y);width:calc(var(--r) * 2.675);aspect-ratio:1;translate:-50% -50%;pointer-events:none;filter:drop-shadow(0 12px 24px rgb(34 57 70 / .25));animation:spin 18s linear infinite}
+
+/* E — puzzle */
+.puzzle{--size:min(500px,36vw);position:relative;width:var(--size);aspect-ratio:1}
+.board{--gap:0px;position:absolute;inset:12.55%;display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);transition:gap 500ms var(--ease)}
+.tile{display:block;background:url(/assets/expats/carpet.svg) no-repeat;background-size:200% 200%;box-shadow:0 18px 36px -24px rgb(80 20 15 / .55);transition:scale 400ms var(--ease);
+  animation:tile-in 1100ms var(--ease) calc(var(--q) * 110ms + 150ms) both,round 1000ms var(--ease) 1500ms both}
+.tile:nth-child(1){background-position:0 0;border-top-left-radius:var(--rad)}
+.tile:nth-child(2){background-position:100% 0;border-top-right-radius:var(--rad)}
+.tile:nth-child(3){background-position:0 100%;border-bottom-left-radius:var(--rad)}
+.tile:nth-child(4){background-position:100% 100%;border-bottom-right-radius:var(--rad)}
+.pArrows{position:absolute;inset:0;animation:arrows-in 1200ms var(--ease) 2100ms both}
+@keyframes tile-in{from{opacity:0;transform:translate(calc(var(--dx) * 80%),calc(var(--dy) * 80%)) rotate(var(--r)) scale(.6)}}
+@keyframes round{to{--rad:100%}}
+@keyframes arrows-in{from{opacity:0;rotate:-140deg;scale:.8}}
+
+@media(hover:hover) and (pointer:fine){
+  .ticket:hover{box-shadow:0 0 0 1px oklch(0 0 0 / .08),0 1px 2px -1px oklch(0 0 0 / .08),0 2px 4px 0 oklch(0 0 0 / .06)}
+  .ticket:hover .ticketArrow{translate:3px 0}
+  .textLink:hover{text-decoration:underline;text-underline-offset:4px}
+  .puzzle:hover .board{--gap:12px}
+  .puzzle .tile:hover{scale:1.04}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .orbitCarpet,.orbitArrows,.coins,.coins b,.kArrows,.lensRing,.flyBob,.pArrows,.kDisc{animation:none}
+  .rugWeave,.shuttle{animation:none}
+  .shuttle{display:none}
+  .flyPose{animation:none;transform:translateY(-8%) rotateX(56deg) rotateZ(-18deg)}
+  .flyShadow{animation:none}
+  .flyTilt{transition:none}
+  .tile{animation:round 1ms both}
+}
+
+@media(max-width:960px){
+  .hero{grid-template-columns:minmax(0,1fr);gap:0;min-height:0}
+  .copy{padding-block:40px 8px}
+  .stage{min-height:0;padding:56px 0 72px}
+  .orbit,.kaleido,.puzzle{--size:min(420px,74vw)}
+  .fly{--size:min(340px,62vw)}
+  .hero[data-full]{align-content:start;padding-bottom:440px}
+  .lensField{--r:130px}
+  .lensWash{background:linear-gradient(180deg,#fff 48%,rgb(255 255 255 / .7) 58%,transparent 70%)}
+}
+@media(max-width:640px){
+  .copy h1{font-size:36px}
+  .lede{font-size:16px}
+  .lockup svg{height:28px}
+  .ticket{display:flex}
+  .lensField{--r:100px} /* ring is 2.675 × r wide — fits 375 with the idle sway */
+  .orbit{--size:64vw} /* coins orbit at 0.6 × size; keep them inside the viewport */
+  .coins b{width:44px;height:44px;margin:-22px 0 0 -22px;font-size:17px}
+}

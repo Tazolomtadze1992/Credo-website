@@ -3,8 +3,10 @@ import SiteHeader from '../../components/SiteHeader';
 import TransferGlobe from '../../components/TransferGlobe';
 import BookingForm from './booking-form';
 import ProductsVariants from './products/ProductsVariants';
+import RatesVariants from './rates/RatesVariants';
+import RcheuliVariants from './rcheuli/RcheuliVariants';
 import StepsVariants from './steps/StepsVariants';
-import { FACEBOOK_URL, RCHEULI_URL, SOURCE_URL, VIDEO_BANKING_URL } from './emigrants-data.mjs';
+import { FACEBOOK_URL, SOURCE_URL, VIDEO_BANKING_URL } from './emigrants-data.mjs';
 import styles from './emigrants.module.css';
 
 export const metadata = {
@@ -57,6 +59,13 @@ export default async function EmigrantsPage({ searchParams }) {
           <ProductsVariants initial={query?.products} />
         </section>
 
+        <section className={styles.section} id="rates" aria-labelledby="rates-heading">
+          <RatesVariants initial={query?.rates} heading={<div className={styles.sectionHeading}>
+            <h2 id="rates-heading">ვალუტის კურსები</h2>
+            <p>გადაცვალე Mycredo-ში, ფილიალზე უკეთეს კურსად — საზღვარგარეთიდანაც.</p>
+          </div>} />
+        </section>
+
         <section className={`${styles.section} ${styles.booking}`} id="booking" aria-labelledby="booking-heading">
           <div className={styles.bookingCopy}>
             <h2 id="booking-heading">დაჯავშნე ვიდეოზარი</h2>
@@ -68,10 +77,7 @@ export default async function EmigrantsPage({ searchParams }) {
 
         <AppShowcase id="mycredo" title="მართე ფინანსები Mycredo-თი" className={styles.appBanner} switchable={false} />
 
-        <a className={styles.rcheuli} href={RCHEULI_URL} target="_blank" rel="noreferrer">
-          <span><strong>გახდი რჩეული</strong> — პრივილეგირებული მომსახურება დისტანციურად</span>
-          <Icon kind="arrow" size={18} />
-        </a>
+        <RcheuliVariants initial={query?.rcheuli} className={styles.rcheuliBlock} />
 
         <footer className={styles.footer}>
           <a href="/#site-top">კრედო ბანკი</a>

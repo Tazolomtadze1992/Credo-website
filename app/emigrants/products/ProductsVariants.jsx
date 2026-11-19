@@ -151,11 +151,11 @@ export default function ProductsVariants({ initial }) {
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => setOnScreen(entry.isIntersecting), { rootMargin: '-35% 0px -35% 0px' });
     observer.observe(area.current);
-    return () => { observer.disconnect(); delete document.documentElement.dataset.dock; };
+    return () => { observer.disconnect(); if (document.documentElement.dataset.dock === 'products') delete document.documentElement.dataset.dock; };
   }, []);
   useEffect(() => {
     if (onScreen) document.documentElement.dataset.dock = 'products';
-    else delete document.documentElement.dataset.dock;
+    else if (document.documentElement.dataset.dock === 'products') delete document.documentElement.dataset.dock;
   }, [onScreen]);
   function choose(next) {
     setId(next);

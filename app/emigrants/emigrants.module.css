@@ -55,12 +55,10 @@
 .sent .textLink{margin-top:16px;font-size:14px}
 
 /* App + Rcheuli */
-.rcheuli{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 28px;border-radius:16px;box-shadow:0 0 0 1px var(--em-line);font-size:14px;line-height:1.6;color:#6b7c86;transition:background-color 150ms ease}
-.rcheuli strong{font-weight:500;color:#2a4553}
-.rcheuli svg{flex:none;color:var(--blue);transition:transform 180ms var(--em-ease)}
 
 /* the homepage MyCredo banner, spaced like the other sections */
 .content>.appBanner{margin-top:104px}
+.rcheuliBlock{margin-top:24px}
 .footer{margin-top:90px;border-top:1px solid var(--em-line);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;padding:26px 0 30px;color:#8a959d;font-size:12px}
 .footer>a{color:#576f7c;font-weight:500}
 .footerLinks{display:flex;gap:24px;flex-wrap:wrap;justify-content:flex-end}
@@ -69,9 +67,7 @@
 
 @media(hover:hover) and (pointer:fine){
   .textLink:hover,.footer a:hover{text-decoration:underline;text-underline-offset:4px}
-  .rcheuli:hover svg{transform:translateX(3px)}
-  .rcheuli:hover{background:#f8fafb}
-}
+    }
 @media(max-width:1100px){
   .hero{grid-template-columns:minmax(0,480px) minmax(0,1fr)}
   .booking{gap:40px}
@@ -90,10 +86,9 @@
   .sectionHeading h2,.bookingCopy h2{font-size:26px}
   .formCard{padding:24px 20px}
   .formGrid{grid-template-columns:1fr}
-  .rcheuli{padding:18px 20px}
-  .footer{flex-direction:column;align-items:flex-start}
+    .footer{flex-direction:column;align-items:flex-start}
   .footerLinks{justify-content:flex-start}
 }
-@media(prefers-reduced-motion:reduce){.rcheuli svg{transition:none}}
+@media(prefers-reduced-motion:reduce){}
 /* Header drops its outer padding at 760px; the logo then sits 16px from the edge. */
 @media(max-width:760px){.root{--em-frame:calc(100% - 32px)}}

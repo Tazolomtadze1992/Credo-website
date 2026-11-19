@@ -9,6 +9,10 @@ const PARTS = {
   loan: [['ring', <circle cx="12" cy="12" r="8" />], ['coin', <path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.5 0-2.5.8-2.5 2s1 1.6 2.5 2 2.5.8 2.5 2-1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5V8m0 8v1.5" />]],
   qr: [['a', <path d="M4 4h6v6H4z" />], ['b', <path d="M14 4h6v6h-6z" />], ['c', <path d="M4 14h6v6H4z" />], ['d', <path d="M14 14h2v2h-2z" />], ['e', <path d="M18 18h2v2h-2z" />], ['f', <path d="M14 18v2M18 14h2" />]],
   services: [['hub', <circle cx="12" cy="12" r="3" />], ['rays', <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" />]],
+  bell: [['dome', <path d="M5 17a7 7 0 0 1 14 0" />], ['base', <path d="M3 17h18M5 20h14" />], ['knob', <path d="M12 10V7.5M10.5 7.5h3" />]],
+  check: [['tick', <path d="m5 12.5 4.5 4.5L19 7.5" />]],
+  shield: [['body', <path d="M12 3 5 6v5.5c0 4.3 2.9 8 7 9.5 4.1-1.5 7-5.2 7-9.5V6z" />], ['cross', <path d="M12 9v6M9 12h6" />]],
+  split: [['a', <rect x="3" y="6" width="5" height="12" rx="1.5" />], ['b', <rect x="9.5" y="6" width="5" height="12" rx="1.5" />], ['c', <rect x="16" y="6" width="5" height="12" rx="1.5" />]],
   arrow: [['shaft', <path d="M5 12h14M13 6l6 6-6 6" />]],
 };
 
